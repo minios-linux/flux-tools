@@ -1,0 +1,171 @@
+#!/bin/bash
+
+# Set text domain
+export TEXTDOMAIN="flux-tools"
+
+LOCALE_LANG=$(locale | grep LANG | cut -d= -f2 | cut -d. -f1)
+
+declare -A LOCALE_TO_LAYOUT=(
+    ["en_US"]="English,us,flag_usa.png"
+    ["cs_CZ"]="Čeština,cz,flag_czech_republic.png"
+    ["fr_FR"]="Français,fr,flag_france.png"
+    ["de_DE"]="Deutsch,de,flag_germany.png"
+    ["it_IT"]="Italiano,it,flag_italy.png"
+    ["pl_PL"]="Polski,pl,flag_poland.png"
+    ["pt_PT"]="Português,pt,flag_portugal.png"
+    ["ru_RU"]="Русский,ru,flag_russia.png"
+    ["sk_SK"]="Slovenčina,sk,flag_slovakia.png"
+    ["es_ES"]="Español,es,flag_spain.png"
+    ["uk_UA"]="Українська,ua,flag_ukraine.png"
+    ["af_ZA"]="Afrikaans,af"
+    ["sq_AL"]="Shqip,al"
+    ["ar_MA"]="العربية [المغرب],ma"
+    ["ar_AR"]="العربية,ara"
+    ["hy_AM"]="Հայերեն,am"
+    ["az_AZ"]="Azərbaycanca,az"
+    ["be_BY"]="Беларуская,by"
+    ["nl_BE"]="Nederlands,be"
+    ["ber_DZ"]="Tamaziɣt [lzzayer],dz"
+    ["bs_BA"]="Bosanski,ba"
+    ["pt_BR"]="Português [Brasil],br,flag_brasil.png"
+    ["bg_BG"]="Български,bg"
+    ["hr_HR"]="Hrvatski,hr"
+    ["da_DK"]="Dansk,dk"
+    ["nl_NL"]="Nederlands,nl"
+    ["en_AU"]="English [Australia],au"
+    ["et_EE"]="Eesti,ee"
+    ["fi_FI"]="Suomi,fi"
+    ["fr_CA"]="Français [Canada],ca"
+    ["de_AT"]="Deutsch [Österreich],at"
+    ["de_CH"]="Deutsch [Schweiz],ch"
+    ["el_GR"]="Ελληνικά,gr"
+    ["he_IL"]="גּ בּרִית,il"
+    ["hu_HU"]="Magyar,hu"
+    ["is_IS"]="Íslenska,is"
+    ["hi_IN"]="हिंदी,in"
+    ["ar_IQ"]="العربية [العراق],iq"
+    ["ga_IE"]="Gaeilge,ie"
+    ["lv_LV"]="Latviešu,lv"
+    ["lt_LT"]="Lietuvių,lt"
+    ["no_NO"]="Norsk,no"
+    ["fa_IR"]="فارسی,ir"
+    ["ro_RO"]="Română,ro"
+    ["sr_RS"]="Српски,rs"
+    ["sl_SI"]="Slovenščina,si"
+    ["sv_SE"]="Svenska,se"
+    ["tr_TR"]="Türkçe,tr"
+)
+
+keyboard_menu() {
+    local LOCALE_LAYOUT=${LOCALE_TO_LAYOUT["$LOCALE_LANG"]}
+    if [ -z "$LOCALE_LAYOUT" ]; then
+        LOCALE_LAYOUT="English,us,flag_usa.png"
+    fi
+    LOCALE_TEXT="${LOCALE_LAYOUT%%,*}"
+    LOCALE_KEYBOARD="${LOCALE_LAYOUT#*,}"
+    LOCALE_KEYBOARD="${LOCALE_KEYBOARD%%,*}"
+    IMAGE_PATH="/usr/share/icons/locolor/16x16/flags"
+    LOCALE_IMAGE="${LOCALE_LAYOUT##*,}"
+    if [ ! -z $LOCALE_IMAGE ]; then
+        LOCALE_IMAGE=" <$IMAGE_PATH/$LOCALE_IMAGE>"
+    fi
+    echo "      [exec] (English) { fbsetkb us } <$IMAGE_PATH/flag_usa.png>"
+    if [ "$LOCALE_LANG" != "en_US" ]; then
+        echo "      [exec] ($LOCALE_TEXT) { fbsetkb $LOCALE_KEYBOARD }$LOCALE_IMAGE"
+    else
+        echo "      [exec] (Czech) { fbsetkb cz } <$IMAGE_PATH/flag_czech_republic.png>
+      [exec] (English) { fbsetkb us } <$IMAGE_PATH/flag_usa.png>
+      [exec] (French) { fbsetkb fr } <$IMAGE_PATH/flag_france.png>
+      [exec] (German) { fbsetkb de } <$IMAGE_PATH/flag_germany.png>
+      [exec] (Italian) { fbsetkb it } <$IMAGE_PATH/flag_italy.png>
+      [exec] (Polish) { fbsetkb pl } <$IMAGE_PATH/flag_poland.png>
+      [exec] (Portuguese) { fbsetkb pt } <$IMAGE_PATH/flag_portugal.png>
+      [exec] (Russian) { fbsetkb ru } <$IMAGE_PATH/flag_russia.png>
+      [exec] (Slovak) { fbsetkb sk } <$IMAGE_PATH/flag_slovakia.png>
+      [exec] (Spanish) { fbsetkb es } <$IMAGE_PATH/flag_spain.png>
+      [exec] (Ukrainian) { fbsetkb ua } <$IMAGE_PATH/flag_ukraine.png>
+      [submenu] (Other                      ...) {}
+         [exec] (Afghani) { fbsetkb af }
+         [exec] (Albanian) { fbsetkb al }
+         [exec] (Arabic [Morocco]) { fbsetkb ma }
+         [exec] (Arabic) { fbsetkb ara }
+         [exec] (Armenian) { fbsetkb am }
+         [exec] (Azerbaijani) { fbsetkb az }
+         [exec] (Belarusian) { fbsetkb by }
+         [exec] (Belgian) { fbsetkb be }
+         [exec] (Berber [Algeria]) { fbsetkb dz }
+         [exec] (Bosnian) { fbsetkb ba }
+         [exec] (Brasil) { fbsetkb br }
+         [exec] (Bulgarian) { fbsetkb bg }
+         [exec] (Croatian) { fbsetkb hr }
+         [exec] (Danish) { fbsetkb dk }
+         [exec] (Dutch) { fbsetkb nl }
+         [exec] (English [Australian]) { fbsetkb au }
+         [exec] (Estonian) { fbsetkb ee }
+         [exec] (Finnish) { fbsetkb fi }
+         [exec] (French [Canada]) { fbsetkb ca }
+         [exec] (German [Austria]) { fbsetkb at }
+         [exec] (German [Switzerland]) { fbsetkb ch }
+         [exec] (Greek) { fbsetkb gr }
+         [exec] (Hebrew) { fbsetkb il }
+         [exec] (Hungarian) { fbsetkb hu }
+         [exec] (Icelandic) { fbsetkb is }
+         [exec] (Indian) { fbsetkb in }
+         [exec] (Iraqi) { fbsetkb iq }
+         [exec] (Irish) { fbsetkb ie }
+         [exec] (Latvian) { fbsetkb lv }
+         [exec] (Lithuanian) { fbsetkb lt }
+         [exec] (Norwegian) { fbsetkb no }
+         [exec] (Persian) { fbsetkb ir }
+         [exec] (Romanian) { fbsetkb ro }
+         [exec] (Serbian) { fbsetkb rs }
+         [exec] (Slovenian) { fbsetkb si }
+         [exec] (Swedish) { fbsetkb se }
+         [exec] (Turkish) { fbsetkb tr }
+      [end]"
+    fi
+}
+
+# Function generates a menu entry only if the passed command exists
+# ARG1: MENU_NAME - Menu item name that will be localized with gettext
+# ARG2: MENU_COMMAND - Actual command to execute when the menu item is selected
+application_menu() {
+    MENU_NAME=$1
+    MENU_COMMAND="$2"
+    # Split MENU_COMMAND into an array
+    IFS=" " read -a COMMANDS <<<"$MENU_COMMAND"
+    if [ "${COMMANDS[0]}" == "fbliveapp" ]; then
+        # If the first command is 'fbliveapp', shift the array
+        COMMANDS=("${COMMANDS[@]:1}")
+        CHECK="false"
+    else
+        CHECK="true"
+    fi
+    COMMAND_NAME="${COMMANDS[0]}"
+
+    if [ $CHECK = "false" ] || command -v $COMMAND_NAME >/dev/null 2>&1; then
+        echo "   [exec] ($(gettext "$MENU_NAME")) { fbstartupnotify && $MENU_COMMAND }"
+    fi
+}
+
+# Output the entire menu
+cat <<EOF
+[begin] ($(gettext 'Desktop menu'))
+$(application_menu "Terminal" "xterm -ls")
+$(application_menu "File Manager" "pcmanfm")
+$(application_menu "Web Browser" "fbliveapp firefox-esr")
+$(application_menu "Text Editor" "mousepad")
+$(application_menu "Calculator" "galculator")
+$(application_menu "Network Manager" "connman-gtk")
+   [exec] ($(gettext 'Run')) { fbappselect }
+   [separator]
+   [workspaces] ($(gettext 'Workspaces                ...'))
+   [submenu] ($(gettext 'Screen resolution         ...')) {}
+      [include] (~/.fluxbox/menu_resolution)
+   [end]
+   [submenu] ($(gettext 'Keyboard layout           ...')) {}
+$(keyboard_menu)
+   [end]
+   [exec] ($(gettext 'Exit / Logout')) { fblogout }
+[end]
+EOF

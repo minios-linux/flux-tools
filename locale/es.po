@@ -1,0 +1,88 @@
+# Spanish translations for the flux-tools package
+# Copyright (C) 2024 MiniOS Linux
+# This file is distributed under the same license as the flux-tools package
+# crims0n <crims0n@minios.dev>, 2024
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: flux-tools 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-17 13:59+0300\n"
+"PO-Revision-Date: 2024-03-17 14:43+0300\n"
+"Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);"
+
+#: menu:1
+msgid "Desktop menu"
+msgstr "Menú de escritorio"
+
+#: menu:2
+msgid "Terminal"
+msgstr "Terminal"
+
+#: menu:3
+msgid "File Manager"
+msgstr "Gestor de archivos"
+
+#: menu:4
+msgid "Web Browser"
+msgstr "Navegador web"
+
+#: menu:5
+msgid "Text Editor"
+msgstr "Editor de texto"
+
+#: menu:6
+msgid "Calculator"
+msgstr "Calculadora"
+
+#: menu:7
+msgid "Network Manager"
+msgstr "Gestor de red"
+
+msgid "Net Manager"
+msgstr "Gestor de red"
+
+msgid "Task Manager"
+msgstr "Gestor de tareas"
+
+msgid "Archiver"
+msgstr "Archivador"
+
+msgid "Video Player"
+msgstr "Reproductor de vídeo"
+
+msgid "Install MiniOS"
+msgstr "Instalar MiniOS"
+
+msgid "Configure MiniOS"
+msgstr "Configurar MiniOS"
+
+#: menu:8
+msgid "Run"
+msgstr "Ejecutar"
+
+#: menu:10
+msgid "Workspaces                ..."
+msgstr "Espacios de trabajo       ..."
+
+#: menu:11
+msgid "Screen resolution         ..."
+msgstr "Resolución de pantalla    ..."
+
+#: menu:14
+msgid "Keyboard layout           ..."
+msgstr "Diseño del teclado        ..."
+
+#: menu:26
+msgid "Other                      ..."
+msgstr "Otros                      ..."
+
+#: menu:66
+msgid "Exit / Logout"
+msgstr "Salir / Cerrar sesión"

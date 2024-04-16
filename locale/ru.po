@@ -1,0 +1,89 @@
+# Russian translations for flux-tools package.
+# Copyright (C) 2024 MiniOS Linux.
+# This file is distributed under the same license as the flux-tools package.
+# crims0n <crims0n@minios.dev>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: flux-tools 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-17 13:59+0300\n"
+"PO-Revision-Date: 2024-03-17 14:43+0300\n"
+"Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: menu:1
+msgid "Desktop menu"
+msgstr "Рабочее меню"
+
+#: menu:2
+msgid "Terminal"
+msgstr "Терминал"
+
+#: menu:3
+msgid "File Manager"
+msgstr "Файловый менеджер"
+
+#: menu:4
+msgid "Web Browser"
+msgstr "Веб-браузер"
+
+#: menu:5
+msgid "Text Editor"
+msgstr "Текстовый редактор"
+
+#: menu:6
+msgid "Calculator"
+msgstr "Калькулятор"
+
+#: menu:7
+msgid "Network Manager"
+msgstr "Сетевой менеджер"
+
+msgid "Net Manager"
+msgstr "Сетевой менеджер"
+
+msgid "Task Manager"
+msgstr "Диспетчер задач"
+
+msgid "Archiver"
+msgstr "Архиватор"
+
+msgid "Video Player"
+msgstr "Видео плеер"
+
+msgid "Install MiniOS"
+msgstr "Установить MiniOS"
+
+msgid "Configure MiniOS"
+msgstr "Настроить MiniOS"
+
+#: menu:8
+msgid "Run"
+msgstr "Запустить"
+
+#: menu:10
+msgid "Workspaces                ..."
+msgstr "Рабочие пространства      ..."
+
+#: menu:11
+msgid "Screen resolution         ..."
+msgstr "Разрешение экрана         ..."
+
+#: menu:14
+msgid "Keyboard layout           ..."
+msgstr "Раскладка клавиатуры      ..."
+
+#: menu:26
+msgid "Other                      ..."
+msgstr "Другой                     ..."
+
+#: menu:66
+msgid "Exit / Logout"
+msgstr "Выход / Выйти из системы"
