@@ -8,7 +8,7 @@ Homepage: https://minios.dev
 
 Package: flux-tools
 Architecture: all
-Depends: bash (>= 5.0), coreutils (>= 8.30), gettext (>= 0.19), grep (>= 3.3), sed (>= 4.7), util-linux (>= 2.33), gtkask, xlunch-slax, ${misc:Depends}
+Depends: bash (>= 5.0), coreutils (>= 8.30), gettext-base (>= 0.19), grep (>= 3.3), sed (>= 4.7), util-linux (>= 2.33), gtkask, xlunch-slax, ${misc:Depends}
 Description: Flux Tools for Fluxbox in MiniOS Linux.
  Flux Tools is a set of utilities designed to be used
  with Fluxbox for ease of use.
