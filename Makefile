@@ -10,11 +10,6 @@ PO_FILES  = $(shell find po -name "*.po")
 MO_FILES  = $(patsubst %.po,%.mo,$(PO_FILES))
 
 # Build rules
-ifeq (,$(findstring nodoc,$(DEB_BUILD_PROFILES)))
-ifeq (,$(findstring nodoc,$(DEB_BUILD_OPTIONS)))
-build: man
-endif
-endif
 build: po
 
 # Compilation rules
