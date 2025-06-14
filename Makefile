@@ -6,9 +6,6 @@ BINDIR = usr/bin
 SHAREDIR = usr/share
 LOCALEDIR = usr/share/locale
 
-DOC_FILES = $(shell find doc -name "*.md")
-MAN_FILES = $(patsubst doc/%.md, man/%.1, $(DOC_FILES))
-
 PO_FILES  = $(shell find po -name "*.po")
 MO_FILES  = $(patsubst %.po,%.mo,$(PO_FILES))
 
@@ -21,13 +18,6 @@ endif
 build: po
 
 # Compilation rules
-man: $(MAN_FILES)
-
-man/%.1: doc/%.md
-	@echo "Generating man file for $<"
-	mkdir -p $(@D)
-	pandoc -s -t man $< -o $@
-
 po: $(MO_FILES)
 
 %.mo: %.po
