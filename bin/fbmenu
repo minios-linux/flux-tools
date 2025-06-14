@@ -54,6 +54,7 @@ declare -A LOCALE_TO_LAYOUT=(
     ["sl_SI"]="Slovenščina,si"
     ["sv_SE"]="Svenska,se"
     ["tr_TR"]="Türkçe,tr"
+    ["id_ID"]="Bahasa Indonesia,id"
 )
 
 keyboard_menu() {

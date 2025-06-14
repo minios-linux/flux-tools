@@ -9,7 +9,7 @@ LOCALEDIR = usr/share/locale
 DOC_FILES = $(shell find doc -name "*.md")
 MAN_FILES = $(patsubst doc/%.md, man/%.1, $(DOC_FILES))
 
-PO_FILES  = $(shell find locale -name "*.po")
+PO_FILES  = $(shell find po -name "*.po")
 MO_FILES  = $(patsubst %.po,%.mo,$(PO_FILES))
 
 # Build rules
@@ -18,7 +18,7 @@ ifeq (,$(findstring nodoc,$(DEB_BUILD_OPTIONS)))
 build: man
 endif
 endif
-build: locale
+build: po
 
 # Compilation rules
 man: $(MAN_FILES)
@@ -28,7 +28,7 @@ man/%.1: doc/%.md
 	mkdir -p $(@D)
 	pandoc -s -t man $< -o $@
 
-locale: $(MO_FILES)
+po: $(MO_FILES)
 
 %.mo: %.po
 	@echo "Generating mo file for $<"
