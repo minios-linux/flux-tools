@@ -157,7 +157,6 @@ $(application_menu "File Manager" "pcmanfm")
 $(application_menu "Web Browser" "fbliveapp firefox-esr")
 $(application_menu "Text Editor" "mousepad")
 $(application_menu "Calculator" "galculator")
-$(application_menu "Network Manager" "connman-gtk")
    [exec] ($(gettext 'Run')) { fbappselect }
    [separator]
    [workspaces] ($(gettext 'Workspaces                ...'))
