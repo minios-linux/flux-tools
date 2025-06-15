@@ -1,16 +1,31 @@
 #!/bin/bash
 
+killall xlunch
+
+TEMPCONF=/tmp/xlunch$$.conf
+xlunch_genquick 64 --desktop > $TEMPCONF
+
 COMMAND=$(
-  xlunch_genquick 64 --desktop | \
   xlunch --border 7% --sideborder 10% --borderratio 100 --sideborderratio 50 \
-         --background /usr/share/wallpapers/flux_wallpaper.jpg --bgfill --font DejaVuSans/11 \
+         --backgroundcolor 00000066 \
+         --background /usr/share/wallpapers/flux_wallpaper.jpg --font DejaVuSans/11 \
+         --button "/usr/share/icons/locolor/48x48/actions/xlunch-logout.png;/usr/share/icons/locolor/48x48/actions/xlunch-logout-hi.png;52;-2;fblogout" \
+         --button "/usr/share/icons/hicolor/48x48/apps/org.xfce.panel.applicationsmenu.png;/usr/share/icons/hicolor/48x48/apps/org.xfce.panel.applicationsmenu-hi.png;2;-2;" \
+         --button "/usr/share/icons/locolor/104x52/ui/slax-menu-bg.png;;0;-0;" \
          --voidclickterminate --iconpadding 40 --textpadding 10 \
          --leastmargin 6 --hidemissing --iconsize 64 \
          --highlight /usr/share/icons/hicolor/128x128/apps/xlunch_highlight.png \
-         --outputonly
+         --outputonly --input $TEMPCONF
 )
 
+rm $TEMPCONF
+
 if [ "$COMMAND" = "" ]; then
+   exit
+fi
+
+if [ "$COMMAND" = "fblogout" ]; then
+   fblogout
    exit
 fi
 
@@ -32,7 +47,7 @@ if [ "$Ndep" != "" -o "$cmd" = "man" -o "$cmd" = "mc" ]; then
    WAIT=""
 fi
 
-if [ "$Xdep" = "" -a "$cmd" != "chromium" -a "$cmd" != "fbliveapp" -a "$NoTerm" = "" ]; then
+if [ "$Xdep" = "" -a "$cmd" != "chromium" -a "$cmd" != "wicd-manager" -a "$cmd" != "fbliveapp" -a "$NoTerm" = "" ]; then
    exec xterm -ls -e bash --login -c -- "echo $USER@$HOSTNAME:$PWD# '$COMMAND'; $COMMAND; $WAIT"
 else
    exec $COMMAND
