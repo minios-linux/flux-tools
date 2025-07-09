@@ -1,7 +1,5 @@
 #!/bin/bash
 
-. /etc/minios/minios.conf
-
 LOCALE="$(echo $LANG | cut -d. -f1)"
 LNG="$(echo $LANG | cut -d_ -f1)"
 
@@ -21,7 +19,7 @@ Audio CDs, CVDs, and various streaming protocols."
    EXECUTABLE="/usr/bin/vlc"
    PREINSTALL="apt update"
    INSTALL="apt install --yes vlc"
-   POSTINSTALL="rm /usr/share/applications/vlc.desktop; mkdir /home/guest/.config/vlc; echo '[qt4]
+   POSTINSTALL="rm /usr/share/applications/vlc.desktop; mkdir -p /home/guest/.config/vlc; echo '[qt4]
 qt-privacy-ask=0' > /home/guest/.config/vlc/vlcrc;"
    GUEST=true
 fi

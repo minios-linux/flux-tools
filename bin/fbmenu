@@ -110,6 +110,7 @@ keyboard_menu() {
          [exec] (Greek) { fbsetkb gr }
          [exec] (Hebrew) { fbsetkb il }
          [exec] (Hungarian) { fbsetkb hu }
+         [exec] (Indonesian) { fbsetkb id }
          [exec] (Icelandic) { fbsetkb is }
          [exec] (Indian) { fbsetkb in }
          [exec] (Iraqi) { fbsetkb iq }
@@ -157,6 +158,7 @@ $(application_menu "File Manager" "pcmanfm")
 $(application_menu "Web Browser" "fbliveapp firefox-esr")
 $(application_menu "Text Editor" "mousepad")
 $(application_menu "Calculator" "galculator")
+$(application_menu "Task Manager" "lxtask")
    [exec] ($(gettext 'Run')) { fbappselect }
    [separator]
    [workspaces] ($(gettext 'Workspaces                ...'))

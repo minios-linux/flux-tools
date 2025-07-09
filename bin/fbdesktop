@@ -2,6 +2,12 @@
 
 export TEXTDOMAIN="flux-tools"
 
+if [ "$(id -u)" -eq 0 ]; then
+    APPDIR="/usr/share/applications"
+else
+    APPDIR="$HOME/.local/share/applications"
+fi
+
 create_desktop_file() {
     APP_NAME="$(gettext "$1")"
     EXEC_COMMAND="$2"
@@ -25,8 +31,17 @@ create_desktop_file() {
 
     # Check if command exists on the system
     if [ $CHECK = "false" ] || command -v $ACTUAL_COMMAND >/dev/null 2>&1; then
+
+        # Avoid duplicating system desktop files in user dir
+        if [ "$APPDIR" != "/usr/share/applications" ] && \
+           [ -e "/usr/share/applications/${FILENAME}.desktop" ]; then
+            # remove old user copy if present
+            rm -f "$APPDIR/${FILENAME}.desktop"
+            return
+        fi
+
         # Create the applications directory if it doesn't exist
-        mkdir -p /usr/share/applications
+        mkdir -p "$APPDIR"
 
         # Write the .desktop file
         echo "[Desktop Entry]
@@ -40,7 +55,7 @@ Categories=$CATEGORIES
 MimeType=$MIME_TYPE
 StartupWMClass=$STARTUP_WM_CLASS
 StartupNotify=true
-Hidden=$HIDDEN" >/usr/share/applications/${FILENAME}.desktop
+Hidden=$HIDDEN" >"$APPDIR/${FILENAME}.desktop"
     fi
 }
 
@@ -50,10 +65,10 @@ create_desktop_file "Image Viewer" "feh %U" "none.png" "Graphics;2DGraphics;Rast
 create_desktop_file "Video Player" "fbliveapp vlc" "multimedia-video-player" "AudioVideo;Player;" "" "" "false"
 create_desktop_file "Terminal" "xterm -ls" "utilities-terminal" "System;Utility;" "" "" "false"
 create_desktop_file "Install MiniOS" "fbliveapp minios-installer" "usb-creator-gtk" "GTK;System;Settings;" "" "" "false"
-create_desktop_file "Configure MiniOS" "fbliveapp minios-configurator" "preferences-system" "GTK;System;Settings;" "" "" "false"
+create_desktop_file "Configure MiniOS" "fbliveapp minios-configurator" "menulibre" "GTK;System;Settings;" "" "" "false"
 create_desktop_file "Archiver" "xarchiver %f" "xarchiver" "GTK;Archiving;Compression;Utility;" "application/x-arj;application/arj;application/x-bzip;application/x-bzip-compressed-tar;application/x-gzip;application/x-rar;application/x-rar-compressed;application/x-tar;application/x-zip;application/x-zip-compressed;application/zip;application/x-7z-compressed;application/x-compressed-tar;application/x-bzip2;application/x-bzip2-compressed-tar;application/x-lzma-compressed-tar;application/x-lzma;application/x-deb;application/deb;application/x-xz;application/x-xz-compressed-tar;" "xarchiver" "false"
 create_desktop_file "File Manager" "pcmanfm %U" "system-file-manager" "System;FileTools;FileManager;Utility;Core;GTK;" "inode/directory;" "pcmanfm" "false"
 create_desktop_file "Text Editor" "mousepad %f" "org.xfce.mousepad" "GTK;Utility;TextEditor;" "text/plain;" "mousepad" "false"
 create_desktop_file "Task Manager" "lxtask" "utilities-system-monitor" "GTK;System;Monitor;" "" "lxtask" "false"
-#create_desktop_file "Net Manager" "connman-gtk" "preferences-system-network-flux" "" "" "connman-gtk" "false"
+#create_desktop_file "Net Manager" "connman-gtk" "preferences-system-network" "" "" "connman-gtk" "false"
 create_desktop_file "Calculator" "galculator" "galculator" "Utility" "" "false" "false"
