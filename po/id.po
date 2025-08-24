@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-17 13:59+0300\n"
+"Report-Msgid-Bugs-To: support@minios.dev\n"
+"POT-Creation-Date: 2025-08-25 01:25+0300\n"
 "PO-Revision-Date: 2025-06-17 02:11+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: Indonesian\n"
@@ -17,72 +17,194 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: menu:1
+#: bin/fbmenu:155
 msgid "Desktop menu"
 msgstr "Menu desktop"
 
-#: menu:2
-msgid "Terminal"
-msgstr "Terminal"
-
-#: menu:3
-msgid "File Manager"
-msgstr "Manajer Berkas"
-
-#: menu:4
-msgid "Web Browser"
-msgstr "Peramban Web"
-
-#: menu:5
-msgid "Text Editor"
-msgstr "Editor Teks"
-
-#: menu:6
-msgid "Calculator"
-msgstr "Kalkulator"
-
-#: menu:7
-msgid "Network Manager"
-msgstr "Manajer Jaringan"
-
-msgid "Net Manager"
-msgstr "Manajer Jaringan"
-
-msgid "Task Manager"
-msgstr "Manajer Tugas"
-
-msgid "Archiver"
-msgstr "Pengarsip"
-
-msgid "Video Player"
-msgstr "Pemutar Video"
-
-msgid "Install MiniOS"
-msgstr "Pasang MiniOS"
-
-msgid "Configure MiniOS"
-msgstr "Konfigurasi MiniOS"
-
-#: menu:8
+#: bin/fbmenu:162
 msgid "Run"
 msgstr "Jalankan"
 
-#: menu:10
+#: bin/fbmenu:164
 msgid "Workspaces                ..."
 msgstr "Ruang Kerja                ..."
 
-#: menu:11
+#: bin/fbmenu:165
 msgid "Screen resolution         ..."
 msgstr "Resolusi layar             ..."
 
-#: menu:14
+#: bin/fbmenu:168
 msgid "Keyboard layout           ..."
 msgstr "Tata letak keyboard        ..."
 
-#: menu:26
-msgid "Other                      ..."
-msgstr "Lainnya                    ..."
-
-#: menu:66
+#: bin/fbmenu:171
 msgid "Exit / Logout"
 msgstr "Keluar / Logout"
+
+#. TRANSLATORS: Desktop entry names
+#: bin/fbdesktop:66
+msgid "Web Browser"
+msgstr "Peramban Web"
+
+#: bin/fbdesktop:67
+msgid "Image Viewer"
+msgstr "Penampil Gambar"
+
+#: bin/fbdesktop:68
+msgid "Video Player"
+msgstr "Pemutar Video"
+
+#: bin/fbdesktop:69
+msgid "Terminal"
+msgstr "Terminal"
+
+#: bin/fbdesktop:70
+msgid "Install MiniOS"
+msgstr "Pasang MiniOS"
+
+#: bin/fbdesktop:71
+msgid "Configure MiniOS"
+msgstr "Konfigurasi MiniOS"
+
+#: bin/fbdesktop:72
+msgid "Archiver"
+msgstr "Pengarsip"
+
+#: bin/fbdesktop:73
+msgid "File Manager"
+msgstr "Manajer Berkas"
+
+#: bin/fbdesktop:74
+msgid "Text Editor"
+msgstr "Editor Teks"
+
+#: bin/fbdesktop:75
+msgid "Task Manager"
+msgstr "Manajer Tugas"
+
+#: bin/fbdesktop:76 bin/fbdesktop:77
+msgid "Calculator"
+msgstr "Kalkulator"
+
+#: bin/fbdesktop:77 bin/fbdesktop:78
+msgid "Session Manager"
+msgstr "Manajer Sesi"
+
+#: bin/fbdesktop:78 bin/fbdesktop:79
+msgid "Kernel Manager"
+msgstr "Manajer Kernel"
+
+#. TRANSLATORS: Application names and descriptions
+#: bin/fbliveapp:8 bin/fbliveapp:37 bin/fbliveapp:17
+msgid "VLC Video Player"
+msgstr "Pemutar VLC"
+
+#: bin/fbliveapp:9 bin/fbliveapp:38 bin/fbliveapp:18
+msgid ""
+"VLC Video Player is a free and open source multimedia player and framework "
+"that plays most multimedia files as well as DVDs, Audio CDs, CVDs, and "
+"various streaming protocols."
+msgstr ""
+"VLC adalah pemutar multimedia sumber terbuka yang memutar sebagian besar "
+"file multimedia serta DVD, CD audio, CVD, dan berbagai protokol streaming."
+
+#: bin/fbliveapp:10 bin/fbliveapp:48 bin/fbliveapp:28
+msgid "Chromium Web Browser"
+msgstr "Peramban Chromium"
+
+#: bin/fbliveapp:11 bin/fbliveapp:49 bin/fbliveapp:29
+msgid ""
+"Chromium is a free and open source version of the famous Chrome browser, "
+"developed by Google."
+msgstr ""
+"Chromium adalah versi sumber terbuka dari peramban Chrome yang dikembangkan "
+"oleh Google."
+
+#: bin/fbliveapp:12 bin/fbliveapp:58 bin/fbliveapp:38
+msgid "Firefox Web Browser"
+msgstr "Peramban Firefox"
+
+#: bin/fbliveapp:13 bin/fbliveapp:59 bin/fbliveapp:39
+msgid "Firefox is a free and open source browser."
+msgstr "Firefox adalah peramban sumber terbuka dan gratis."
+
+#: bin/fbliveapp:14 bin/fbliveapp:72 bin/fbliveapp:52
+msgid "MiniOS Installer"
+msgstr "Penginstal MiniOS"
+
+#: bin/fbliveapp:15 bin/fbliveapp:73 bin/fbliveapp:53
+msgid "MiniOS Installer allows you to install MiniOS on the media."
+msgstr "Penginstal MiniOS memungkinkan Anda memasang MiniOS pada media."
+
+#: bin/fbliveapp:16 bin/fbliveapp:82 bin/fbliveapp:62
+msgid "MiniOS Configurator"
+msgstr "Konfigurator MiniOS"
+
+#: bin/fbliveapp:17 bin/fbliveapp:83 bin/fbliveapp:63
+msgid "MiniOS Configurator allows you to configure MiniOS."
+msgstr "Konfigurator MiniOS memungkinkan Anda mengonfigurasi MiniOS."
+
+#: bin/fbliveapp:18 bin/fbliveapp:92 bin/fbliveapp:72
+msgid "MiniOS Session Manager"
+msgstr "Manajer Sesi MiniOS"
+
+#: bin/fbliveapp:19 bin/fbliveapp:93 bin/fbliveapp:73
+msgid ""
+"Manage MiniOS persistent sessions. Create, activate and cleanup persistent "
+"sessions with different storage modes (native, dynfilefs, raw)."
+msgstr ""
+"Kelola sesi persisten MiniOS. Buat, aktifkan, dan bersihkan sesi persisten "
+"dengan berbagai mode penyimpanan (native, dynfilefs, raw)."
+
+#: bin/fbliveapp:20 bin/fbliveapp:102 bin/fbliveapp:82
+msgid "MiniOS Kernel Manager"
+msgstr "Manajer Kernel MiniOS"
+
+#: bin/fbliveapp:21 bin/fbliveapp:103 bin/fbliveapp:83
+msgid ""
+"Manage Linux kernels in MiniOS. Package kernels from repository or .deb "
+"files, activate different versions, and manage kernel installations."
+msgstr ""
+"Kelola kernel Linux di MiniOS. Bungkus kernel dari repositori atau "
+"file .deb, aktifkan versi berbeda, dan kelola instalasi kernel."
+
+#: bin/fbliveapp:22 bin/fbliveapp:134 bin/fbliveapp:114
+msgid " is not yet installed.\\nDo you like to download and install it now?"
+msgstr ""
+" belum terpasang.\\nIngin mengunduh dan memasangnya sekarang?"
+
+#: bin/fbdesktop:76
+msgid "Net Manager"
+msgstr "Manajer Jaringan"
+
+#: bin/fbliveapp:110
+msgid "Error"
+msgstr "Kesalahan"
+
+#: bin/fbliveapp:110
+msgid "only works in 64bit version of MiniOS"
+msgstr "hanya berfungsi pada versi 64-bit dari MiniOS"
+
+#: bin/fbliveapp:110
+msgid "OK"
+msgstr "OK"
+
+#: bin/fbliveapp:114
+msgid "Question"
+msgstr "Pertanyaan"
+
+#: bin/fbliveapp:114
+msgid "Yes"
+msgstr "Ya"
+
+#: bin/fbliveapp:114
+msgid "No"
+msgstr "Tidak"
+
+#. TRANSLATORS: Terminal message when command finishes
+#: bin/fbappselect:8
+msgid "Command finished. Press any key to close window..."
+msgstr "Perintah selesai. Tekan tombol apa saja untuk menutup jendela..."
+
+#~ msgid "Other                      ..."
+#~ msgstr "Lainnya                    ..."

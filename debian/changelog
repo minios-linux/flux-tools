@@ -1,3 +1,13 @@
+flux-tools (1.2.5) unstable; urgency=medium
+
+  * Add support for minios-session-manager and minios-kernel-manager
+    in fbdesktop and fbliveapp scripts
+  * Add gettext support for translations in fbappselect, fbdesktop, and
+    fbliveapp scripts
+  * Update translations
+
+ -- crims0n <crims0n@minios.dev>  Mon, 25 Aug 2025 00:52:49 +0300
+
 flux-tools (1.2.4) unstable; urgency=medium
 
   * Enhance fbappselect, fbdesktop, fbliveapp, fblogout, and fbmenu scripts;

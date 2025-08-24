@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-17 13:59+0300\n"
+"Report-Msgid-Bugs-To: support@minios.dev\n"
+"POT-Creation-Date: 2025-08-25 01:05+0300\n"
 "PO-Revision-Date: 2024-03-17 14:43+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: German\n"
@@ -17,72 +17,185 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: menu:1
+#: bin/fbmenu:155
 msgid "Desktop menu"
 msgstr "Desktop-Menü"
 
-#: menu:2
-msgid "Terminal"
-msgstr "Terminal"
-
-#: menu:3
-msgid "File Manager"
-msgstr "Dateimanager"
-
-#: menu:4
-msgid "Web Browser"
-msgstr "Web-Browser"
-
-#: menu:5
-msgid "Text Editor"
-msgstr "Texteditor"
-
-#: menu:6
-msgid "Calculator"
-msgstr "Rechner"
-
-#: menu:7
-msgid "Network Manager"
-msgstr "Netzwerkmanager"
-
-msgid "Net Manager"
-msgstr "Netzwerkmanager"
-
-msgid "Task Manager"
-msgstr "Task-Manager"
-
-msgid "Archiver"
-msgstr "Archivar"
-
-msgid "Video Player"
-msgstr "Videoplayer"
-
-msgid "Install MiniOS"
-msgstr "MiniOS installieren"
-
-msgid "Configure MiniOS"
-msgstr "MiniOS konfigurieren"
-
-#: menu:8
+#: bin/fbmenu:162
 msgid "Run"
 msgstr "Ausführen"
 
-#: menu:10
+#: bin/fbmenu:164
 msgid "Workspaces                ..."
 msgstr "Arbeitsflächen            ..."
 
-#: menu:11
+#: bin/fbmenu:165
 msgid "Screen resolution         ..."
 msgstr "Bildschirmauflösung       ..."
 
-#: menu:14
+#: bin/fbmenu:168
 msgid "Keyboard layout           ..."
 msgstr "Tastaturbelegung          ..."
 
-#: menu:26
-msgid "Other                      ..."
-msgstr "Andere                    ..."
-
-#: menu:66
+#: bin/fbmenu:171
 msgid "Exit / Logout"
 msgstr "Beenden / Abmelden"
+
+#. TRANSLATORS: Desktop entry names
+#: bin/fbdesktop:66
+msgid "Web Browser"
+msgstr "Web-Browser"
+
+#: bin/fbdesktop:67
+msgid "Image Viewer"
+msgstr "Bildbetrachter"
+
+#: bin/fbdesktop:68
+msgid "Video Player"
+msgstr "Videoplayer"
+
+#: bin/fbdesktop:69
+msgid "Terminal"
+msgstr "Terminal"
+
+#: bin/fbdesktop:70
+msgid "Install MiniOS"
+msgstr "MiniOS installieren"
+
+#: bin/fbdesktop:71
+msgid "Configure MiniOS"
+msgstr "MiniOS konfigurieren"
+
+#: bin/fbdesktop:72
+msgid "Archiver"
+msgstr "Archivar"
+
+#: bin/fbdesktop:73
+msgid "File Manager"
+msgstr "Dateimanager"
+
+#: bin/fbdesktop:74
+msgid "Text Editor"
+msgstr "Texteditor"
+
+#: bin/fbdesktop:75
+msgid "Task Manager"
+msgstr "Task-Manager"
+
+#: bin/fbdesktop:76 bin/fbdesktop:77
+msgid "Calculator"
+msgstr "Rechner"
+
+#: bin/fbdesktop:77 bin/fbdesktop:78
+msgid "Session Manager"
+msgstr "Sitzungsmanager"
+
+#: bin/fbdesktop:78 bin/fbdesktop:79
+msgid "Kernel Manager"
+msgstr "Kernel-Manager"
+
+#. TRANSLATORS: Application names and descriptions
+#: bin/fbliveapp:8 bin/fbliveapp:37 bin/fbliveapp:17
+msgid "VLC Video Player"
+msgstr "VLC Media Player"
+
+#: bin/fbliveapp:9 bin/fbliveapp:38 bin/fbliveapp:18
+msgid ""
+"VLC Video Player is a free and open source multimedia player and framework "
+"that plays most multimedia files as well as DVDs, Audio CDs, CVDs, and "
+"various streaming protocols."
+msgstr "VLC Media Player ist ein freier und quelloffener Multimedia-Player und Framework, das die meisten Multimedia-Dateien sowie DVDs, Audio-CDs, CVDs und verschiedene Streaming-Protokolle abspielt."
+
+#: bin/fbliveapp:10 bin/fbliveapp:48 bin/fbliveapp:28
+msgid "Chromium Web Browser"
+msgstr "Chromium-Webbrowser"
+
+#: bin/fbliveapp:11 bin/fbliveapp:49 bin/fbliveapp:29
+msgid ""
+"Chromium is a free and open source version of the famous Chrome browser, "
+"developed by Google."
+msgstr "Chromium ist eine freie und quelloffene Version des bekannten Chrome-Browsers, entwickelt von Google."
+
+#: bin/fbliveapp:12 bin/fbliveapp:58 bin/fbliveapp:38
+msgid "Firefox Web Browser"
+msgstr "Firefox-Webbrowser"
+
+#: bin/fbliveapp:13 bin/fbliveapp:59 bin/fbliveapp:39
+msgid "Firefox is a free and open source browser."
+msgstr "Firefox ist ein freier und quelloffener Browser."
+
+#: bin/fbliveapp:14 bin/fbliveapp:72 bin/fbliveapp:52
+msgid "MiniOS Installer"
+msgstr "MiniOS-Installationsprogramm"
+
+#: bin/fbliveapp:15 bin/fbliveapp:73 bin/fbliveapp:53
+msgid "MiniOS Installer allows you to install MiniOS on the media."
+msgstr "Das MiniOS-Installationsprogramm ermöglicht die Installation von MiniOS auf dem Medium."
+
+#: bin/fbliveapp:16 bin/fbliveapp:82 bin/fbliveapp:62
+msgid "MiniOS Configurator"
+msgstr "MiniOS-Konfigurator"
+
+#: bin/fbliveapp:17 bin/fbliveapp:83 bin/fbliveapp:63
+msgid "MiniOS Configurator allows you to configure MiniOS."
+msgstr "Der MiniOS-Konfigurator ermöglicht die Konfiguration von MiniOS."
+
+#: bin/fbliveapp:18 bin/fbliveapp:92 bin/fbliveapp:72
+msgid "MiniOS Session Manager"
+msgstr "MiniOS-Sitzungsmanager"
+
+#: bin/fbliveapp:19 bin/fbliveapp:93 bin/fbliveapp:73
+msgid ""
+"Manage MiniOS persistent sessions. Create, activate and cleanup persistent "
+"sessions with different storage modes (native, dynfilefs, raw)."
+msgstr "Verwalten Sie MiniOS-persistente Sitzungen. Erstellen, aktivieren und bereinigen Sie persistente Sitzungen mit verschiedenen Speicherarten (native, dynfilefs, raw)."
+
+#: bin/fbliveapp:20 bin/fbliveapp:102 bin/fbliveapp:82
+msgid "MiniOS Kernel Manager"
+msgstr "MiniOS Kernel-Manager"
+
+#: bin/fbliveapp:21 bin/fbliveapp:103 bin/fbliveapp:83
+msgid ""
+"Manage Linux kernels in MiniOS. Package kernels from repository or .deb "
+"files, activate different versions, and manage kernel installations."
+msgstr "Verwalten Sie Linux-Kernel in MiniOS. Paketieren Sie Kernel aus dem Repository oder .deb-Dateien, aktivieren Sie verschiedene Versionen und verwalten Sie Kernel-Installationen."
+
+#: bin/fbliveapp:22 bin/fbliveapp:134 bin/fbliveapp:114
+msgid " is not yet installed.\\nDo you like to download and install it now?"
+msgstr " ist noch nicht installiert.\\nMöchten Sie es jetzt herunterladen und installieren?"
+
+#: bin/fbdesktop:76
+msgid "Net Manager"
+msgstr "Netzwerkmanager"
+
+#: bin/fbliveapp:110
+msgid "Error"
+msgstr "Fehler"
+
+#: bin/fbliveapp:110
+msgid "only works in 64bit version of MiniOS"
+msgstr "Funktioniert nur in der 64-Bit-Version von MiniOS"
+
+#: bin/fbliveapp:110
+msgid "OK"
+msgstr "OK"
+
+#: bin/fbliveapp:114
+msgid "Question"
+msgstr "Frage"
+
+#: bin/fbliveapp:114
+msgid "Yes"
+msgstr "Ja"
+
+#: bin/fbliveapp:114
+msgid "No"
+msgstr "Nein"
+
+#. TRANSLATORS: Terminal message when command finishes
+#: bin/fbappselect:8
+msgid "Command finished. Press any key to close window..."
+msgstr "Befehl abgeschlossen. Drücken Sie eine beliebige Taste, um das Fenster zu schließen..."
+
+#~ msgid "Other                      ..."
+#~ msgstr "Andere                    ..."
