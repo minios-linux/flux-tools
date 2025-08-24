@@ -69,6 +69,26 @@ if [ "$1" = "minios-configurator" ]; then
    GUEST=false
 fi
 
+if [ "$1" = "minios-session-manager" ]; then
+   NAME="MiniOS Session Manager"
+   ABOUT="Manage MiniOS persistent sessions. Create, activate and cleanup persistent sessions with different storage modes (native, dynfilefs, raw)."
+   EXECUTABLE="/usr/bin/minios-session-manager"
+   PREINSTALL="apt update"
+   INSTALL="apt install --yes minios-session-manager"
+   POSTINSTALL="rm -f /usr/share/applications/minios-session-manager.desktop"
+   GUEST=false
+fi
+
+if [ "$1" = "minios-kernel-manager" ]; then
+   NAME="MiniOS Kernel Manager"
+   ABOUT="Manage Linux kernels in MiniOS. Package kernels from repository or .deb files, activate different versions, and manage kernel installations."
+   EXECUTABLE="/usr/bin/minios-kernel-manager"
+   PREINSTALL="apt update"
+   INSTALL="apt install --yes minios-kernel-manager"
+   POSTINSTALL="rm -f /usr/share/applications/minios-kernel-manager.desktop"
+   GUEST=false
+fi
+
 shift
 
 # ------------------------------------------------

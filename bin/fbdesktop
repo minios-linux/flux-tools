@@ -72,3 +72,5 @@ create_desktop_file "Text Editor" "mousepad %f" "org.xfce.mousepad" "GTK;Utility
 create_desktop_file "Task Manager" "lxtask" "utilities-system-monitor" "GTK;System;Monitor;" "" "lxtask" "false"
 #create_desktop_file "Net Manager" "connman-gtk" "preferences-system-network" "" "" "connman-gtk" "false"
 create_desktop_file "Calculator" "galculator" "galculator" "Utility" "" "false" "false"
+create_desktop_file "Session Manager" "fbliveapp minios-session-manager" "media-floppy" "GTK;System;Settings;" "" "" "false"
+create_desktop_file "Kernel Manager" "fbliveapp minios-kernel-manager" "package-x-generic" "GTK;System;Settings;" "" "" "false"
