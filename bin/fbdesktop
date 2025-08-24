@@ -60,6 +60,25 @@ Hidden=$HIDDEN" >"$APPDIR/${FILENAME}.desktop"
 }
 
 # Call function with different parameters
+# Static translation markers for xgettext extraction - these are extracted but not executed
+if false; then
+    # TRANSLATORS: Desktop entry names
+    gettext "Web Browser"
+    gettext "Image Viewer"
+    gettext "Video Player"
+    gettext "Terminal"
+    gettext "Install MiniOS"
+    gettext "Configure MiniOS"
+    gettext "Archiver"
+    gettext "File Manager"
+    gettext "Text Editor"
+    gettext "Task Manager"
+    gettext "Net Manager"
+    gettext "Calculator"
+    gettext "Session Manager"
+    gettext "Kernel Manager"
+fi
+
 create_desktop_file "Web Browser" "fbliveapp firefox-esr %U" "firefox-esr" "Network;WebBrowser;" "audio/*;image/*;video/*;application/pdf;application/x-pdf;text/html;text/xml;application/xhtml_xml;application/x-mimearchive;x-scheme-handler/http;x-scheme-handler/https;" "firefox" "false"
 create_desktop_file "Image Viewer" "feh %U" "none.png" "Graphics;2DGraphics;RasterGraphics;" "image/*;" "feh" "true"
 create_desktop_file "Video Player" "fbliveapp vlc" "multimedia-video-player" "AudioVideo;Player;" "" "" "false"

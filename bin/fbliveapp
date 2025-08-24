@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export TEXTDOMAIN="flux-tools"
+
 LOCALE="$(echo $LANG | cut -d. -f1)"
 LNG="$(echo $LANG | cut -d_ -f1)"
 
@@ -12,10 +14,8 @@ if [ "$LOCALE" != "en_US" ] && [ "$LOCALE" != "C" ]; then
 fi
 
 if [ "$1" = "vlc" ]; then
-   NAME="VLC Video Player"
-   ABOUT="VLC Video Player is a free and open source multimedia player
-and framework that plays most multimedia files as well as DVDs,
-Audio CDs, CVDs, and various streaming protocols."
+   NAME="$(gettext "VLC Video Player")"
+   ABOUT="$(gettext "VLC Video Player is a free and open source multimedia player and framework that plays most multimedia files as well as DVDs, Audio CDs, CVDs, and various streaming protocols.")"
    EXECUTABLE="/usr/bin/vlc"
    PREINSTALL="apt update"
    INSTALL="apt install --yes vlc"
@@ -25,9 +25,8 @@ qt-privacy-ask=0' > /home/guest/.config/vlc/vlcrc;"
 fi
 
 if [ "$1" = "chromium" ]; then
-   NAME="Chromium Web Browser"
-   ABOUT="Chromium is a free and open source version of
-the famous Chrome browser, developed by Google."
+   NAME="$(gettext "Chromium Web Browser")"
+   ABOUT="$(gettext "Chromium is a free and open source version of the famous Chrome browser, developed by Google.")"
    EXECUTABLE="/usr/bin/chromium"
    PREINSTALL="apt update"
    INSTALL="apt install --yes chromium chromium-sandbox"
@@ -36,8 +35,8 @@ the famous Chrome browser, developed by Google."
 fi
 
 if [ "$1" = "firefox-esr" ]; then
-   NAME="Firefox Web Browser"
-   ABOUT="Firefox is a free and open source browser."
+   NAME="$(gettext "Firefox Web Browser")"
+   ABOUT="$(gettext "Firefox is a free and open source browser.")"
    EXECUTABLE="/usr/bin/firefox-esr"
    PREINSTALL="apt update"
    if [ "$LOCALE" != "en_US" ] && [ "$LOCALE" != "C" ]; then
@@ -50,8 +49,8 @@ if [ "$1" = "firefox-esr" ]; then
 fi
 
 if [ "$1" = "minios-installer" ]; then
-   NAME="MiniOS Installer"
-   ABOUT="MiniOS Installer allows you to install MiniOS on the media."
+   NAME="$(gettext "MiniOS Installer")"
+   ABOUT="$(gettext "MiniOS Installer allows you to install MiniOS on the media.")"
    EXECUTABLE="/usr/bin/minios-installer"
    PREINSTALL="apt update"
    INSTALL="apt install --yes minios-installer"
@@ -60,8 +59,8 @@ if [ "$1" = "minios-installer" ]; then
 fi
 
 if [ "$1" = "minios-configurator" ]; then
-   NAME="MiniOS Configurator"
-   ABOUT="MiniOS Configurator allows you to configure MiniOS."
+   NAME="$(gettext "MiniOS Configurator")"
+   ABOUT="$(gettext "MiniOS Configurator allows you to configure MiniOS.")"
    EXECUTABLE="/usr/bin/minios-configurator"
    PREINSTALL="apt update"
    INSTALL="apt install --yes minios-configurator"
@@ -70,8 +69,8 @@ if [ "$1" = "minios-configurator" ]; then
 fi
 
 if [ "$1" = "minios-session-manager" ]; then
-   NAME="MiniOS Session Manager"
-   ABOUT="Manage MiniOS persistent sessions. Create, activate and cleanup persistent sessions with different storage modes (native, dynfilefs, raw)."
+   NAME="$(gettext "MiniOS Session Manager")"
+   ABOUT="$(gettext "Manage MiniOS persistent sessions. Create, activate and cleanup persistent sessions with different storage modes (native, dynfilefs, raw).")"
    EXECUTABLE="/usr/bin/minios-session-manager"
    PREINSTALL="apt update"
    INSTALL="apt install --yes minios-session-manager"
@@ -80,8 +79,8 @@ if [ "$1" = "minios-session-manager" ]; then
 fi
 
 if [ "$1" = "minios-kernel-manager" ]; then
-   NAME="MiniOS Kernel Manager"
-   ABOUT="Manage Linux kernels in MiniOS. Package kernels from repository or .deb files, activate different versions, and manage kernel installations."
+   NAME="$(gettext "MiniOS Kernel Manager")"
+   ABOUT="$(gettext "Manage Linux kernels in MiniOS. Package kernels from repository or .deb files, activate different versions, and manage kernel installations.")"
    EXECUTABLE="/usr/bin/minios-kernel-manager"
    PREINSTALL="apt update"
    INSTALL="apt install --yes minios-kernel-manager"
@@ -108,12 +107,11 @@ fi
 if [ ! -f "$EXECUTABLE" ]; then
 
    if [ $(uname -m) != 'x86_64' -a "$ONLY64" = "true" ]; then
-      gtkask -i /usr/share/icons/gnome/16x16/status/dialog-warning.png -t Error -m "$NAME only works in 64bit version of MiniOS" -y OK
+      gtkask -i /usr/share/icons/gnome/16x16/status/dialog-warning.png -t "$(gettext "Error")" -m "$NAME $(gettext "only works in 64bit version of MiniOS")" -y "$(gettext "OK")"
       exit 1
    fi
 
-   if gtkask -i /usr/share/icons/gnome/16x16/status/dialog-question.png -t Question -m "$ABOUT$NAME is not yet installed.
-Do you like to download and install it now?" -y Yes -n No; then
+   if gtkask -i /usr/share/icons/gnome/16x16/status/dialog-question.png -t "$(gettext "Question")" -m "$ABOUT$NAME$(gettext " is not yet installed.\nDo you like to download and install it now?")" -y "$(gettext "Yes")" -n "$(gettext "No")"; then
       xterm -ls -e bash --login -c -- "$PREINSTALL; $INSTALL; $POSTINSTALL"
    fi
 fi

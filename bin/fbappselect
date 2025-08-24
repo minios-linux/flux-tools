@@ -1,5 +1,13 @@
 #!/bin/bash
 
+export TEXTDOMAIN="flux-tools"
+
+# Static translation marker for xgettext extraction - extracted but not executed
+if false; then
+    # TRANSLATORS: Terminal message when command finishes
+    gettext "Command finished. Press any key to close window..."
+fi
+
 export QT_STYLE_OVERRIDE=gtk
 export QT_QPA_PLATFORMTHEME=gtk2
 
@@ -45,7 +53,7 @@ whi="$(which $cmd | head -n 1)"
 Xdep=$(ldd $whi | grep libX11)
 Ndep=$(ldd $whi | grep libncurses)
 
-WAIT='echo "--------------------------------------------------"; read -n 1 -s -r -p "Command finished. Press any key to close window..."'
+WAIT='echo "--------------------------------------------------"; read -n 1 -s -r -p "$(gettext "Command finished. Press any key to close window...")"'
 if [ "$Ndep" != "" -o "$cmd" = "man" -o "$cmd" = "mc" ]; then
    WAIT=""
 fi
