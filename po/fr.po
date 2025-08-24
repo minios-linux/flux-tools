@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2025-08-25 01:05+0300\n"
+"POT-Creation-Date: 2025-08-25 01:35+0300\n"
 "PO-Revision-Date: 2024-03-17 14:43+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: French\n"
@@ -107,7 +107,7 @@ msgid ""
 msgstr ""
 "VLC est un lecteur multimédia et un environnement open source qui lit la "
 "plupart des fichiers multimédias ainsi que les DVD, CD audio, CVD et divers "
-"protocoles de streaming.\n"
+"protocoles de streaming."
 
 #: bin/fbliveapp:10 bin/fbliveapp:48 bin/fbliveapp:28
 msgid "Chromium Web Browser"
@@ -119,7 +119,7 @@ msgid ""
 "developed by Google."
 msgstr ""
 "Chromium est une version libre et open source du célèbre navigateur Chrome, "
-"développée par Google.\n"
+"développée par Google."
 
 #: bin/fbliveapp:12 bin/fbliveapp:58 bin/fbliveapp:38
 msgid "Firefox Web Browser"
@@ -155,7 +155,8 @@ msgid ""
 "sessions with different storage modes (native, dynfilefs, raw)."
 msgstr ""
 "Gérez les sessions persistantes de MiniOS. Créez, activez et nettoyez des "
-"sessions persistantes avec différents modes de stockage (native, dynfilefs, raw).\n"
+"sessions persistantes avec différents modes de stockage (native, dynfilefs, "
+"raw)."
 
 #: bin/fbliveapp:20 bin/fbliveapp:102 bin/fbliveapp:82
 msgid "MiniOS Kernel Manager"
@@ -167,11 +168,14 @@ msgid ""
 "files, activate different versions, and manage kernel installations."
 msgstr ""
 "Gérez les noyaux Linux dans MiniOS. Emballez des noyaux depuis le dépôt ou "
-"des fichiers .deb, activez différentes versions et gérez les installations de noyaux.\n"
+"des fichiers .deb, activez différentes versions et gérez les installations "
+"de noyaux."
 
 #: bin/fbliveapp:22 bin/fbliveapp:134 bin/fbliveapp:114
 msgid " is not yet installed.\\nDo you like to download and install it now?"
-msgstr " n'est pas encore installé.\\nVoulez-vous le télécharger et l'installer maintenant ?"
+msgstr ""
+" n'est pas encore installé.\\nVoulez-vous le télécharger et l'installer "
+"maintenant ?"
 
 #: bin/fbdesktop:76
 msgid "Net Manager"
