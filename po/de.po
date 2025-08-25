@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2025-08-25 01:05+0300\n"
+"POT-Creation-Date: 2025-08-25 21:54+0300\n"
 "PO-Revision-Date: 2024-03-17 14:43+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: German\n"
@@ -104,7 +104,10 @@ msgid ""
 "VLC Video Player is a free and open source multimedia player and framework "
 "that plays most multimedia files as well as DVDs, Audio CDs, CVDs, and "
 "various streaming protocols."
-msgstr "VLC Media Player ist ein freier und quelloffener Multimedia-Player und Framework, das die meisten Multimedia-Dateien sowie DVDs, Audio-CDs, CVDs und verschiedene Streaming-Protokolle abspielt."
+msgstr ""
+"VLC Media Player ist ein freier und quelloffener Multimedia-Player und "
+"Framework, das die meisten Multimedia-Dateien sowie DVDs, Audio-CDs, CVDs "
+"und verschiedene Streaming-Protokolle abspielt."
 
 #: bin/fbliveapp:10 bin/fbliveapp:48 bin/fbliveapp:28
 msgid "Chromium Web Browser"
@@ -114,7 +117,9 @@ msgstr "Chromium-Webbrowser"
 msgid ""
 "Chromium is a free and open source version of the famous Chrome browser, "
 "developed by Google."
-msgstr "Chromium ist eine freie und quelloffene Version des bekannten Chrome-Browsers, entwickelt von Google."
+msgstr ""
+"Chromium ist eine freie und quelloffene Version des bekannten Chrome-"
+"Browsers, entwickelt von Google."
 
 #: bin/fbliveapp:12 bin/fbliveapp:58 bin/fbliveapp:38
 msgid "Firefox Web Browser"
@@ -130,7 +135,9 @@ msgstr "MiniOS-Installationsprogramm"
 
 #: bin/fbliveapp:15 bin/fbliveapp:73 bin/fbliveapp:53
 msgid "MiniOS Installer allows you to install MiniOS on the media."
-msgstr "Das MiniOS-Installationsprogramm ermöglicht die Installation von MiniOS auf dem Medium."
+msgstr ""
+"Das MiniOS-Installationsprogramm ermöglicht die Installation von MiniOS auf "
+"dem Medium."
 
 #: bin/fbliveapp:16 bin/fbliveapp:82 bin/fbliveapp:62
 msgid "MiniOS Configurator"
@@ -148,7 +155,10 @@ msgstr "MiniOS-Sitzungsmanager"
 msgid ""
 "Manage MiniOS persistent sessions. Create, activate and cleanup persistent "
 "sessions with different storage modes (native, dynfilefs, raw)."
-msgstr "Verwalten Sie MiniOS-persistente Sitzungen. Erstellen, aktivieren und bereinigen Sie persistente Sitzungen mit verschiedenen Speicherarten (native, dynfilefs, raw)."
+msgstr ""
+"Verwalten Sie MiniOS-persistente Sitzungen. Erstellen, aktivieren und "
+"bereinigen Sie persistente Sitzungen mit verschiedenen Speicherarten "
+"(native, dynfilefs, raw)."
 
 #: bin/fbliveapp:20 bin/fbliveapp:102 bin/fbliveapp:82
 msgid "MiniOS Kernel Manager"
@@ -158,11 +168,16 @@ msgstr "MiniOS Kernel-Manager"
 msgid ""
 "Manage Linux kernels in MiniOS. Package kernels from repository or .deb "
 "files, activate different versions, and manage kernel installations."
-msgstr "Verwalten Sie Linux-Kernel in MiniOS. Paketieren Sie Kernel aus dem Repository oder .deb-Dateien, aktivieren Sie verschiedene Versionen und verwalten Sie Kernel-Installationen."
+msgstr ""
+"Verwalten Sie Linux-Kernel in MiniOS. Paketieren Sie Kernel aus dem "
+"Repository oder .deb-Dateien, aktivieren Sie verschiedene Versionen und "
+"verwalten Sie Kernel-Installationen."
 
 #: bin/fbliveapp:22 bin/fbliveapp:134 bin/fbliveapp:114
 msgid " is not yet installed.\\nDo you like to download and install it now?"
-msgstr " ist noch nicht installiert.\\nMöchten Sie es jetzt herunterladen und installieren?"
+msgstr ""
+" ist noch nicht installiert.\\nMöchten Sie es jetzt herunterladen und "
+"installieren?"
 
 #: bin/fbdesktop:76
 msgid "Net Manager"
@@ -195,7 +210,17 @@ msgstr "Nein"
 #. TRANSLATORS: Terminal message when command finishes
 #: bin/fbappselect:8
 msgid "Command finished. Press any key to close window..."
-msgstr "Befehl abgeschlossen. Drücken Sie eine beliebige Taste, um das Fenster zu schließen..."
+msgstr ""
+"Befehl abgeschlossen. Drücken Sie eine beliebige Taste, um das Fenster zu "
+"schließen..."
+
+#: bin/fbliveapp:73
+msgid "MiniOS Session Manager allows you to manage persistent sessions."
+msgstr "Der MiniOS-Sitzungsmanager ermöglicht die Verwaltung persistenter Sitzungen."
+
+#: bin/fbliveapp:83
+msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
+msgstr "Der MiniOS-Kernel-Manager ermöglicht die Verwaltung von Linux-Kernels."
 
 #~ msgid "Other                      ..."
 #~ msgstr "Andere                    ..."

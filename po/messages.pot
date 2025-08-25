@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.2.5\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2025-08-25 01:43+0300\n"
+"POT-Creation-Date: 2025-08-25 21:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -195,4 +195,12 @@ msgstr ""
 #. TRANSLATORS: Terminal message when command finishes
 #: bin/fbappselect:8
 msgid "Command finished. Press any key to close window..."
+msgstr ""
+
+#: bin/fbliveapp:73
+msgid "MiniOS Session Manager allows you to manage persistent sessions."
+msgstr ""
+
+#: bin/fbliveapp:83
+msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
 msgstr ""

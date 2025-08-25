@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2025-08-25 01:28+0300\n"
+"POT-Creation-Date: 2025-08-25 21:54+0300\n"
 "PO-Revision-Date: 2024-03-17 14:43+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: Italian\n"
@@ -170,8 +170,7 @@ msgstr ""
 
 #: bin/fbliveapp:22 bin/fbliveapp:134 bin/fbliveapp:114
 msgid " is not yet installed.\\nDo you like to download and install it now?"
-msgstr ""
-" non è ancora installato.\\nVuoi scaricarlo e installarlo ora?"
+msgstr " non è ancora installato.\\nVuoi scaricarlo e installarlo ora?"
 
 #: bin/fbdesktop:76
 msgid "Net Manager"
@@ -206,6 +205,14 @@ msgstr "No"
 msgid "Command finished. Press any key to close window..."
 msgstr ""
 "Comando terminato. Premi un tasto qualsiasi per chiudere la finestra..."
+
+#: bin/fbliveapp:73
+msgid "MiniOS Session Manager allows you to manage persistent sessions."
+msgstr "Il gestore delle sessioni MiniOS consente di gestire le sessioni persistenti."
+
+#: bin/fbliveapp:83
+msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
+msgstr "Il gestore dei kernel MiniOS consente di gestire i kernel Linux."
 
 #~ msgid "Other                      ..."
 #~ msgstr "Altro                      ..."

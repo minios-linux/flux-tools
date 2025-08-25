@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2025-08-25 01:05+0300\n"
+"POT-Creation-Date: 2025-08-25 21:54+0300\n"
 "PO-Revision-Date: 2024-03-17 14:43+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: Spanish\n"
@@ -135,8 +135,7 @@ msgstr "Instalador de MiniOS"
 
 #: bin/fbliveapp:15 bin/fbliveapp:73 bin/fbliveapp:53
 msgid "MiniOS Installer allows you to install MiniOS on the media."
-msgstr ""
-"El instalador de MiniOS permite instalar MiniOS en el medio."
+msgstr "El instalador de MiniOS permite instalar MiniOS en el medio."
 
 #: bin/fbliveapp:16 bin/fbliveapp:82 bin/fbliveapp:62
 msgid "MiniOS Configurator"
@@ -155,9 +154,9 @@ msgid ""
 "Manage MiniOS persistent sessions. Create, activate and cleanup persistent "
 "sessions with different storage modes (native, dynfilefs, raw)."
 msgstr ""
-"Gestiona las sesiones persistentes de MiniOS. Crea, activa y elimina sesiones "
-"persistentes con diferentes modos de almacenamiento (native, dynfilefs, "
-"raw)."
+"Gestiona las sesiones persistentes de MiniOS. Crea, activa y elimina "
+"sesiones persistentes con diferentes modos de almacenamiento (native, "
+"dynfilefs, raw)."
 
 #: bin/fbliveapp:20 bin/fbliveapp:102 bin/fbliveapp:82
 msgid "MiniOS Kernel Manager"
@@ -174,8 +173,7 @@ msgstr ""
 
 #: bin/fbliveapp:22 bin/fbliveapp:134 bin/fbliveapp:114
 msgid " is not yet installed.\\nDo you like to download and install it now?"
-msgstr ""
-" no está instalado todavía.\\n¿Desea descargarlo e instalarlo ahora?"
+msgstr " no está instalado todavía.\\n¿Desea descargarlo e instalarlo ahora?"
 
 #: bin/fbdesktop:76
 msgid "Net Manager"
@@ -209,6 +207,14 @@ msgstr "No"
 #: bin/fbappselect:8
 msgid "Command finished. Press any key to close window..."
 msgstr "Comando finalizado. Pulse cualquier tecla para cerrar la ventana..."
+
+#: bin/fbliveapp:73
+msgid "MiniOS Session Manager allows you to manage persistent sessions."
+msgstr "El gestor de sesiones de MiniOS permite gestionar sesiones persistentes."
+
+#: bin/fbliveapp:83
+msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
+msgstr "El gestor de kernels de MiniOS permite gestionar Linux-Kernels."
 
 #~ msgid "Other                      ..."
 #~ msgstr "Otros                      ..."

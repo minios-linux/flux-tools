@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2025-08-25 01:25+0300\n"
+"POT-Creation-Date: 2025-08-25 21:54+0300\n"
 "PO-Revision-Date: 2025-06-17 02:11+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: Indonesian\n"
@@ -170,8 +170,7 @@ msgstr ""
 
 #: bin/fbliveapp:22 bin/fbliveapp:134 bin/fbliveapp:114
 msgid " is not yet installed.\\nDo you like to download and install it now?"
-msgstr ""
-" belum terpasang.\\nIngin mengunduh dan memasangnya sekarang?"
+msgstr " belum terpasang.\\nIngin mengunduh dan memasangnya sekarang?"
 
 #: bin/fbdesktop:76
 msgid "Net Manager"
@@ -205,6 +204,14 @@ msgstr "Tidak"
 #: bin/fbappselect:8
 msgid "Command finished. Press any key to close window..."
 msgstr "Perintah selesai. Tekan tombol apa saja untuk menutup jendela..."
+
+#: bin/fbliveapp:73
+msgid "MiniOS Session Manager allows you to manage persistent sessions."
+msgstr "Manajer Sesi MiniOS memungkinkan Anda mengelola sesi persisten."
+
+#: bin/fbliveapp:83
+msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
+msgstr "Manajer Kernel MiniOS memungkinkan Anda mengelola Linux-Kernels."
 
 #~ msgid "Other                      ..."
 #~ msgstr "Lainnya                    ..."

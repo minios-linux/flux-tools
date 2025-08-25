@@ -70,7 +70,7 @@ fi
 
 if [ "$1" = "minios-session-manager" ]; then
    NAME="$(gettext "MiniOS Session Manager")"
-   ABOUT="$(gettext "Manage MiniOS persistent sessions. Create, activate and cleanup persistent sessions with different storage modes (native, dynfilefs, raw).")"
+   ABOUT="$(gettext "MiniOS Session Manager allows you to manage persistent sessions.")"
    EXECUTABLE="/usr/bin/minios-session-manager"
    PREINSTALL="apt update"
    INSTALL="apt install --yes minios-session-manager"
@@ -80,7 +80,7 @@ fi
 
 if [ "$1" = "minios-kernel-manager" ]; then
    NAME="$(gettext "MiniOS Kernel Manager")"
-   ABOUT="$(gettext "Manage Linux kernels in MiniOS. Package kernels from repository or .deb files, activate different versions, and manage kernel installations.")"
+   ABOUT="$(gettext "MiniOS Kernel Manager allows you to manage Linux kernels.")"
    EXECUTABLE="/usr/bin/minios-kernel-manager"
    PREINSTALL="apt update"
    INSTALL="apt install --yes minios-kernel-manager"
