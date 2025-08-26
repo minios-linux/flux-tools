@@ -1,0 +1,21 @@
+.TH FBLOGOUT 1 "2025-08-26" "flux-tools 1.2.5" "User Commands"
+.SH NAME
+fblogout \- logout dialog for FluxBox desktop
+.SH SYNOPSIS
+.B fblogout
+.SH DESCRIPTION
+.B fblogout
+displays a logout/shutdown dialog using xlunch with options for system shutdown, restart, and logout. It plays a shutdown sound if available and provides visual feedback during the process.
+.SH FILES
+.TP
+.I /etc/xlunch/logout.dsv
+Logout menu configuration
+.TP
+.I /usr/share/sounds/shutdown.wav
+Shutdown sound file
+.SH SEE ALSO
+.BR xlunch (1),
+.BR aplay (1)
+.SH AUTHOR
+Tomas-M <https://github.com/Tomas-M>
+crims0n <crims0n@minios.dev>

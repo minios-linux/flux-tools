@@ -1,0 +1,23 @@
+.TH GTK-BOOKMARKS-UPDATE 1 "2025-08-26" "flux-tools 1.2.5" "User Commands"
+.SH NAME
+gtk-bookmarks-update \- update GTK bookmarks with mounted media
+.SH SYNOPSIS
+.B gtk-bookmarks-update
+.SH DESCRIPTION
+.B gtk-bookmarks-update
+automatically updates GTK file manager bookmarks to include all mounted media devices. It uses file locking to prevent concurrent execution and maintains existing bookmarks while adding new media entries.
+.SH FILES
+.TP
+.I ~/.gtk-bookmarks
+GTK bookmarks file
+.TP
+.I /run/lock/gtk-bookmark-update-lock
+Lock directory to prevent concurrent execution
+.TP
+.I /media
+Directory containing mounted media devices
+.SH SEE ALSO
+.BR mount (8)
+.SH AUTHOR
+Tomas-M <https://github.com/Tomas-M>
+crims0n <crims0n@minios.dev>

@@ -1,0 +1,19 @@
+.TH FBDESKTOP 1 "2025-08-26" "flux-tools 1.2.5" "User Commands"
+.SH NAME
+fbdesktop \- create desktop entries for FluxBox environment
+.SH SYNOPSIS
+.B fbdesktop
+.SH DESCRIPTION
+.B fbdesktop
+creates and manages desktop application entries in the appropriate applications directory. It handles both system-wide and user-specific desktop file creation based on user privileges.
+.SH FILES
+.TP
+.I /usr/share/applications
+System-wide application directory (root user)
+.TP
+.I ~/.local/share/applications
+User-specific application directory
+.SH SEE ALSO
+.BR desktop-file-utils (1)
+.SH AUTHOR
+crims0n <crims0n@minios.dev>

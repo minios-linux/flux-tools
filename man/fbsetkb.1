@@ -1,0 +1,22 @@
+.TH FBSETKB 1 "2025-08-26" "flux-tools 1.2.5" "User Commands"
+.SH NAME
+fbsetkb \- set keyboard layout
+.SH SYNOPSIS
+.B fbsetkb
+.I layout
+.SH DESCRIPTION
+.B fbsetkb
+sets the keyboard layout using setxkbmap and saves the selection to the FluxBox configuration directory for persistence.
+.SH OPTIONS
+.TP
+.I layout
+Keyboard layout code (e.g., us, de, fr, ru)
+.SH FILES
+.TP
+.I ~/.fluxbox/kblayout
+File storing the current keyboard layout
+.SH SEE ALSO
+.BR setxkbmap (1)
+.SH AUTHOR
+Tomas-M <https://github.com/Tomas-M>
+crims0n <crims0n@minios.dev>

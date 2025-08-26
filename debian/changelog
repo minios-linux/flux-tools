@@ -1,3 +1,10 @@
+flux-tools (1.2.6) unstable; urgency=medium
+
+  * Add manual pages for all binaries to fix lintian warnings
+  * Update build system to install manual pages
+
+ -- crims0n <crims0n@minios.dev>  Tue, 26 Aug 2025 11:39:08 +0300
+
 flux-tools (1.2.5) unstable; urgency=medium
 
   * Add support for minios-session-manager and minios-kernel-manager
