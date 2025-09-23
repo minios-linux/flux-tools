@@ -111,7 +111,7 @@ if [ ! -f "$EXECUTABLE" ]; then
       exit 1
    fi
 
-   if gtkask -i /usr/share/icons/gnome/16x16/status/dialog-question.png -t "$(gettext "Question")" -m "$ABOUT$NAME$(gettext " is not yet installed.\nDo you like to download and install it now?")" -y "$(gettext "Yes")" -n "$(gettext "No")"; then
+   if gtkask -i /usr/share/icons/gnome/16x16/status/dialog-question.png -t "$(gettext "Question")" -m "$ABOUT$NAME$(gettext " is not yet installed. Do you like to download and install it now?")" -y "$(gettext "Yes")" -n "$(gettext "No")"; then
       xterm -ls -e bash --login -c -- "$PREINSTALL; $INSTALL; $POSTINSTALL"
    fi
 fi

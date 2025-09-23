@@ -1,3 +1,9 @@
+flux-tools (1.2.8) unstable; urgency=medium
+
+  * Fix formatting in installation prompt message in fbliveapp
+
+ -- crims0n <crims0n@minios.dev>  Tue, 23 Sep 2025 16:47:44 +0300
+
 flux-tools (1.2.7) unstable; urgency=medium
 
   * Lower bash dependency to 4.4
