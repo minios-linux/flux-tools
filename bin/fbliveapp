@@ -15,7 +15,7 @@ fi
 
 if [ "$1" = "vlc" ]; then
    NAME="$(gettext "VLC Video Player")"
-   ABOUT="$(gettext "VLC Video Player is a free and open source multimedia player and framework that plays most multimedia files as well as DVDs, Audio CDs, CVDs, and various streaming protocols.")"
+   ABOUT="$(gettext "VLC is a free and open source multimedia player that plays most media files and streaming protocols.")"
    EXECUTABLE="/usr/bin/vlc"
    PREINSTALL="apt update"
    INSTALL="apt install --yes vlc"

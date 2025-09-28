@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2025-09-23 16:42+0300\n"
+"POT-Creation-Date: 2025-09-28 19:57+0300\n"
 "PO-Revision-Date: 2025-06-17 02:11+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: Indonesian\n"
@@ -216,6 +216,14 @@ msgstr "Manajer Kernel MiniOS memungkinkan Anda mengelola Linux-Kernels."
 #: bin/fbliveapp:114
 msgid " is not yet installed. Do you like to download and install it now?"
 msgstr " belum terpasang. Ingin mengunduh dan memasangnya sekarang?"
+
+#: bin/fbliveapp:18
+msgid ""
+"VLC is a free and open source multimedia player that plays most media files "
+"and streaming protocols."
+msgstr ""
+"VLC adalah pemutar multimedia sumber terbuka dan gratis yang memutar "
+"sebagian besar file media dan protokol streaming."
 
 #~ msgid "Other                      ..."
 #~ msgstr "Lainnya                    ..."

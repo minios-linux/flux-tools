@@ -1,3 +1,9 @@
+flux-tools (1.2.9) unstable; urgency=medium
+
+  * Refine VLC description in fbliveapp
+
+ -- crims0n <crims0n@minios.dev>  Sun, 28 Sep 2025 20:02:49 +0300
+
 flux-tools (1.2.8) unstable; urgency=medium
 
   * Fix formatting in installation prompt message in fbliveapp
