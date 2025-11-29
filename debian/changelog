@@ -1,3 +1,9 @@
+flux-tools (1.2.9.1) unstable; urgency=medium
+
+  * Update Russian translation for Kernel Manager
+
+ -- crims0n <crims0n@minios.dev>  Sat, 29 Nov 2025 15:24:00 +0300
+
 flux-tools (1.2.9) unstable; urgency=medium
 
   * Refine VLC description in fbliveapp

@@ -93,7 +93,7 @@ msgstr "Диспетчер сессий"
 
 #: bin/fbdesktop:78 bin/fbdesktop:79
 msgid "Kernel Manager"
-msgstr "Диспетчер ядра"
+msgstr "Диспетчер ядер"
 
 #. TRANSLATORS: Application names and descriptions
 #: bin/fbliveapp:8 bin/fbliveapp:37 bin/fbliveapp:17
