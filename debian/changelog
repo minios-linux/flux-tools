@@ -1,3 +1,10 @@
+flux-tools (1.2.9.3) unstable; urgency=medium
+
+  * Improve translation coverage and update translations for all
+    languages
+
+ -- crims0n <crims0n@minios.dev>  Thu, 18 Jun 2026 14:08:41 +0300
+
 flux-tools (1.2.9.2) unstable; urgency=medium
 
   * Move gtkask and xlunch from dependencies to recommendations
