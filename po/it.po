@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-06-18 14:05+0300\n"
+"POT-Creation-Date: 2026-06-28 11:36+0300\n"
 "PO-Revision-Date: 2024-03-17 14:43+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: Italian\n"
@@ -20,8 +20,7 @@ msgstr ""
 #. TRANSLATORS: Terminal message when command finishes
 #: bin/fbappselect:8
 msgid "Command finished. Press any key to close window..."
-msgstr ""
-"Comando terminato. Premi un tasto qualsiasi per chiudere la finestra..."
+msgstr "Comando terminato. Premi un tasto qualsiasi per chiudere la finestra..."
 
 #. TRANSLATORS: Desktop entry names
 #: bin/fbdesktop:66
@@ -85,24 +84,16 @@ msgid "VLC Video Player"
 msgstr "Lettore multimediale VLC"
 
 #: bin/fbliveapp:18
-msgid ""
-"VLC is a free and open source multimedia player that plays most media files "
-"and streaming protocols."
-msgstr ""
-"VLC è un lettore multimediale gratuito e open source che riproduce la "
-"maggior parte dei file multimediali e protocolli di streaming."
+msgid "VLC is a free and open source multimedia player that plays most media files and streaming protocols."
+msgstr "VLC è un lettore multimediale gratuito e open source che riproduce la maggior parte dei file multimediali e protocolli di streaming."
 
 #: bin/fbliveapp:28
 msgid "Chromium Web Browser"
 msgstr "Browser Chromium"
 
 #: bin/fbliveapp:29
-msgid ""
-"Chromium is a free and open source version of the famous Chrome browser, "
-"developed by Google."
-msgstr ""
-"Chromium è una versione libera e open source del noto browser Chrome, "
-"sviluppato da Google."
+msgid "Chromium is a free and open source version of the famous Chrome browser, developed by Google."
+msgstr "Chromium è una versione libera e open source del noto browser Chrome, sviluppato da Google."
 
 #: bin/fbliveapp:38
 msgid "Firefox Web Browser"
@@ -134,8 +125,7 @@ msgstr "Gestore sessioni MiniOS"
 
 #: bin/fbliveapp:73
 msgid "MiniOS Session Manager allows you to manage persistent sessions."
-msgstr ""
-"Il gestore delle sessioni MiniOS consente di gestire le sessioni persistenti."
+msgstr "Il gestore delle sessioni MiniOS consente di gestire le sessioni persistenti."
 
 #: bin/fbliveapp:82
 msgid "MiniOS Kernel Manager"

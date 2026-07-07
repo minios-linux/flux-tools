@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-06-18 14:05+0300\n"
+"POT-Creation-Date: 2026-06-28 11:36+0300\n"
 "PO-Revision-Date: 2024-03-17 14:43+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: French\n"
@@ -84,24 +84,16 @@ msgid "VLC Video Player"
 msgstr "Lecteur multimédia VLC"
 
 #: bin/fbliveapp:18
-msgid ""
-"VLC is a free and open source multimedia player that plays most media files "
-"and streaming protocols."
-msgstr ""
-"VLC est un lecteur multimédia libre et open source qui lit la plupart des "
-"fichiers multimédias et protocoles de streaming."
+msgid "VLC is a free and open source multimedia player that plays most media files and streaming protocols."
+msgstr "VLC est un lecteur multimédia libre et open source qui lit la plupart des fichiers multimédias et protocoles de streaming."
 
 #: bin/fbliveapp:28
 msgid "Chromium Web Browser"
 msgstr "Navigateur Chromium"
 
 #: bin/fbliveapp:29
-msgid ""
-"Chromium is a free and open source version of the famous Chrome browser, "
-"developed by Google."
-msgstr ""
-"Chromium est une version libre et open source du célèbre navigateur Chrome, "
-"développée par Google."
+msgid "Chromium is a free and open source version of the famous Chrome browser, developed by Google."
+msgstr "Chromium est une version libre et open source du célèbre navigateur Chrome, développée par Google."
 
 #: bin/fbliveapp:38
 msgid "Firefox Web Browser"
@@ -133,9 +125,7 @@ msgstr "Gestionnaire de sessions MiniOS"
 
 #: bin/fbliveapp:73
 msgid "MiniOS Session Manager allows you to manage persistent sessions."
-msgstr ""
-"Le gestionnaire de sessions MiniOS vous permet de gérer les sessions "
-"persistantes."
+msgstr "Le gestionnaire de sessions MiniOS vous permet de gérer les sessions persistantes."
 
 #: bin/fbliveapp:82
 msgid "MiniOS Kernel Manager"
@@ -143,8 +133,7 @@ msgstr "Gestionnaire de noyaux MiniOS"
 
 #: bin/fbliveapp:83
 msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
-msgstr ""
-"Le gestionnaire de noyaux MiniOS vous permet de gérer les noyaux Linux."
+msgstr "Le gestionnaire de noyaux MiniOS vous permet de gérer les noyaux Linux."
 
 #: bin/fbliveapp:110
 msgid "Error"
@@ -164,9 +153,7 @@ msgstr "Question"
 
 #: bin/fbliveapp:114
 msgid " is not yet installed. Do you like to download and install it now?"
-msgstr ""
-" n'est pas encore installé. Voulez-vous le télécharger et l'installer "
-"maintenant ?"
+msgstr " n'est pas encore installé. Voulez-vous le télécharger et l'installer maintenant ?"
 
 #: bin/fbliveapp:114
 msgid "Yes"

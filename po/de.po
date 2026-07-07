@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-06-18 14:05+0300\n"
+"POT-Creation-Date: 2026-06-28 11:36+0300\n"
 "PO-Revision-Date: 2024-03-17 14:43+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: German\n"
@@ -20,9 +20,7 @@ msgstr ""
 #. TRANSLATORS: Terminal message when command finishes
 #: bin/fbappselect:8
 msgid "Command finished. Press any key to close window..."
-msgstr ""
-"Befehl abgeschlossen. Drücken Sie eine beliebige Taste, um das Fenster zu "
-"schließen..."
+msgstr "Befehl abgeschlossen. Drücken Sie eine beliebige Taste, um das Fenster zu schließen..."
 
 #. TRANSLATORS: Desktop entry names
 #: bin/fbdesktop:66
@@ -86,24 +84,16 @@ msgid "VLC Video Player"
 msgstr "VLC Media Player"
 
 #: bin/fbliveapp:18
-msgid ""
-"VLC is a free and open source multimedia player that plays most media files "
-"and streaming protocols."
-msgstr ""
-"VLC ist ein freier und quelloffener Multimedia-Player, der die meisten "
-"Mediendateien und Streaming-Protokolle abspielt."
+msgid "VLC is a free and open source multimedia player that plays most media files and streaming protocols."
+msgstr "VLC ist ein freier und quelloffener Multimedia-Player, der die meisten Mediendateien und Streaming-Protokolle abspielt."
 
 #: bin/fbliveapp:28
 msgid "Chromium Web Browser"
 msgstr "Chromium-Webbrowser"
 
 #: bin/fbliveapp:29
-msgid ""
-"Chromium is a free and open source version of the famous Chrome browser, "
-"developed by Google."
-msgstr ""
-"Chromium ist eine freie und quelloffene Version des bekannten Chrome-"
-"Browsers, entwickelt von Google."
+msgid "Chromium is a free and open source version of the famous Chrome browser, developed by Google."
+msgstr "Chromium ist eine freie und quelloffene Version des bekannten Chrome-Browsers, entwickelt von Google."
 
 #: bin/fbliveapp:38
 msgid "Firefox Web Browser"
@@ -119,9 +109,7 @@ msgstr "MiniOS-Installationsprogramm"
 
 #: bin/fbliveapp:53
 msgid "MiniOS Installer allows you to install MiniOS on the media."
-msgstr ""
-"Das MiniOS-Installationsprogramm ermöglicht die Installation von MiniOS auf "
-"dem Medium."
+msgstr "Das MiniOS-Installationsprogramm ermöglicht die Installation von MiniOS auf dem Medium."
 
 #: bin/fbliveapp:62
 msgid "MiniOS Configurator"
@@ -137,8 +125,7 @@ msgstr "MiniOS-Sitzungsmanager"
 
 #: bin/fbliveapp:73
 msgid "MiniOS Session Manager allows you to manage persistent sessions."
-msgstr ""
-"Der MiniOS-Sitzungsmanager ermöglicht die Verwaltung persistenter Sitzungen."
+msgstr "Der MiniOS-Sitzungsmanager ermöglicht die Verwaltung persistenter Sitzungen."
 
 #: bin/fbliveapp:82
 msgid "MiniOS Kernel Manager"
@@ -166,9 +153,7 @@ msgstr "Frage"
 
 #: bin/fbliveapp:114
 msgid " is not yet installed. Do you like to download and install it now?"
-msgstr ""
-" ist noch nicht installiert. Möchten Sie es jetzt herunterladen und "
-"installieren?"
+msgstr " ist noch nicht installiert. Möchten Sie es jetzt herunterladen und installieren?"
 
 #: bin/fbliveapp:114
 msgid "Yes"

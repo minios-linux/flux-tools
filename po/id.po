@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-06-18 14:05+0300\n"
+"POT-Creation-Date: 2026-06-28 11:36+0300\n"
 "PO-Revision-Date: 2025-06-17 02:11+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: Indonesian\n"
@@ -84,24 +84,16 @@ msgid "VLC Video Player"
 msgstr "Pemutar VLC"
 
 #: bin/fbliveapp:18
-msgid ""
-"VLC is a free and open source multimedia player that plays most media files "
-"and streaming protocols."
-msgstr ""
-"VLC adalah pemutar multimedia sumber terbuka dan gratis yang memutar "
-"sebagian besar file media dan protokol streaming."
+msgid "VLC is a free and open source multimedia player that plays most media files and streaming protocols."
+msgstr "VLC adalah pemutar multimedia sumber terbuka dan gratis yang memutar sebagian besar file media dan protokol streaming."
 
 #: bin/fbliveapp:28
 msgid "Chromium Web Browser"
 msgstr "Peramban Chromium"
 
 #: bin/fbliveapp:29
-msgid ""
-"Chromium is a free and open source version of the famous Chrome browser, "
-"developed by Google."
-msgstr ""
-"Chromium adalah versi sumber terbuka dari peramban Chrome yang dikembangkan "
-"oleh Google."
+msgid "Chromium is a free and open source version of the famous Chrome browser, developed by Google."
+msgstr "Chromium adalah versi sumber terbuka dari peramban Chrome yang dikembangkan oleh Google."
 
 #: bin/fbliveapp:38
 msgid "Firefox Web Browser"

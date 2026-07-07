@@ -1,3 +1,9 @@
+flux-tools (1.2.9.4) unstable; urgency=medium
+
+  * Remove junk from translation files
+
+ -- crims0n <crims0n@minios.dev>  Tue, 07 Jul 2026 17:13:24 +0300
+
 flux-tools (1.2.9.3) unstable; urgency=medium
 
   * Improve translation coverage and update translations for all

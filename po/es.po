@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-06-18 14:05+0300\n"
+"POT-Creation-Date: 2026-06-28 11:36+0300\n"
 "PO-Revision-Date: 2024-03-17 14:43+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: Spanish\n"
@@ -84,24 +84,16 @@ msgid "VLC Video Player"
 msgstr "Reproductor de vídeo"
 
 #: bin/fbliveapp:18
-msgid ""
-"VLC is a free and open source multimedia player that plays most media files "
-"and streaming protocols."
-msgstr ""
-"VLC es un reproductor multimedia libre y de código abierto que reproduce la "
-"mayoría de los archivos multimedia y protocolos de transmisión."
+msgid "VLC is a free and open source multimedia player that plays most media files and streaming protocols."
+msgstr "VLC es un reproductor multimedia libre y de código abierto que reproduce la mayoría de los archivos multimedia y protocolos de transmisión."
 
 #: bin/fbliveapp:28
 msgid "Chromium Web Browser"
 msgstr "Navegador Chromium"
 
 #: bin/fbliveapp:29
-msgid ""
-"Chromium is a free and open source version of the famous Chrome browser, "
-"developed by Google."
-msgstr ""
-"Chromium es una versión libre y de código abierto del conocido navegador "
-"Chrome, desarrollado por Google."
+msgid "Chromium is a free and open source version of the famous Chrome browser, developed by Google."
+msgstr "Chromium es una versión libre y de código abierto del conocido navegador Chrome, desarrollado por Google."
 
 #: bin/fbliveapp:38
 msgid "Firefox Web Browser"
@@ -133,8 +125,7 @@ msgstr "Gestor de sesiones de MiniOS"
 
 #: bin/fbliveapp:73
 msgid "MiniOS Session Manager allows you to manage persistent sessions."
-msgstr ""
-"El gestor de sesiones de MiniOS permite gestionar sesiones persistentes."
+msgstr "El gestor de sesiones de MiniOS permite gestionar sesiones persistentes."
 
 #: bin/fbliveapp:82
 msgid "MiniOS Kernel Manager"
