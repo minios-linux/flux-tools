@@ -2,13 +2,13 @@
 
 export TEXTDOMAIN="flux-tools"
 
-LOCALE="$(echo $LANG | cut -d. -f1)"
-LNG="$(echo $LANG | cut -d_ -f1)"
+LOCALE="$(echo "$LANG" | cut -d. -f1)"
+LNG="$(echo "$LANG" | cut -d_ -f1)"
 
 if [ "$LOCALE" != "en_US" ] && [ "$LOCALE" != "C" ]; then
    case "$LOCALE" in
    "es_ES" | "pt_BR")
-      LNG="$(echo $LOCALE | tr '[:upper:]' '[:lower:]')"
+      LNG="$(echo "$LOCALE" | tr '[:upper:]' '[:lower:]')"
       ;;
    esac
 fi
@@ -19,9 +19,16 @@ if [ "$1" = "vlc" ]; then
    EXECUTABLE="/usr/bin/vlc"
    PREINSTALL="apt update"
    INSTALL="apt install --yes vlc"
-   POSTINSTALL="rm /usr/share/applications/vlc.desktop; mkdir -p /home/guest/.config/vlc; echo '[qt4]
-qt-privacy-ask=0' > /home/guest/.config/vlc/vlcrc;"
    GUEST=true
+   if [ "$EUID" -eq 0 ]; then
+      VLC_USER="guest"
+   else
+      VLC_USER="$(id -un)"
+   fi
+   VLC_HOME="$(getent passwd "$VLC_USER" | cut -d: -f6)"
+   VLC_UID="$(id -u "$VLC_USER")"
+   VLC_GID="$(id -g "$VLC_USER")"
+   POSTINSTALL="rm -f /usr/share/applications/vlc.desktop; install -d -o $VLC_UID -g $VLC_GID '$VLC_HOME/.config/vlc'; printf '[qt4]\\nqt-privacy-ask=0\\n' > '$VLC_HOME/.config/vlc/vlcrc'; chown $VLC_UID:$VLC_GID '$VLC_HOME/.config/vlc/vlcrc'"
 fi
 
 if [ "$1" = "chromium" ]; then
@@ -106,13 +113,17 @@ fi
 
 if [ ! -f "$EXECUTABLE" ]; then
 
-   if [ $(uname -m) != 'x86_64' -a "$ONLY64" = "true" ]; then
-      gtkask -i /usr/share/icons/gnome/16x16/status/dialog-warning.png -t "$(gettext "Error")" -m "$NAME $(gettext "only works in 64bit version of MiniOS")" -y "$(gettext "OK")"
+   if [ "$(uname -m)" != 'x86_64' ] && [ "$ONLY64" = "true" ]; then
+      gtkask -i dialog-warning -t "$NAME" -m "$NAME $(gettext "only works in 64bit version of MiniOS")" -y "$(gettext "OK")"
       exit 1
    fi
 
-   if gtkask -i /usr/share/icons/gnome/16x16/status/dialog-question.png -t "$(gettext "Question")" -m "$ABOUT$NAME$(gettext " is not yet installed. Do you like to download and install it now?")" -y "$(gettext "Yes")" -n "$(gettext "No")"; then
-      xterm -ls -e bash --login -c -- "$PREINSTALL; $INSTALL; $POSTINSTALL"
+   if gtkask -i dialog-question -t "$NAME" -m "$ABOUT$NAME$(gettext " is not yet installed. Do you like to download and install it now?")" -y "$(gettext "Yes")" -n "$(gettext "No")"; then
+      INSTALL_COMMAND="$PREINSTALL; $INSTALL; $POSTINSTALL"
+      if [ "$EUID" -ne 0 ]; then
+         printf -v INSTALL_COMMAND 'sudo bash -c %q' "$INSTALL_COMMAND"
+      fi
+      xterm -ls -e bash --login -c -- "$INSTALL_COMMAND"
    fi
 fi
 
@@ -120,9 +131,9 @@ if [ -f "$EXECUTABLE" ]; then
 
    fbstartupnotify
 
-   if [ "$GUEST" = "true" -a "$EUID" -eq 0 ]; then
-      xhost + >/dev/null 2>/dev/null
-      exec su -c "$EXECUTABLE "$@"" guest
+   if [ "$GUEST" = "true" ] && [ "$EUID" -eq 0 ]; then
+      xhost +SI:localuser:guest >/dev/null 2>/dev/null
+      exec runuser -u guest -- "$EXECUTABLE" "$@"
    fi
 
    exec "$EXECUTABLE" "$@"

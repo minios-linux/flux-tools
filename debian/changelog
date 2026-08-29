@@ -1,3 +1,11 @@
+flux-tools (1.2.9.6) unstable; urgency=medium
+
+  * Run guest applications with scoped X access and preserve VLC settings
+    ownership when installed from a non-root session.
+  * Quote cursor paths and locale values in Flux helper scripts.
+
+ -- crims0n <crims0n@minios.dev>  Sun, 30 Aug 2026 12:00:00 +0300
+
 flux-tools (1.2.9.5) unstable; urgency=medium
 
   * Enhance xlunch command with bgfill option
