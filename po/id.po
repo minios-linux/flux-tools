@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-06-28 11:36+0300\n"
+"POT-Creation-Date: 2026-08-30 22:54+0300\n"
 "PO-Revision-Date: 2025-06-17 02:11+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: Indonesian\n"
@@ -39,13 +39,13 @@ msgstr "Pemutar Video"
 msgid "Terminal"
 msgstr "Terminal"
 
-#: bin/fbdesktop:70
-msgid "Install MiniOS"
-msgstr "Pasang MiniOS"
+#: bin/fbdesktop:70 bin/fbliveapp:59
+msgid "MiniOS Installer"
+msgstr "Penginstal MiniOS"
 
-#: bin/fbdesktop:71
-msgid "Configure MiniOS"
-msgstr "Konfigurasi MiniOS"
+#: bin/fbdesktop:71 bin/fbliveapp:69
+msgid "MiniOS Configurator"
+msgstr "Konfigurator MiniOS"
 
 #: bin/fbdesktop:72
 msgid "Archiver"
@@ -71,13 +71,13 @@ msgstr "Manajer Jaringan"
 msgid "Calculator"
 msgstr "Kalkulator"
 
-#: bin/fbdesktop:78
-msgid "Session Manager"
-msgstr "Manajer Sesi"
+#: bin/fbdesktop:78 bin/fbliveapp:79
+msgid "MiniOS Session Manager"
+msgstr "Manajer Sesi MiniOS"
 
-#: bin/fbdesktop:79
-msgid "Kernel Manager"
-msgstr "Manajer Kernel"
+#: bin/fbdesktop:79 bin/fbliveapp:89
+msgid "MiniOS Kernel Manager"
+msgstr "Manajer Kernel MiniOS"
 
 #: bin/fbliveapp:17
 msgid "VLC Video Player"
@@ -87,79 +87,55 @@ msgstr "Pemutar VLC"
 msgid "VLC is a free and open source multimedia player that plays most media files and streaming protocols."
 msgstr "VLC adalah pemutar multimedia sumber terbuka dan gratis yang memutar sebagian besar file media dan protokol streaming."
 
-#: bin/fbliveapp:28
+#: bin/fbliveapp:35
 msgid "Chromium Web Browser"
 msgstr "Peramban Chromium"
 
-#: bin/fbliveapp:29
+#: bin/fbliveapp:36
 msgid "Chromium is a free and open source version of the famous Chrome browser, developed by Google."
 msgstr "Chromium adalah versi sumber terbuka dari peramban Chrome yang dikembangkan oleh Google."
 
-#: bin/fbliveapp:38
+#: bin/fbliveapp:45
 msgid "Firefox Web Browser"
 msgstr "Peramban Firefox"
 
-#: bin/fbliveapp:39
+#: bin/fbliveapp:46
 msgid "Firefox is a free and open source browser."
 msgstr "Firefox adalah peramban sumber terbuka dan gratis."
 
-#: bin/fbliveapp:52
-msgid "MiniOS Installer"
-msgstr "Penginstal MiniOS"
-
-#: bin/fbliveapp:53
+#: bin/fbliveapp:60
 msgid "MiniOS Installer allows you to install MiniOS on the media."
 msgstr "Penginstal MiniOS memungkinkan Anda memasang MiniOS pada media."
 
-#: bin/fbliveapp:62
-msgid "MiniOS Configurator"
-msgstr "Konfigurator MiniOS"
-
-#: bin/fbliveapp:63
+#: bin/fbliveapp:70
 msgid "MiniOS Configurator allows you to configure MiniOS."
 msgstr "Konfigurator MiniOS memungkinkan Anda mengonfigurasi MiniOS."
 
-#: bin/fbliveapp:72
-msgid "MiniOS Session Manager"
-msgstr "Manajer Sesi MiniOS"
-
-#: bin/fbliveapp:73
+#: bin/fbliveapp:80
 msgid "MiniOS Session Manager allows you to manage persistent sessions."
 msgstr "Manajer Sesi MiniOS memungkinkan Anda mengelola sesi persisten."
 
-#: bin/fbliveapp:82
-msgid "MiniOS Kernel Manager"
-msgstr "Manajer Kernel MiniOS"
-
-#: bin/fbliveapp:83
+#: bin/fbliveapp:90
 msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
 msgstr "Manajer Kernel MiniOS memungkinkan Anda mengelola Linux-Kernels."
 
-#: bin/fbliveapp:110
-msgid "Error"
-msgstr "Kesalahan"
-
-#: bin/fbliveapp:110
+#: bin/fbliveapp:117
 msgid "only works in 64bit version of MiniOS"
 msgstr "hanya berfungsi pada versi 64-bit dari MiniOS"
 
-#: bin/fbliveapp:110
+#: bin/fbliveapp:117
 msgid "OK"
 msgstr "OK"
 
-#: bin/fbliveapp:114
-msgid "Question"
-msgstr "Pertanyaan"
-
-#: bin/fbliveapp:114
+#: bin/fbliveapp:121
 msgid " is not yet installed. Do you like to download and install it now?"
 msgstr " belum terpasang. Ingin mengunduh dan memasangnya sekarang?"
 
-#: bin/fbliveapp:114
+#: bin/fbliveapp:121
 msgid "Yes"
 msgstr "Ya"
 
-#: bin/fbliveapp:114
+#: bin/fbliveapp:121
 msgid "No"
 msgstr "Tidak"
 
@@ -186,3 +162,21 @@ msgstr "Tata letak keyboard        ..."
 #: bin/fbmenu:171
 msgid "Exit / Logout"
 msgstr "Keluar / Logout"
+
+#~ msgid "Install MiniOS"
+#~ msgstr "Pasang MiniOS"
+
+#~ msgid "Configure MiniOS"
+#~ msgstr "Konfigurasi MiniOS"
+
+#~ msgid "Session Manager"
+#~ msgstr "Manajer Sesi"
+
+#~ msgid "Kernel Manager"
+#~ msgstr "Manajer Kernel"
+
+#~ msgid "Error"
+#~ msgstr "Kesalahan"
+
+#~ msgid "Question"
+#~ msgstr "Pertanyaan"

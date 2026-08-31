@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-06-28 11:36+0300\n"
+"POT-Creation-Date: 2026-08-30 22:54+0300\n"
 "PO-Revision-Date: 2024-03-17 14:43+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: German\n"
@@ -39,13 +39,13 @@ msgstr "Videoplayer"
 msgid "Terminal"
 msgstr "Terminal"
 
-#: bin/fbdesktop:70
-msgid "Install MiniOS"
-msgstr "MiniOS installieren"
+#: bin/fbdesktop:70 bin/fbliveapp:59
+msgid "MiniOS Installer"
+msgstr "MiniOS-Installationsprogramm"
 
-#: bin/fbdesktop:71
-msgid "Configure MiniOS"
-msgstr "MiniOS konfigurieren"
+#: bin/fbdesktop:71 bin/fbliveapp:69
+msgid "MiniOS Configurator"
+msgstr "MiniOS-Konfigurator"
 
 #: bin/fbdesktop:72
 msgid "Archiver"
@@ -71,13 +71,13 @@ msgstr "Netzwerkmanager"
 msgid "Calculator"
 msgstr "Rechner"
 
-#: bin/fbdesktop:78
-msgid "Session Manager"
-msgstr "Sitzungsmanager"
+#: bin/fbdesktop:78 bin/fbliveapp:79
+msgid "MiniOS Session Manager"
+msgstr "MiniOS-Sitzungsmanager"
 
-#: bin/fbdesktop:79
-msgid "Kernel Manager"
-msgstr "Kernel-Manager"
+#: bin/fbdesktop:79 bin/fbliveapp:89
+msgid "MiniOS Kernel Manager"
+msgstr "MiniOS Kernel-Manager"
 
 #: bin/fbliveapp:17
 msgid "VLC Video Player"
@@ -87,79 +87,55 @@ msgstr "VLC Media Player"
 msgid "VLC is a free and open source multimedia player that plays most media files and streaming protocols."
 msgstr "VLC ist ein freier und quelloffener Multimedia-Player, der die meisten Mediendateien und Streaming-Protokolle abspielt."
 
-#: bin/fbliveapp:28
+#: bin/fbliveapp:35
 msgid "Chromium Web Browser"
 msgstr "Chromium-Webbrowser"
 
-#: bin/fbliveapp:29
+#: bin/fbliveapp:36
 msgid "Chromium is a free and open source version of the famous Chrome browser, developed by Google."
 msgstr "Chromium ist eine freie und quelloffene Version des bekannten Chrome-Browsers, entwickelt von Google."
 
-#: bin/fbliveapp:38
+#: bin/fbliveapp:45
 msgid "Firefox Web Browser"
 msgstr "Firefox-Webbrowser"
 
-#: bin/fbliveapp:39
+#: bin/fbliveapp:46
 msgid "Firefox is a free and open source browser."
 msgstr "Firefox ist ein freier und quelloffener Browser."
 
-#: bin/fbliveapp:52
-msgid "MiniOS Installer"
-msgstr "MiniOS-Installationsprogramm"
-
-#: bin/fbliveapp:53
+#: bin/fbliveapp:60
 msgid "MiniOS Installer allows you to install MiniOS on the media."
 msgstr "Das MiniOS-Installationsprogramm ermöglicht die Installation von MiniOS auf dem Medium."
 
-#: bin/fbliveapp:62
-msgid "MiniOS Configurator"
-msgstr "MiniOS-Konfigurator"
-
-#: bin/fbliveapp:63
+#: bin/fbliveapp:70
 msgid "MiniOS Configurator allows you to configure MiniOS."
 msgstr "Der MiniOS-Konfigurator ermöglicht die Konfiguration von MiniOS."
 
-#: bin/fbliveapp:72
-msgid "MiniOS Session Manager"
-msgstr "MiniOS-Sitzungsmanager"
-
-#: bin/fbliveapp:73
+#: bin/fbliveapp:80
 msgid "MiniOS Session Manager allows you to manage persistent sessions."
 msgstr "Der MiniOS-Sitzungsmanager ermöglicht die Verwaltung persistenter Sitzungen."
 
-#: bin/fbliveapp:82
-msgid "MiniOS Kernel Manager"
-msgstr "MiniOS Kernel-Manager"
-
-#: bin/fbliveapp:83
+#: bin/fbliveapp:90
 msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
 msgstr "Der MiniOS-Kernel-Manager ermöglicht die Verwaltung von Linux-Kernels."
 
-#: bin/fbliveapp:110
-msgid "Error"
-msgstr "Fehler"
-
-#: bin/fbliveapp:110
+#: bin/fbliveapp:117
 msgid "only works in 64bit version of MiniOS"
 msgstr "Funktioniert nur in der 64-Bit-Version von MiniOS"
 
-#: bin/fbliveapp:110
+#: bin/fbliveapp:117
 msgid "OK"
 msgstr "OK"
 
-#: bin/fbliveapp:114
-msgid "Question"
-msgstr "Frage"
-
-#: bin/fbliveapp:114
+#: bin/fbliveapp:121
 msgid " is not yet installed. Do you like to download and install it now?"
 msgstr " ist noch nicht installiert. Möchten Sie es jetzt herunterladen und installieren?"
 
-#: bin/fbliveapp:114
+#: bin/fbliveapp:121
 msgid "Yes"
 msgstr "Ja"
 
-#: bin/fbliveapp:114
+#: bin/fbliveapp:121
 msgid "No"
 msgstr "Nein"
 
@@ -186,3 +162,21 @@ msgstr "Tastaturbelegung          ..."
 #: bin/fbmenu:171
 msgid "Exit / Logout"
 msgstr "Beenden / Abmelden"
+
+#~ msgid "Install MiniOS"
+#~ msgstr "MiniOS installieren"
+
+#~ msgid "Configure MiniOS"
+#~ msgstr "MiniOS konfigurieren"
+
+#~ msgid "Session Manager"
+#~ msgstr "Sitzungsmanager"
+
+#~ msgid "Kernel Manager"
+#~ msgstr "Kernel-Manager"
+
+#~ msgid "Error"
+#~ msgstr "Fehler"
+
+#~ msgid "Question"
+#~ msgstr "Frage"

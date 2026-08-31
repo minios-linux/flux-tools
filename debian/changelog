@@ -1,3 +1,10 @@
+flux-tools (1.2.9.7) unstable; urgency=medium
+
+  * Use consistent MiniOS application names on the Fluxbox desktop.
+  * Refresh translations.
+
+ -- crims0n <crims0n@minios.dev>  Mon, 31 Aug 2026 23:04:38 +0300
+
 flux-tools (1.2.9.6) unstable; urgency=medium
 
   * Run guest applications with scoped X access and preserve VLC settings

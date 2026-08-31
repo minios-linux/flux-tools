@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-28 11:36+0300\n"
+"POT-Creation-Date: 2026-08-30 22:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,12 +39,12 @@ msgstr ""
 msgid "Terminal"
 msgstr ""
 
-#: bin/fbdesktop:70
-msgid "Install MiniOS"
+#: bin/fbdesktop:70 bin/fbliveapp:59
+msgid "MiniOS Installer"
 msgstr ""
 
-#: bin/fbdesktop:71
-msgid "Configure MiniOS"
+#: bin/fbdesktop:71 bin/fbliveapp:69
+msgid "MiniOS Configurator"
 msgstr ""
 
 #: bin/fbdesktop:72
@@ -71,12 +71,12 @@ msgstr ""
 msgid "Calculator"
 msgstr ""
 
-#: bin/fbdesktop:78
-msgid "Session Manager"
+#: bin/fbdesktop:78 bin/fbliveapp:79
+msgid "MiniOS Session Manager"
 msgstr ""
 
-#: bin/fbdesktop:79
-msgid "Kernel Manager"
+#: bin/fbdesktop:79 bin/fbliveapp:89
+msgid "MiniOS Kernel Manager"
 msgstr ""
 
 #: bin/fbliveapp:17
@@ -84,86 +84,58 @@ msgid "VLC Video Player"
 msgstr ""
 
 #: bin/fbliveapp:18
-msgid ""
-"VLC is a free and open source multimedia player that plays most media files "
-"and streaming protocols."
+msgid "VLC is a free and open source multimedia player that plays most media files and streaming protocols."
 msgstr ""
 
-#: bin/fbliveapp:28
+#: bin/fbliveapp:35
 msgid "Chromium Web Browser"
 msgstr ""
 
-#: bin/fbliveapp:29
-msgid ""
-"Chromium is a free and open source version of the famous Chrome browser, "
-"developed by Google."
+#: bin/fbliveapp:36
+msgid "Chromium is a free and open source version of the famous Chrome browser, developed by Google."
 msgstr ""
 
-#: bin/fbliveapp:38
+#: bin/fbliveapp:45
 msgid "Firefox Web Browser"
 msgstr ""
 
-#: bin/fbliveapp:39
+#: bin/fbliveapp:46
 msgid "Firefox is a free and open source browser."
 msgstr ""
 
-#: bin/fbliveapp:52
-msgid "MiniOS Installer"
-msgstr ""
-
-#: bin/fbliveapp:53
+#: bin/fbliveapp:60
 msgid "MiniOS Installer allows you to install MiniOS on the media."
 msgstr ""
 
-#: bin/fbliveapp:62
-msgid "MiniOS Configurator"
-msgstr ""
-
-#: bin/fbliveapp:63
+#: bin/fbliveapp:70
 msgid "MiniOS Configurator allows you to configure MiniOS."
 msgstr ""
 
-#: bin/fbliveapp:72
-msgid "MiniOS Session Manager"
-msgstr ""
-
-#: bin/fbliveapp:73
+#: bin/fbliveapp:80
 msgid "MiniOS Session Manager allows you to manage persistent sessions."
 msgstr ""
 
-#: bin/fbliveapp:82
-msgid "MiniOS Kernel Manager"
-msgstr ""
-
-#: bin/fbliveapp:83
+#: bin/fbliveapp:90
 msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
 msgstr ""
 
-#: bin/fbliveapp:110
-msgid "Error"
-msgstr ""
-
-#: bin/fbliveapp:110
+#: bin/fbliveapp:117
 msgid "only works in 64bit version of MiniOS"
 msgstr ""
 
-#: bin/fbliveapp:110
+#: bin/fbliveapp:117
 msgid "OK"
 msgstr ""
 
-#: bin/fbliveapp:114
-msgid "Question"
-msgstr ""
-
-#: bin/fbliveapp:114
+#: bin/fbliveapp:121
 msgid " is not yet installed. Do you like to download and install it now?"
 msgstr ""
 
-#: bin/fbliveapp:114
+#: bin/fbliveapp:121
 msgid "Yes"
 msgstr ""
 
-#: bin/fbliveapp:114
+#: bin/fbliveapp:121
 msgid "No"
 msgstr ""
 
