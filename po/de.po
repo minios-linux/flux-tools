@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
 "POT-Creation-Date: 2026-08-30 22:54+0300\n"
-"PO-Revision-Date: 2024-03-17 14:43+0300\n"
+"PO-Revision-Date: 2026-09-01 10:41+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -77,7 +77,7 @@ msgstr "MiniOS-Sitzungsmanager"
 
 #: bin/fbdesktop:79 bin/fbliveapp:89
 msgid "MiniOS Kernel Manager"
-msgstr "MiniOS Kernel-Manager"
+msgstr "MiniOS-Kernelmanager"
 
 #: bin/fbliveapp:17
 msgid "VLC Video Player"
@@ -162,21 +162,3 @@ msgstr "Tastaturbelegung          ..."
 #: bin/fbmenu:171
 msgid "Exit / Logout"
 msgstr "Beenden / Abmelden"
-
-#~ msgid "Install MiniOS"
-#~ msgstr "MiniOS installieren"
-
-#~ msgid "Configure MiniOS"
-#~ msgstr "MiniOS konfigurieren"
-
-#~ msgid "Session Manager"
-#~ msgstr "Sitzungsmanager"
-
-#~ msgid "Kernel Manager"
-#~ msgstr "Kernel-Manager"
-
-#~ msgid "Error"
-#~ msgstr "Fehler"
-
-#~ msgid "Question"
-#~ msgstr "Frage"

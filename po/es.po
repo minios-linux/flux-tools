@@ -162,21 +162,3 @@ msgstr "Diseño del teclado        ..."
 #: bin/fbmenu:171
 msgid "Exit / Logout"
 msgstr "Salir / Cerrar sesión"
-
-#~ msgid "Install MiniOS"
-#~ msgstr "Instalar MiniOS"
-
-#~ msgid "Configure MiniOS"
-#~ msgstr "Configurar MiniOS"
-
-#~ msgid "Session Manager"
-#~ msgstr "Gestor de sesiones"
-
-#~ msgid "Kernel Manager"
-#~ msgstr "Gestor de kernels"
-
-#~ msgid "Error"
-#~ msgstr "Error"
-
-#~ msgid "Question"
-#~ msgstr "Pregunta"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
 "POT-Creation-Date: 2026-08-30 22:54+0300\n"
-"PO-Revision-Date: 2024-03-17 14:43+0300\n"
+"PO-Revision-Date: 2026-09-01 10:41+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: Portuguese\n"
 "Language: pt\n"
@@ -41,11 +41,11 @@ msgstr "Terminal"
 
 #: bin/fbdesktop:70 bin/fbliveapp:59
 msgid "MiniOS Installer"
-msgstr "Instalador MiniOS"
+msgstr "Instalador do MiniOS"
 
 #: bin/fbdesktop:71 bin/fbliveapp:69
 msgid "MiniOS Configurator"
-msgstr "Configurador MiniOS"
+msgstr "Configurador do MiniOS"
 
 #: bin/fbdesktop:72
 msgid "Archiver"
@@ -73,11 +73,11 @@ msgstr "Calculadora"
 
 #: bin/fbdesktop:78 bin/fbliveapp:79
 msgid "MiniOS Session Manager"
-msgstr "Gestor de sessões do MiniOS"
+msgstr "Gestor de sessões MiniOS"
 
 #: bin/fbdesktop:79 bin/fbliveapp:89
 msgid "MiniOS Kernel Manager"
-msgstr "Gestor de kernel do MiniOS"
+msgstr "Gestor de kernels MiniOS"
 
 #: bin/fbliveapp:17
 msgid "VLC Video Player"
@@ -162,21 +162,3 @@ msgstr "Layout do teclado         ..."
 #: bin/fbmenu:171
 msgid "Exit / Logout"
 msgstr "Sair / Logout"
-
-#~ msgid "Install MiniOS"
-#~ msgstr "Instalar MiniOS"
-
-#~ msgid "Configure MiniOS"
-#~ msgstr "Configurar MiniOS"
-
-#~ msgid "Session Manager"
-#~ msgstr "Gestor de sessões"
-
-#~ msgid "Kernel Manager"
-#~ msgstr "Gestor de kernel"
-
-#~ msgid "Error"
-#~ msgstr "Erro"
-
-#~ msgid "Question"
-#~ msgstr "Pergunta"

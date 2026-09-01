@@ -162,21 +162,3 @@ msgstr "Tata letak keyboard        ..."
 #: bin/fbmenu:171
 msgid "Exit / Logout"
 msgstr "Keluar / Logout"
-
-#~ msgid "Install MiniOS"
-#~ msgstr "Pasang MiniOS"
-
-#~ msgid "Configure MiniOS"
-#~ msgstr "Konfigurasi MiniOS"
-
-#~ msgid "Session Manager"
-#~ msgstr "Manajer Sesi"
-
-#~ msgid "Kernel Manager"
-#~ msgstr "Manajer Kernel"
-
-#~ msgid "Error"
-#~ msgstr "Kesalahan"
-
-#~ msgid "Question"
-#~ msgstr "Pertanyaan"

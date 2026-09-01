@@ -1,3 +1,9 @@
+flux-tools (1.2.9.8) unstable; urgency=medium
+
+  * Refresh translations
+
+ -- crims0n <crims0n@minios.dev>  Tue, 01 Sep 2026 18:15:43 +0300
+
 flux-tools (1.2.9.7) unstable; urgency=medium
 
   * Use consistent MiniOS application names on the Fluxbox desktop.

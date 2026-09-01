@@ -162,21 +162,3 @@ msgstr "Layout della tastiera     ..."
 #: bin/fbmenu:171
 msgid "Exit / Logout"
 msgstr "Esci / Disconnetti"
-
-#~ msgid "Install MiniOS"
-#~ msgstr "Installa MiniOS"
-
-#~ msgid "Configure MiniOS"
-#~ msgstr "Configura MiniOS"
-
-#~ msgid "Session Manager"
-#~ msgstr "Gestore sessioni"
-
-#~ msgid "Kernel Manager"
-#~ msgstr "Gestore kernel"
-
-#~ msgid "Error"
-#~ msgstr "Errore"
-
-#~ msgid "Question"
-#~ msgstr "Domanda"

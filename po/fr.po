@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: flux-tools 1.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
 "POT-Creation-Date: 2026-08-30 22:54+0300\n"
-"PO-Revision-Date: 2024-03-17 14:43+0300\n"
+"PO-Revision-Date: 2026-09-01 10:41+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>, 2024.\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -41,7 +41,7 @@ msgstr "Terminal"
 
 #: bin/fbdesktop:70 bin/fbliveapp:59
 msgid "MiniOS Installer"
-msgstr "Installateur MiniOS"
+msgstr "Programme d’installation MiniOS"
 
 #: bin/fbdesktop:71 bin/fbliveapp:69
 msgid "MiniOS Configurator"
@@ -162,21 +162,3 @@ msgstr "Disposition du clavier    ..."
 #: bin/fbmenu:171
 msgid "Exit / Logout"
 msgstr "Quitter / Déconnexion"
-
-#~ msgid "Install MiniOS"
-#~ msgstr "Installer MiniOS"
-
-#~ msgid "Configure MiniOS"
-#~ msgstr "Configurer MiniOS"
-
-#~ msgid "Session Manager"
-#~ msgstr "Gestionnaire de sessions"
-
-#~ msgid "Kernel Manager"
-#~ msgstr "Gestionnaire de noyaux"
-
-#~ msgid "Error"
-#~ msgstr "Erreur"
-
-#~ msgid "Question"
-#~ msgstr "Question"

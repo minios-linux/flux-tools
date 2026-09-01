@@ -162,21 +162,3 @@ msgstr "Раскладка клавиатуры      ..."
 #: bin/fbmenu:171
 msgid "Exit / Logout"
 msgstr "Выход / Выйти из системы"
-
-#~ msgid "Install MiniOS"
-#~ msgstr "Установить MiniOS"
-
-#~ msgid "Configure MiniOS"
-#~ msgstr "Настроить MiniOS"
-
-#~ msgid "Session Manager"
-#~ msgstr "Диспетчер сессий"
-
-#~ msgid "Kernel Manager"
-#~ msgstr "Диспетчер ядер"
-
-#~ msgid "Error"
-#~ msgstr "Ошибка"
-
-#~ msgid "Question"
-#~ msgstr "Вопрос"
