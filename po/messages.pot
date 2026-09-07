@@ -79,6 +79,10 @@ msgstr ""
 msgid "MiniOS Kernel Manager"
 msgstr ""
 
+#: bin/fbdesktop:113 bin/fbliveapp:99
+msgid "MiniOS Module Manager"
+msgstr ""
+
 #: bin/fbliveapp:17
 msgid "VLC Video Player"
 msgstr ""
@@ -117,6 +121,10 @@ msgstr ""
 
 #: bin/fbliveapp:90
 msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
+msgstr ""
+
+#: bin/fbliveapp:100
+msgid "Inspect, create and manage MiniOS modules."
 msgstr ""
 
 #: bin/fbliveapp:117

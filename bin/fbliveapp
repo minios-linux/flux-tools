@@ -61,7 +61,7 @@ if [ "$1" = "minios-installer" ]; then
    EXECUTABLE="/usr/bin/minios-installer"
    PREINSTALL="apt update"
    INSTALL="apt install --yes minios-installer"
-   POSTINSTALL="rm -f /usr/share/applications/yad-icon-browser.desktop  2>/dev/null; rm -f /usr/share/applications/minios-installer.desktop"
+   POSTINSTALL="rm -f /usr/share/applications/minios-installer.desktop"
    GUEST=false
 fi
 
@@ -71,7 +71,7 @@ if [ "$1" = "minios-configurator" ]; then
    EXECUTABLE="/usr/bin/minios-configurator"
    PREINSTALL="apt update"
    INSTALL="apt install --yes minios-configurator"
-   POSTINSTALL="rm -f /usr/share/applications/yad-icon-browser.desktop 2>/dev/null; rm -f /usr/share/applications/minios-configurator.desktop"
+   POSTINSTALL="rm -f /usr/share/applications/minios-configurator.desktop"
    GUEST=false
 fi
 
@@ -92,6 +92,16 @@ if [ "$1" = "minios-kernel-manager" ]; then
    PREINSTALL="apt update"
    INSTALL="apt install --yes minios-kernel-manager"
    POSTINSTALL="rm -f /usr/share/applications/minios-kernel-manager.desktop"
+   GUEST=false
+fi
+
+if [ "$1" = "minios-module-manager" ]; then
+   NAME="$(gettext "MiniOS Module Manager")"
+   ABOUT="$(gettext "Inspect, create and manage MiniOS modules.")"
+   EXECUTABLE="/usr/bin/minios-module-manager"
+   PREINSTALL="apt update"
+   INSTALL="apt install --yes minios-module-manager"
+   POSTINSTALL="rm -f /usr/share/applications/minios-module-manager.desktop"
    GUEST=false
 fi
 

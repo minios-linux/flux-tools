@@ -79,6 +79,10 @@ msgstr "Gestor de sesiones de MiniOS"
 msgid "MiniOS Kernel Manager"
 msgstr "Gestor de kernels de MiniOS"
 
+#: bin/fbdesktop:113 bin/fbliveapp:99
+msgid "MiniOS Module Manager"
+msgstr "Gestor de módulos de MiniOS"
+
 #: bin/fbliveapp:17
 msgid "VLC Video Player"
 msgstr "Reproductor de vídeo"
@@ -118,6 +122,10 @@ msgstr "El gestor de sesiones de MiniOS permite gestionar sesiones persistentes.
 #: bin/fbliveapp:90
 msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
 msgstr "El gestor de kernels de MiniOS permite gestionar Linux-Kernels."
+
+#: bin/fbliveapp:100
+msgid "Inspect, create and manage MiniOS modules."
+msgstr "Inspecciona, crea y gestiona módulos de MiniOS."
 
 #: bin/fbliveapp:117
 msgid "only works in 64bit version of MiniOS"

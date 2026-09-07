@@ -5,7 +5,7 @@ fbdesktop \- create desktop entries for FluxBox environment
 .B fbdesktop
 .SH DESCRIPTION
 .B fbdesktop
-creates and manages desktop application entries in the appropriate applications directory. It handles both system-wide and user-specific desktop file creation based on user privileges.
+creates the default Flux application entries in the appropriate applications directory on first run. It handles both system-wide and user-specific desktop file creation based on user privileges. Once initialized, it does not recreate entries removed by the user.
 .SH FILES
 .TP
 .I /usr/share/applications
@@ -13,6 +13,9 @@ System-wide application directory (root user)
 .TP
 .I ~/.local/share/applications
 User-specific application directory
+.TP
+.I ~/.fluxbox/fbdesktop.initialized
+Marker indicating that the default application entries have already been created
 .SH SEE ALSO
 .BR desktop-file-utils (1)
 .SH AUTHOR

@@ -1,3 +1,11 @@
+flux-tools (1.2.9.9) unstable; urgency=medium
+
+  * Generate the default Flux application entries only once per user.
+  * Use MiniOS Module Manager instead of Kernel Manager in the default launcher.
+  * Add Module Manager support to fbliveapp and refresh translations.
+
+ -- crims0n <crims0n@minios.dev>  Tue, 08 Sep 2026 01:42:13 +0300
+
 flux-tools (1.2.9.8) unstable; urgency=medium
 
   * Refresh translations

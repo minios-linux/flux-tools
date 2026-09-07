@@ -2,6 +2,13 @@
 
 export TEXTDOMAIN="flux-tools"
 
+INITIALIZED_MARKER="$HOME/.fluxbox/fbdesktop.initialized"
+
+mark_initialized() {
+    mkdir -p "$(dirname "$INITIALIZED_MARKER")"
+    touch "$INITIALIZED_MARKER"
+}
+
 if [ "$(id -u)" -eq 0 ]; then
     APPDIR="/usr/share/applications"
 else
@@ -59,6 +66,32 @@ Hidden=$HIDDEN" >"$APPDIR/${FILENAME}.desktop"
     fi
 }
 
+# Replace the old default Kernel Manager entry during package updates. If the
+# user already removed it, do not add Module Manager on their behalf.
+KERNEL_ENTRY="$APPDIR/minios-kernel-manager-flux.desktop"
+if [ -e "$KERNEL_ENTRY" ]; then
+    create_desktop_file "MiniOS Module Manager" "fbliveapp minios-module-manager %f" "office-database" "System;" "application/x-sb;" "" "false"
+    rm -f "$KERNEL_ENTRY"
+fi
+
+# The default Flux application entries are only a starting point. Once they
+# have been created, keep the user's changes on later logins.
+if [ -e "$INITIALIZED_MARKER" ]; then
+    exit 0
+fi
+
+# Older sessions have no marker. Any surviving fbdesktop entry means the
+# initial set has already been created, so do not rebuild the full list.
+for EXISTING_ENTRY in \
+    firefox-esr feh vlc xterm minios-installer minios-configurator xarchiver \
+    pcmanfm mousepad lxtask galculator minios-session-manager minios-kernel-manager \
+    minios-module-manager; do
+    if [ -e "$APPDIR/${EXISTING_ENTRY}-flux.desktop" ]; then
+        mark_initialized
+        exit 0
+    fi
+done
+
 # Call function with different parameters
 # Static translation markers for xgettext extraction - these are extracted but not executed
 if false; then
@@ -77,6 +110,7 @@ if false; then
     gettext "Calculator"
     gettext "MiniOS Session Manager"
     gettext "MiniOS Kernel Manager"
+    gettext "MiniOS Module Manager"
 fi
 
 create_desktop_file "Web Browser" "fbliveapp firefox-esr %U" "firefox-esr" "Network;WebBrowser;" "audio/*;image/*;video/*;application/pdf;application/x-pdf;text/html;text/xml;application/xhtml_xml;application/x-mimearchive;x-scheme-handler/http;x-scheme-handler/https;" "firefox" "false"
@@ -92,4 +126,7 @@ create_desktop_file "Task Manager" "lxtask" "utilities-system-monitor" "GTK;Syst
 #create_desktop_file "Net Manager" "connman-gtk" "preferences-system-network" "" "" "connman-gtk" "false"
 create_desktop_file "Calculator" "galculator" "galculator" "Utility" "" "false" "false"
 create_desktop_file "MiniOS Session Manager" "fbliveapp minios-session-manager" "media-floppy" "GTK;System;Settings;" "" "" "false"
-create_desktop_file "MiniOS Kernel Manager" "fbliveapp minios-kernel-manager" "package-x-generic" "GTK;System;Settings;" "" "" "false"
+#create_desktop_file "MiniOS Kernel Manager" "fbliveapp minios-kernel-manager" "package-x-generic" "GTK;System;Settings;" "" "" "false"
+create_desktop_file "MiniOS Module Manager" "fbliveapp minios-module-manager %f" "office-database" "System;" "application/x-sb;" "" "false"
+
+mark_initialized
