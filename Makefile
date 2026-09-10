@@ -22,6 +22,16 @@ po: $(MO_FILES)
 	msgfmt -o $@ $<
 	chmod 644 $@
 
+.PHONY: test
+test:
+	bash tests/test_metadata.sh
+	bash -n bin/fbdesktop
+	bash -n bin/fbappselect
+	bash -n bin/fbliveapp
+	bash tests/test_fbdesktop.sh
+	bash tests/test_fbappselect.sh
+	bash tests/test_fbliveapp.sh
+
 # Clean rule
 clean:
 	rm -rf $(MO_FILES)

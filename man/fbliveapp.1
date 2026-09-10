@@ -1,4 +1,4 @@
-.TH FBLIVEAPP 1 "2025-08-26" "flux-tools 1.2.5" "User Commands"
+.TH FBLIVEAPP 1 "2026-09-10" "flux-tools 1.3.0" "User Commands"
 .SH NAME
 fbliveapp \- live application installer for MiniOS
 .SH SYNOPSIS
@@ -7,10 +7,46 @@ fbliveapp \- live application installer for MiniOS
 .SH DESCRIPTION
 .B fbliveapp
 provides a localized interface for installing applications on MiniOS live systems. It supports multiple languages and provides application descriptions and installation commands.
+.PP
+After successful installation, the package launcher replaced by the Flux
+shortcut is removed and the system MIME application cache is refreshed with
+permissions that allow all users to read it, regardless of the caller's umask.
+Service desktop files, including the MiniOS Store URI handler, are preserved.
+An installation failure stops before launcher cleanup or application startup.
 .SH OPTIONS
 .TP
 .B vlc
-Install VLC Video Player
+Install or run VLC Video Player
+.TP
+.B firefox-esr
+Install or run Firefox
+.TP
+.B minios-installer
+Install or run MiniOS Installer through pkexec
+.TP
+.B minios-configurator
+Install or run MiniOS Configurator through pkexec
+.TP
+.B minios-session-manager
+Install or run MiniOS Session Manager
+.TP
+.B minios-kernel-manager
+Install or run MiniOS Kernel Manager
+.TP
+.B minios-module-manager
+Install or run MiniOS Module Manager
+.TP
+.B minios-image-builder
+Install or run MiniOS Image Builder
+.TP
+.B minios-store
+Install or run MiniOS Store
+.TP
+.B minios-help
+Install or run MiniOS Help
+.TP
+.B driveutility
+Install or run Drive Utility
 .SH ENVIRONMENT
 .TP
 .B LANG

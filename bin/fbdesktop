@@ -15,6 +15,14 @@ else
     APPDIR="$HOME/.local/share/applications"
 fi
 
+refresh_desktop_cache() {
+    # GIO needs this cache to resolve the MimeType handlers in our launchers.
+    # Refresh existing entries too, without restoring deleted user launchers.
+    if [ -d "$APPDIR" ]; then
+        update-desktop-database --quiet "$APPDIR"
+    fi
+}
+
 create_desktop_file() {
     APP_NAME="$(gettext "$1")"
     EXEC_COMMAND="$2"
@@ -66,31 +74,12 @@ Hidden=$HIDDEN" >"$APPDIR/${FILENAME}.desktop"
     fi
 }
 
-# Replace the old default Kernel Manager entry during package updates. If the
-# user already removed it, do not add Module Manager on their behalf.
-KERNEL_ENTRY="$APPDIR/minios-kernel-manager-flux.desktop"
-if [ -e "$KERNEL_ENTRY" ]; then
-    create_desktop_file "MiniOS Module Manager" "fbliveapp minios-module-manager %f" "office-database" "System;" "application/x-sb;" "" "false"
-    rm -f "$KERNEL_ENTRY"
-fi
-
 # The default Flux application entries are only a starting point. Once they
 # have been created, keep the user's changes on later logins.
 if [ -e "$INITIALIZED_MARKER" ]; then
-    exit 0
+    refresh_desktop_cache
+    exit $?
 fi
-
-# Older sessions have no marker. Any surviving fbdesktop entry means the
-# initial set has already been created, so do not rebuild the full list.
-for EXISTING_ENTRY in \
-    firefox-esr feh vlc xterm minios-installer minios-configurator xarchiver \
-    pcmanfm mousepad lxtask galculator minios-session-manager minios-kernel-manager \
-    minios-module-manager; do
-    if [ -e "$APPDIR/${EXISTING_ENTRY}-flux.desktop" ]; then
-        mark_initialized
-        exit 0
-    fi
-done
 
 # Call function with different parameters
 # Static translation markers for xgettext extraction - these are extracted but not executed
@@ -111,6 +100,10 @@ if false; then
     gettext "MiniOS Session Manager"
     gettext "MiniOS Kernel Manager"
     gettext "MiniOS Module Manager"
+    gettext "MiniOS Image Builder"
+    gettext "MiniOS Store"
+    gettext "MiniOS Help"
+    gettext "Drive Utility"
 fi
 
 create_desktop_file "Web Browser" "fbliveapp firefox-esr %U" "firefox-esr" "Network;WebBrowser;" "audio/*;image/*;video/*;application/pdf;application/x-pdf;text/html;text/xml;application/xhtml_xml;application/x-mimearchive;x-scheme-handler/http;x-scheme-handler/https;" "firefox" "false"
@@ -118,15 +111,20 @@ create_desktop_file "Image Viewer" "feh %U" "none.png" "Graphics;2DGraphics;Rast
 create_desktop_file "Video Player" "fbliveapp vlc" "multimedia-video-player" "AudioVideo;Player;" "" "" "false"
 create_desktop_file "Terminal" "xterm -ls" "utilities-terminal" "System;Utility;" "" "" "false"
 create_desktop_file "MiniOS Installer" "fbliveapp minios-installer" "usb-creator-gtk" "GTK;System;Settings;" "" "" "false"
-create_desktop_file "MiniOS Configurator" "fbliveapp minios-configurator" "menulibre" "GTK;System;Settings;" "" "" "false"
+create_desktop_file "MiniOS Configurator" "fbliveapp minios-configurator" "preferences-system" "GTK;System;" "" "" "false"
 create_desktop_file "Archiver" "xarchiver %f" "xarchiver" "GTK;Archiving;Compression;Utility;" "application/x-arj;application/arj;application/x-bzip;application/x-bzip-compressed-tar;application/x-gzip;application/x-rar;application/x-rar-compressed;application/x-tar;application/x-zip;application/x-zip-compressed;application/zip;application/x-7z-compressed;application/x-compressed-tar;application/x-bzip2;application/x-bzip2-compressed-tar;application/x-lzma-compressed-tar;application/x-lzma;application/x-deb;application/deb;application/x-xz;application/x-xz-compressed-tar;" "xarchiver" "false"
 create_desktop_file "File Manager" "pcmanfm %U" "system-file-manager" "System;FileTools;FileManager;Utility;Core;GTK;" "inode/directory;" "pcmanfm" "false"
 create_desktop_file "Text Editor" "mousepad %f" "org.xfce.mousepad" "GTK;Utility;TextEditor;" "text/plain;" "mousepad" "false"
 create_desktop_file "Task Manager" "lxtask" "utilities-system-monitor" "GTK;System;Monitor;" "" "lxtask" "false"
 #create_desktop_file "Net Manager" "connman-gtk" "preferences-system-network" "" "" "connman-gtk" "false"
 create_desktop_file "Calculator" "galculator" "galculator" "Utility" "" "false" "false"
-create_desktop_file "MiniOS Session Manager" "fbliveapp minios-session-manager" "media-floppy" "GTK;System;Settings;" "" "" "false"
-#create_desktop_file "MiniOS Kernel Manager" "fbliveapp minios-kernel-manager" "package-x-generic" "GTK;System;Settings;" "" "" "false"
+create_desktop_file "MiniOS Session Manager" "fbliveapp minios-session-manager" "media-floppy" "System;Settings;" "" "" "false"
+create_desktop_file "MiniOS Kernel Manager" "fbliveapp minios-kernel-manager" "package-x-generic" "System;Settings;" "" "" "false"
 create_desktop_file "MiniOS Module Manager" "fbliveapp minios-module-manager %f" "office-database" "System;" "application/x-sb;" "" "false"
+create_desktop_file "MiniOS Image Builder" "fbliveapp minios-image-builder" "isomaster" "GTK;System;" "" "" "false"
+create_desktop_file "MiniOS Store" "fbliveapp minios-store" "system-software-install" "System;PackageManager;" "" "" "false"
+create_desktop_file "MiniOS Help" "fbliveapp minios-help" "system-help" "System;Documentation;" "" "" "false"
+create_desktop_file "Drive Utility" "fbliveapp driveutility" "driveutility" "GTK;System;" "" "" "false"
 
+refresh_desktop_cache || exit $?
 mark_initialized

@@ -1,3 +1,21 @@
+flux-tools (1.3.0) unstable; urgency=medium
+
+  * Add Image Builder, Store, Help and Drive Utility to the default launcher,
+    and keep Kernel Manager alongside Module Manager.
+  * Match MiniOS application icons to their desktop entries and remove the
+    legacy launcher migration.
+  * Use pkexec for installation and applications that require root. Switch
+    VLC and Chromium to guest only when launched from a root session.
+  * Refresh application MIME caches without recreating deleted launchers or
+    changing the user's preferred applications.
+  * Stop on installation or authorization errors, and remove duplicate
+    launchers only after a successful installation.
+  * Use private temporary files for the menu and installation results, and
+    remove them after success, failure or cancellation.
+  * Update translations and manual pages.
+
+ -- crims0n <crims0n@minios.dev>  Thu, 10 Sep 2026 13:55:19 +0300
+
 flux-tools (1.2.9.9) unstable; urgency=medium
 
   * Generate the default Flux application entries only once per user.

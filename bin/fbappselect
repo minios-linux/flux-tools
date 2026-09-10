@@ -13,8 +13,11 @@ export QT_QPA_PLATFORMTHEME=gtk2
 
 killall xlunch
 
-TEMPCONF=/tmp/xlunch$$.conf
-xlunch_genquick 64 --desktop > $TEMPCONF
+TEMPCONF=$(mktemp "${TMPDIR:-/tmp}/fbappselect.XXXXXX") || exit 1
+trap 'rm -f -- "$TEMPCONF"' EXIT
+if ! xlunch_genquick 64 --desktop >"$TEMPCONF"; then
+   exit 1
+fi
 
 COMMAND=$(
   xlunch --border 7% --sideborder 10% --borderratio 100 --sideborderratio 50 \
@@ -26,10 +29,10 @@ COMMAND=$(
          --voidclickterminate --iconpadding 40 --textpadding 10 \
          --leastmargin 6 --hidemissing --iconsize 64 \
          --highlight /usr/share/icons/hicolor/128x128/apps/xlunch_highlight.png \
-         --outputonly --input $TEMPCONF
+         --outputonly --input "$TEMPCONF"
 )
 
-rm $TEMPCONF
+rm -f -- "$TEMPCONF"
 
 if [ "$COMMAND" = "" ]; then
    exit

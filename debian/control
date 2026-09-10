@@ -2,13 +2,13 @@ Source: flux-tools
 Section: utils
 Priority: optional
 Maintainer: crims0n <crims0n@minios.dev>
-Build-Depends: debhelper (>= 11), gettext
+Build-Depends: debhelper (>= 11), gettext, desktop-file-utils
 Standards-Version: 4.1.3
 Homepage: https://minios.dev
 
 Package: flux-tools
 Architecture: all
-Depends: bash (>= 4.4), gettext-base, ${misc:Depends}
+Depends: bash (>= 4.4), gettext-base, desktop-file-utils, pkexec | policykit-1, ${misc:Depends}
 Recommends: gtkask, xlunch
 Description: Flux Tools for Fluxbox in MiniOS Linux.
  Flux Tools is a set of utilities designed to be used

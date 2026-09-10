@@ -1,4 +1,4 @@
-.TH FBAPPSELECT 1 "2025-08-26" "flux-tools 1.2.5" "User Commands"
+.TH FBAPPSELECT 1 "2026-09-10" "flux-tools 1.3.0" "User Commands"
 .SH NAME
 fbappselect \- application launcher for FluxBox desktop
 .SH SYNOPSIS
@@ -6,6 +6,11 @@ fbappselect \- application launcher for FluxBox desktop
 .SH DESCRIPTION
 .B fbappselect
 displays a graphical application launcher using xlunch. It generates a grid-based menu showing available desktop applications with icons for easy selection.
+.PP
+The xlunch_genquick generator handles desktop entry visibility, including
+NoDisplay and Hidden. This launcher does not maintain a separate application
+filter. Default Flux shortcuts are created by fbdesktop; fbliveapp removes their
+package launcher duplicates after successful installation.
 .SH SEE ALSO
 .BR xlunch (1),
 .BR fluxbox (1)

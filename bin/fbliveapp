@@ -4,6 +4,9 @@ export TEXTDOMAIN="flux-tools"
 
 LOCALE="$(echo "$LANG" | cut -d. -f1)"
 LNG="$(echo "$LANG" | cut -d_ -f1)"
+GUEST=false
+RUN_AS_ROOT=false
+POSTINSTALL=""
 
 if [ "$LOCALE" != "en_US" ] && [ "$LOCALE" != "C" ]; then
    case "$LOCALE" in
@@ -19,8 +22,8 @@ if [ "$1" = "vlc" ]; then
    EXECUTABLE="/usr/bin/vlc"
    PREINSTALL="apt update"
    INSTALL="apt install --yes vlc"
-   GUEST=true
    if [ "$EUID" -eq 0 ]; then
+      GUEST=true
       VLC_USER="guest"
    else
       VLC_USER="$(id -un)"
@@ -28,7 +31,7 @@ if [ "$1" = "vlc" ]; then
    VLC_HOME="$(getent passwd "$VLC_USER" | cut -d: -f6)"
    VLC_UID="$(id -u "$VLC_USER")"
    VLC_GID="$(id -g "$VLC_USER")"
-   POSTINSTALL="rm -f /usr/share/applications/vlc.desktop; install -d -o $VLC_UID -g $VLC_GID '$VLC_HOME/.config/vlc'; printf '[qt4]\\nqt-privacy-ask=0\\n' > '$VLC_HOME/.config/vlc/vlcrc'; chown $VLC_UID:$VLC_GID '$VLC_HOME/.config/vlc/vlcrc'"
+   POSTINSTALL="rm -f /usr/share/applications/vlc.desktop && install -d -o $VLC_UID -g $VLC_GID '$VLC_HOME/.config/vlc' && printf '[qt4]\\nqt-privacy-ask=0\\n' > '$VLC_HOME/.config/vlc/vlcrc' && chown $VLC_UID:$VLC_GID '$VLC_HOME/.config/vlc/vlcrc'"
 fi
 
 if [ "$1" = "chromium" ]; then
@@ -38,7 +41,9 @@ if [ "$1" = "chromium" ]; then
    PREINSTALL="apt update"
    INSTALL="apt install --yes chromium chromium-sandbox"
    POSTINSTALL="rm -f /usr/share/applications/chromium.desktop"
-   GUEST=true
+   if [ "$EUID" -eq 0 ]; then
+      GUEST=true
+   fi
 fi
 
 if [ "$1" = "firefox-esr" ]; then
@@ -63,6 +68,7 @@ if [ "$1" = "minios-installer" ]; then
    INSTALL="apt install --yes minios-installer"
    POSTINSTALL="rm -f /usr/share/applications/minios-installer.desktop"
    GUEST=false
+   RUN_AS_ROOT=true
 fi
 
 if [ "$1" = "minios-configurator" ]; then
@@ -73,6 +79,7 @@ if [ "$1" = "minios-configurator" ]; then
    INSTALL="apt install --yes minios-configurator"
    POSTINSTALL="rm -f /usr/share/applications/minios-configurator.desktop"
    GUEST=false
+   RUN_AS_ROOT=true
 fi
 
 if [ "$1" = "minios-session-manager" ]; then
@@ -105,6 +112,47 @@ if [ "$1" = "minios-module-manager" ]; then
    GUEST=false
 fi
 
+if [ "$1" = "minios-image-builder" ]; then
+   NAME="$(gettext "MiniOS Image Builder")"
+   ABOUT="$(gettext "Build a verified MiniOS image with system, boot, layer, and session customization")"
+   EXECUTABLE="/usr/bin/minios-image-builder"
+   PREINSTALL="apt update"
+   INSTALL="apt install --yes minios-image-builder"
+   POSTINSTALL="rm -f /usr/share/applications/minios-image-builder.desktop"
+   GUEST=false
+fi
+
+if [ "$1" = "minios-store" ]; then
+   NAME="$(gettext "MiniOS Store")"
+   ABOUT="$(gettext "Install applications and build MiniOS modules")"
+   EXECUTABLE="/usr/bin/minios-store-launcher"
+   PREINSTALL="apt update"
+   INSTALL="apt install --yes minios-store minios-store-gui"
+   POSTINSTALL="rm -f /usr/share/applications/minios-store.desktop"
+   GUEST=false
+fi
+
+if [ "$1" = "minios-help" ]; then
+   NAME="$(gettext "MiniOS Help")"
+   ABOUT="$(gettext "Browse the local MiniOS documentation")"
+   EXECUTABLE="/usr/bin/minios-help"
+   PREINSTALL="apt update"
+   INSTALL="apt install --yes minios-help"
+   # Also remove the launcher from older packages still in repositories.
+   POSTINSTALL="rm -f /usr/share/applications/minios-help.desktop /usr/share/applications/dev.minios.Help.desktop"
+   GUEST=false
+fi
+
+if [ "$1" = "driveutility" ]; then
+   NAME="$(gettext "Drive Utility")"
+   ABOUT="$(gettext "Write disk images, format, or wipe drives")"
+   EXECUTABLE="/usr/bin/driveutility"
+   PREINSTALL="apt update"
+   INSTALL="apt install --yes driveutility"
+   POSTINSTALL="rm -f /usr/share/applications/driveutility.desktop /usr/share/applications/driveutility-kde.desktop"
+   GUEST=false
+fi
+
 shift
 
 # ------------------------------------------------
@@ -129,11 +177,29 @@ if [ ! -f "$EXECUTABLE" ]; then
    fi
 
    if gtkask -i dialog-question -t "$NAME" -m "$ABOUT$NAME$(gettext " is not yet installed. Do you like to download and install it now?")" -y "$(gettext "Yes")" -n "$(gettext "No")"; then
-      INSTALL_COMMAND="$PREINSTALL; $INSTALL; $POSTINSTALL"
+      # Clean up duplicate launchers only after a successful installation.
+      # The shared MIME cache must remain readable with a private caller umask.
+      INSTALL_COMMAND="$PREINSTALL && $INSTALL && { $POSTINSTALL; } && (umask 022; update-desktop-database --quiet /usr/share/applications)"
       if [ "$EUID" -ne 0 ]; then
-         printf -v INSTALL_COMMAND 'sudo bash -c %q' "$INSTALL_COMMAND"
+         printf -v INSTALL_COMMAND 'pkexec bash -c %q' "$INSTALL_COMMAND"
       fi
-      xterm -ls -e bash --login -c -- "$INSTALL_COMMAND"
+      # xterm does not propagate its child's exit status. Record it from the
+      # caller's shell, outside pkexec, in a private temporary directory.
+      INSTALL_STATE=$(mktemp -d "${TMPDIR:-/tmp}/fbliveapp.XXXXXX") || exit 1
+      trap 'rm -f -- "$INSTALL_STATE/status"; rmdir -- "$INSTALL_STATE"' EXIT
+      printf -v TERMINAL_COMMAND '%s; result=$?; printf "%%s\\n" "$result" >%q; exit "$result"' \
+         "$INSTALL_COMMAND" "$INSTALL_STATE/status"
+      xterm -ls -e bash --login -c -- "$TERMINAL_COMMAND" || exit $?
+      [ -f "$INSTALL_STATE/status" ] &&
+         IFS= read -r INSTALL_STATUS <"$INSTALL_STATE/status" || exit 1
+      case "$INSTALL_STATUS" in
+         0) ;;
+         ''|*[!0-9]*) exit 1 ;;
+         *) exit "$INSTALL_STATUS" ;;
+      esac
+      rm -f -- "$INSTALL_STATE/status"
+      rmdir -- "$INSTALL_STATE"
+      trap - EXIT
    fi
 fi
 
@@ -141,9 +207,13 @@ if [ -f "$EXECUTABLE" ]; then
 
    fbstartupnotify
 
-   if [ "$GUEST" = "true" ] && [ "$EUID" -eq 0 ]; then
+   if [ "$GUEST" = "true" ]; then
       xhost +SI:localuser:guest >/dev/null 2>/dev/null
       exec runuser -u guest -- "$EXECUTABLE" "$@"
+   fi
+
+   if [ "$RUN_AS_ROOT" = "true" ] && [ "$EUID" -ne 0 ]; then
+      exec pkexec "$EXECUTABLE" "$@"
    fi
 
    exec "$EXECUTABLE" "$@"
