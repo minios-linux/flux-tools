@@ -2,19 +2,32 @@
 
 export TEXTDOMAIN="flux-tools"
 
-LOCALE="$(echo "$LANG" | cut -d. -f1)"
-LNG="$(echo "$LANG" | cut -d_ -f1)"
+# Only the fixed application table below may provide installation commands.
+EXECUTABLE=
+PREINSTALL=
+INSTALL=
+POSTINSTALL=
+ABOUT=
+ONLY64=false
 GUEST=false
 RUN_AS_ROOT=false
-POSTINSTALL=""
-
-if [ "$LOCALE" != "en_US" ] && [ "$LOCALE" != "C" ]; then
-   case "$LOCALE" in
-   "es_ES" | "pt_BR")
-      LNG="$(echo "$LOCALE" | tr '[:upper:]' '[:lower:]')"
-      ;;
-   esac
+APP=${1:-}
+if [ -z "$APP" ]; then
+   printf '%s\n' 'Usage: fbliveapp APPLICATION [ARGUMENT...]' >&2
+   exit 2
 fi
+
+LOCALE=${LC_ALL:-${LC_MESSAGES:-${LANG:-C}}}
+LOCALE=${LOCALE%%.*}
+LOCALE=${LOCALE%%@*}
+case "$LOCALE" in
+   C|POSIX|en_US) LNG= ;;
+   en_GB|pt_BR|pt_PT|es_ES|es_AR|es_CL|es_MX|zh_CN|zh_TW)
+      LNG=${LOCALE,,}; LNG=${LNG/_/-} ;;
+   *) LNG=${LOCALE%%_*}; LNG=${LNG,,} ;;
+esac
+# A locale is data, never a fragment of an installation shell command.
+[[ "$LNG" =~ ^[a-z]{2,3}(-[a-z]{2})?$ ]] || LNG=
 
 if [ "$1" = "vlc" ]; then
    NAME="$(gettext "VLC Video Player")"
@@ -22,16 +35,8 @@ if [ "$1" = "vlc" ]; then
    EXECUTABLE="/usr/bin/vlc"
    PREINSTALL="apt update"
    INSTALL="apt install --yes vlc"
-   if [ "$EUID" -eq 0 ]; then
-      GUEST=true
-      VLC_USER="guest"
-   else
-      VLC_USER="$(id -un)"
-   fi
-   VLC_HOME="$(getent passwd "$VLC_USER" | cut -d: -f6)"
-   VLC_UID="$(id -u "$VLC_USER")"
-   VLC_GID="$(id -g "$VLC_USER")"
-   POSTINSTALL="rm -f /usr/share/applications/vlc.desktop && install -d -o $VLC_UID -g $VLC_GID '$VLC_HOME/.config/vlc' && printf '[qt4]\\nqt-privacy-ask=0\\n' > '$VLC_HOME/.config/vlc/vlcrc' && chown $VLC_UID:$VLC_GID '$VLC_HOME/.config/vlc/vlcrc'"
+   [ "$EUID" -ne 0 ] || GUEST=true
+   POSTINSTALL="rm -f /usr/share/applications/vlc.desktop"
 fi
 
 if [ "$1" = "chromium" ]; then
@@ -51,8 +56,10 @@ if [ "$1" = "firefox-esr" ]; then
    ABOUT="$(gettext "Firefox is a free and open source browser.")"
    EXECUTABLE="/usr/bin/firefox-esr"
    PREINSTALL="apt update"
-   if [ "$LOCALE" != "en_US" ] && [ "$LOCALE" != "C" ]; then
-      INSTALL="apt install --yes firefox-esr firefox-esr-l10n-$LNG minios-welcome"
+   if [ -n "$LNG" ]; then
+      # Language packs are optional. An unavailable locale must not prevent
+      # installing the browser, and the package lookup follows apt update.
+      INSTALL="{ l10n=; if apt-cache show --no-all-versions firefox-esr-l10n-$LNG >/dev/null 2>&1; then l10n=firefox-esr-l10n-$LNG; fi; apt install --yes firefox-esr minios-welcome \${l10n:+\"\$l10n\"}; }"
    else
       INSTALL="apt install --yes firefox-esr minios-welcome"
    fi
@@ -165,8 +172,13 @@ if [ "$ABOUT" != "" ]; then
 "
 fi
 
-if [ "$EXECUTABLE" = "" ]; then
-   exit
+if [ -z "$EXECUTABLE" ]; then
+   printf '%s: %s\n' "$(gettext "Unsupported application")" "$APP" >&2
+   exit 2
+fi
+if [ -e "$EXECUTABLE" ] && [ ! -x "$EXECUTABLE" ]; then
+   printf '%s: %s\n' "$(gettext "Application is not executable")" "$EXECUTABLE" >&2
+   exit 126
 fi
 
 if [ ! -f "$EXECUTABLE" ]; then
@@ -187,6 +199,9 @@ if [ ! -f "$EXECUTABLE" ]; then
       # caller's shell, outside pkexec, in a private temporary directory.
       INSTALL_STATE=$(mktemp -d "${TMPDIR:-/tmp}/fbliveapp.XXXXXX") || exit 1
       trap 'rm -f -- "$INSTALL_STATE/status"; rmdir -- "$INSTALL_STATE"' EXIT
+      trap 'exit 129' HUP
+      trap 'exit 130' INT
+      trap 'exit 143' TERM
       printf -v TERMINAL_COMMAND '%s; result=$?; printf "%%s\\n" "$result" >%q; exit "$result"' \
          "$INSTALL_COMMAND" "$INSTALL_STATE/status"
       xterm -ls -e bash --login -c -- "$TERMINAL_COMMAND" || exit $?
@@ -199,7 +214,23 @@ if [ ! -f "$EXECUTABLE" ]; then
       esac
       rm -f -- "$INSTALL_STATE/status"
       rmdir -- "$INSTALL_STATE"
-      trap - EXIT
+      trap - EXIT HUP INT TERM
+
+      if [ "$APP" = vlc ]; then
+         # Initialize only a missing config, as its owner, outside pkexec.
+         # noclobber also rejects symlinks appearing between the check/write.
+         VLC_CONFIG='umask 077
+            config=${XDG_CONFIG_HOME:-"$HOME/.config"}/vlc
+            mkdir -p -- "$config" || exit $?
+            [ ! -e "$config/vlcrc" ] && [ ! -L "$config/vlcrc" ] || exit 0
+            set -C
+            printf "[qt4]\\nqt-privacy-ask=0\\n" >"$config/vlcrc"'
+         if [ "$GUEST" = true ]; then
+            runuser -u guest -- env -u XDG_CONFIG_HOME bash -c "$VLC_CONFIG"
+         else
+            bash -c "$VLC_CONFIG"
+         fi || printf '%s\n' "$(gettext "Could not create the initial VLC configuration.")" >&2
+      fi
    fi
 fi
 

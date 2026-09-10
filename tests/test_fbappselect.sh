@@ -1,6 +1,7 @@
 #!/bin/bash
 # The launcher consumes the generator output, without another application list.
 set -eu
+export DISPLAY=${DISPLAY:-:99}
 SOURCE_DIR=$(cd -- "$(dirname -- "$0")/.." && pwd)
 TEST_ROOT=$(mktemp -d)
 trap 'rm -rf -- "$TEST_ROOT"' EXIT
@@ -13,7 +14,7 @@ printf '#!/bin/sh\ncat "$MENU_INPUT"\nexit "${GENERATOR_STATUS:-0}"\n' >"$TEST_R
 cat >"$TEST_ROOT/bin/xlunch" <<'SH'
 #!/bin/sh
 while [ "$#" -gt 0 ]; do
-    if [ "$1" = --input ]; then cp -- "$2" "$MENU_OUTPUT"; exit; fi
+    if [ "$1" = --input ]; then cp -- "$2" "$MENU_OUTPUT"; printf "%s" "${MENU_CHOICE:-}"; exit "${MENU_STATUS:-0}"; fi
     shift
 done
 exit 1
@@ -36,3 +37,56 @@ fi
 [ ! -e "$MENU_OUTPUT" ] || fail 'xlunch ran after a generation failure'
 [ -z "$(find "$TMPDIR" -type f -print -quit)" ] || fail 'temporary menu leaked'
 echo 'PASS: a generation failure does not launch xlunch or leak its temporary file'
+
+
+export CALL_LOG="$TEST_ROOT/calls" LAUNCH_ARGS="$TEST_ROOT/launch-args"
+printf '#!/bin/sh\nprintf "notify %%s\\n" "$*" >>"$CALL_LOG"\n' >"$TEST_ROOT/bin/fbstartupnotify"
+printf '#!/bin/sh\nexit 0\n' >"$TEST_ROOT/bin/gtkask"
+cat >"$TEST_ROOT/bin/gio" <<'SH'
+#!/bin/sh
+if [ "$1" = help ]; then
+    [ "${OLD_GIO:-0}" = 1 ] || echo '  launch   Launch a desktop file'
+    exit 0
+fi
+printf 'gio\n' >>"$CALL_LOG"
+printf '%s\n' "$@" >"$LAUNCH_ARGS"
+exit "${LAUNCH_STATUS:-0}"
+SH
+for tool in gtk-launch xterm; do
+    cat >"$TEST_ROOT/bin/$tool" <<'SH'
+#!/bin/sh
+printf '%s\n' "${0##*/}" >>"$CALL_LOG"
+printf '%s\n' "$@" >"$LAUNCH_ARGS"
+exit "${LAUNCH_STATUS:-0}"
+SH
+done
+chmod +x "$TEST_ROOT/bin/"*
+export MENU_CHOICE="$TEST_ROOT/selected app.desktop"
+printf '[Desktop Entry]\nType=Application\nExec=probe\n' >"$MENU_CHOICE"
+bash "$SOURCE_DIR/bin/fbappselect"
+printf 'launch\n%s\n' "$MENU_CHOICE" >"$TEST_ROOT/expected"
+cmp "$LAUNCH_ARGS" "$TEST_ROOT/expected" || fail 'desktop path changed'
+! grep -qx xterm "$CALL_LOG" || fail 'desktop parsed as a shell command'
+echo 'PASS: the exact desktop path is passed to GIO without shell parsing'
+
+OLD_GIO=1 bash "$SOURCE_DIR/bin/fbappselect"
+[ "$(cat "$LAUNCH_ARGS")" = 'selected app.desktop' ] || fail 'GTK fallback got the wrong desktop ID'
+grep -qx gtk-launch "$CALL_LOG" || fail 'old GLib fallback not used'
+if LAUNCH_STATUS=42 bash "$SOURCE_DIR/bin/fbappselect"; then fail 'launch failure ignored'; else status=$?; fi
+[ "$status" -eq 42 ] || fail 'wrong launch failure status'
+[ "$(tail -n1 "$CALL_LOG")" = 'notify false' ] || fail 'cursor not reset after launch failure'
+echo 'PASS: GTK fallback and desktop launch errors are handled'
+
+export MENU_CHOICE='printf "%s\n" "two words"; echo raw-command'
+bash "$SOURCE_DIR/bin/fbappselect"
+[ "$(tail -n1 "$LAUNCH_ARGS")" = "$MENU_CHOICE" ] || fail 'free-form command was interpolated into the wrapper'
+[ "$(tail -n1 "$CALL_LOG")" = xterm ] || fail 'free-form command bypassed the terminal'
+echo 'PASS: free-form shell input is passed separately to the terminal wrapper'
+
+rm "$MENU_OUTPUT"
+exec 9>"$HOME/.fluxbox/fbappselect-${DISPLAY//[^a-zA-Z0-9_.-]/_}.lock"
+flock 9
+bash "$SOURCE_DIR/bin/fbappselect"
+[ ! -e "$MENU_OUTPUT" ] || fail 'concurrent menu instance was opened'
+exec 9>&-
+echo 'PASS: a concurrent invocation does not kill or duplicate the current menu'

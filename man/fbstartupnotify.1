@@ -1,4 +1,4 @@
-.TH FBSTARTUPNOTIFY 1 "2026-09-10" "flux-tools 1.3.0" "User Commands"
+.TH FBSTARTUPNOTIFY 1 "2026-09-10" "flux-tools 2.0.0" "User Commands"
 .SH NAME
 fbstartupnotify \- provide visual feedback during application startup
 .SH SYNOPSIS
@@ -17,3 +17,5 @@ Reset cursor to normal without waiting for new windows
 .SH AUTHOR
 Tomas-M <https://github.com/Tomas-M>
 crims0n <crims0n@minios.dev>
+.SH NOTES
+Only one watcher runs per user and display. The cursor is restored when the window list changes or after at most ten seconds, including failed launches and applications that reuse an existing window.

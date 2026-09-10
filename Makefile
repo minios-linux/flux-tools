@@ -22,15 +22,19 @@ po: $(MO_FILES)
 	msgfmt -o $@ $<
 	chmod 644 $@
 
-.PHONY: test
+.PHONY: build po clean install test
 test:
 	bash tests/test_metadata.sh
-	bash -n bin/fbdesktop
-	bash -n bin/fbappselect
-	bash -n bin/fbliveapp
+	@for script in bin/* tests/*.sh update-po.sh; do bash -n "$$script" || exit; done
 	bash tests/test_fbdesktop.sh
 	bash tests/test_fbappselect.sh
 	bash tests/test_fbliveapp.sh
+	bash tests/test_utilities.sh
+	bash tests/test_update_po.sh
+
+.PHONY: test-launch
+test-launch:
+	bash tests/test_desktop_launch.sh
 
 # Clean rule
 clean:

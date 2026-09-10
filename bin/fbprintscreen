@@ -1,18 +1,33 @@
 #!/bin/bash
 
-PICTURES=~/Pictures
-mkdir -p $PICTURES
-cd $PICTURES
-
-# make screenshot
-SCREENSHOT=$(scrot -e 'echo $f')
-
-if [ "$SCREENSHOT" = "" ]; then
-   exit 1
+export TEXTDOMAIN="flux-tools"
+PICTURES=
+if command -v xdg-user-dir >/dev/null 2>&1; then
+    PICTURES=$(xdg-user-dir PICTURES)
 fi
+PICTURES=${PICTURES:-"$HOME/Pictures"}
+mkdir -p -- "$PICTURES" || exit $?
+SCREENSHOT=$(mktemp "$PICTURES/Screenshot-$(date +%Y%m%d-%H%M%S)-XXXXXX.png") || exit $?
+trap 'rm -f -- "$SCREENSHOT"' EXIT
+trap 'exit 129' HUP
+trap 'exit 130' INT
+trap 'exit 143' TERM
+# No shell expansion of a scrot filename and no change to the caller's cwd.
+scrot "$SCREENSHOT" || exit $?
+[ -s "$SCREENSHOT" ] || exit 1
+trap - EXIT
 
-# open screenshot in 2/3 window
-read W H X <<< $(xrandr 2>/dev/null | fgrep '*' | tr -s " " | tr "x" " ")
-W=$(($W*2/3))
-H=$(($H*2/3))
-exec feh --geometry $W"x"$H $SCREENSHOT
+if command -v gpicview >/dev/null 2>&1; then
+    exec gpicview "$SCREENSHOT"
+elif command -v feh >/dev/null 2>&1; then
+    mode=$(xrandr 2>/dev/null | awk '$1 ~ /^[0-9]+x[0-9]+$/ && /\*/ {print $1; exit}')
+    if [[ "$mode" =~ ^([0-9]+)x([0-9]+)$ ]]; then
+        width=$((BASH_REMATCH[1] * 2 / 3))
+        height=$((BASH_REMATCH[2] * 2 / 3))
+        exec feh --geometry "${width}x${height}" -- "$SCREENSHOT"
+    fi
+    exec feh -- "$SCREENSHOT"
+else
+    # The screenshot is already saved even when no viewer is available.
+    printf '%s: %s\n' "$(gettext "Screenshot saved")" "$SCREENSHOT"
+fi

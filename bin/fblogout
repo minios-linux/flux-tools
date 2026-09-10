@@ -1,31 +1,76 @@
 #!/bin/bash
 
+export TEXTDOMAIN="flux-tools"
 COMMAND=$(
-     xlunch --input /etc/xlunch/logout.dsv --noprompt --border auto --sideborder auto --columns 3 --rows 1 \
-            --background /usr/share/wallpapers/flux_wallpaper.jpg --bgfill --font /usr/share/fonts/opentype/inter/Inter-Regular.otf/12 \
-            --voidclickterminate --iconpadding 30 --textpadding 10 \
-            --leastmargin 10 --hidemissing --iconsize 128 \
-            --highlight /usr/share/icons/hicolor/128x128/apps/xlunch_highlight.png \
-            --outputonly
-)
+    xlunch --input /etc/xlunch/logout.dsv --noprompt --border auto --sideborder auto --columns 3 --rows 1 \
+        --background /usr/share/wallpapers/flux_wallpaper.jpg --bgfill --font /usr/share/fonts/opentype/inter/Inter-Regular.otf/12 \
+        --voidclickterminate --iconpadding 30 --textpadding 10 \
+        --leastmargin 10 --hidemissing --iconsize 128 \
+        --highlight /usr/share/icons/hicolor/128x128/apps/xlunch_highlight.png --outputonly
+) || exit $?
+case "$COMMAND" in
+    '') exit 0 ;;
+    logout|restart|shutdown) ;;
+    *) exit 2 ;;
+esac
+
+BLANK_PID=
+cleanup() {
+    if [ -n "$BLANK_PID" ]; then
+        kill "$BLANK_PID" 2>/dev/null || :
+    fi
+}
+trap cleanup EXIT
+trap 'exit 129' HUP
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 SND=/usr/share/sounds/shutdown.wav
-
-if [ "$COMMAND" != "" -a -r $SND ]; then
-   # blank desktop with smooth effect (if compton still running)
-   xlunch --noprompt --input /dev/null --bc 111111ff &
-   # play shutdown sound
-   aplay $SND
+if [ -r "$SND" ]; then
+    xlunch --noprompt --input /dev/null --bc 111111ff >/dev/null 2>&1 &
+    BLANK_PID=$!
+    timeout 3 aplay "$SND" >/dev/null 2>&1 || :
 fi
 
-if [ "$COMMAND" = "logout" ]; then
-   killall Xorg
-fi
+logout_session() {
+    # Stop this user's Fluxbox on this display, never an X server or another
+    # desktop. Fluxbox remote commands may be disabled in the session config.
+    local pid
+    while IFS= read -r pid; do
+        [ -n "$pid" ] || continue
+        if grep -zFxq -e "DISPLAY=${DISPLAY%.0}" -e "DISPLAY=${DISPLAY%.0}.0" "/proc/$pid/environ" 2>/dev/null; then
+            kill -TERM "$pid"
+            return $?
+        fi
+    done < <(pgrep -u "$EUID" -x fluxbox)
+    return 1
+}
 
-if [ "$COMMAND" = "restart" ]; then
-   reboot
-fi
+power_action() {
+    local executable
+    executable="/sbin/$1"
+    [ -x "$executable" ] || executable=$(command -v "$1") || return $?
+    if [ "$EUID" -eq 0 ]; then
+        "$executable"
+    else
+        pkexec "$executable"
+    fi
+}
 
-if [ "$COMMAND" = "shutdown" ]; then
-   poweroff
+case "$COMMAND" in
+    logout) logout_session ;;
+    restart) power_action reboot ;;
+    shutdown) power_action poweroff ;;
+esac
+status=$?
+# Remove the blank overlay before showing an authorization/action failure.
+cleanup
+BLANK_PID=
+if [ "$status" -ne 0 ]; then
+    printf '%s\n' "$(gettext "The session action failed.")" >&2
+    if command -v gtkask >/dev/null 2>&1; then
+        gtkask -i dialog-error -t "$(gettext "Error")" \
+            -m "$(gettext "The session action failed.")" -y "$(gettext "OK")"
+    fi
 fi
+exit "$status"

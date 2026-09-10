@@ -1,4 +1,4 @@
-.TH FBLIVEAPP 1 "2026-09-10" "flux-tools 1.3.0" "User Commands"
+.TH FBLIVEAPP 1 "2026-09-10" "flux-tools 2.0.0" "User Commands"
 .SH NAME
 fbliveapp \- live application installer for MiniOS
 .SH SYNOPSIS
@@ -56,3 +56,5 @@ Determines the language for application descriptions
 .SH AUTHOR
 Tomas-M <https://github.com/Tomas-M>
 crims0n <crims0n@minios.dev>
+.SH NOTES
+Existing VLC settings and symlinks are preserved. A missing configuration is initialized as its owner, outside the privileged installation. VLC and Chromium use guest only in root sessions. Regional Firefox language packages are optional; an unavailable translation does not prevent browser installation.

@@ -1,23 +1,44 @@
 #!/bin/bash
 
-LOCK=/run/lock/gtk-bookmark-update-lock
+# This helper maintains the root file manager's automounted-volume bookmarks.
+[ "$(id -u)" -eq 0 ] || exit 0
 BOOKMARKS=/root/.gtk-bookmarks
+LOCKDIR=/root/.fluxbox
+MEDIA_ROOT=/media
+mkdir -p -- "$LOCKDIR" || exit $?
+exec 9>"$LOCKDIR/gtk-bookmarks-update.lock" || exit $?
+# flock is released by the kernel even when the previous process was killed.
+flock -w 2 9 || exit $?
+TEMPFILE=$(mktemp "${BOOKMARKS}.XXXXXX") || exit $?
+trap 'rm -f -- "$TEMPFILE"' EXIT
+trap 'exit 129' HUP
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
-# make sure to avoid parallel execution by using mkdir as lock
-while true; do
-   mkdir $LOCK 2>/dev/null
-   if [ $? = 0 ]; then
-      break
-   fi
+file_uri() {
+    local LC_ALL=C char value path=$1
+    printf 'file://'
+    while [ -n "$path" ]; do
+        char=${path:0:1}
+        path=${path:1}
+        case "$char" in
+            [a-zA-Z0-9/_.~-]) printf '%s' "$char" ;;
+            *) printf -v value '%%%02X' "'$char"; printf '%s' "$value" ;;
+        esac
+    done
+}
+
+# Keep manually added bookmarks, replacing only the entries managed here.
+printf 'file:/// /\n' >"$TEMPFILE" || exit $?
+if [ -f "$BOOKMARKS" ]; then
+    awk -v prefix="file://$MEDIA_ROOT/" 'NF && index($0, prefix) != 1 && $0 != "file:/// /"' \
+        "$BOOKMARKS" >>"$TEMPFILE" || exit $?
+fi
+for directory in "$MEDIA_ROOT"/*; do
+    [ -d "$directory" ] || continue
+    label=${directory##*/}
+    label=${label//$'\n'/ }
+    label=${label//$'\r'/ }
+    { file_uri "$directory"; printf ' %s\n' "$label"; } >>"$TEMPFILE" || exit $?
 done
-
-cat $BOOKMARKS | fgrep -v ///media/ | fgrep -v "file:/// /" | egrep -v '^$' > $BOOKMARKS.tmp 2>/dev/null
-ls -1 /media | sort | while read LINE; do
-   echo "file:///media/$LINE $LINE" >> $BOOKMARKS.tmp
-done
-
-echo "file:/// /" >> $BOOKMARKS.tmp # add root at the beginning
-
-mv -f $BOOKMARKS.tmp $BOOKMARKS
-
-rmdir $LOCK
+mv -fT -- "$TEMPFILE" "$BOOKMARKS" || exit $?

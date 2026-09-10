@@ -2,22 +2,28 @@
 
 CURSORSDIR=/usr/share/icons/breeze_cursors/cursors
 SIZE=16
-
-if [ "$1" = "false" ]; then
-   xsetroot -xcf "$CURSORSDIR/left_ptr" "$SIZE"
-   exit
+reset_cursor() { xsetroot -xcf "$CURSORSDIR/left_ptr" "$SIZE"; }
+if [ "${1:-}" = false ]; then
+   reset_cursor
+   exit $?
 fi
 
-# Set cursor to wait. As soon as new window is detected, change cursor back
-xsetroot -xcf "$CURSORSDIR/left_ptr_watch" "$SIZE"
-export WINDOWS="$(wmctrl -l)"
-
+mkdir -p -- "$HOME/.fluxbox" || exit $?
+exec 9>"$HOME/.fluxbox/fbstartupnotify-${DISPLAY//[^a-zA-Z0-9_.-]/_}.lock" || exit $?
+# Several launch paths call this helper; keep only one watcher per display.
+flock -n 9 || exit 0
+WINDOWS=$(wmctrl -l) || exit $?
+xsetroot -xcf "$CURSORSDIR/left_ptr_watch" "$SIZE" || exit $?
 (
-   sleep 0.2
-   until diff <(echo "$WINDOWS") <(wmctrl -l) | egrep -q "^[>]"; do
+   trap reset_cursor EXIT
+   trap 'exit 0' HUP INT TERM
+   # Also restore the cursor when no new window appears (failed launch,
+   # an existing application window, or an unavailable window manager).
+   for ((attempt=0; attempt<20; attempt++)); do
       sleep 0.5
+      current=$(wmctrl -l) || break
+      [ "$current" = "$WINDOWS" ] || break
    done
-   xsetroot -xcf "$CURSORSDIR/left_ptr" "$SIZE"
-) &
-
+) >/dev/null 2>&1 &
+exec 9>&-
 exit 0

@@ -1,81 +1,67 @@
 #!/bin/bash
 
 export TEXTDOMAIN="flux-tools"
-
 INITIALIZED_MARKER="$HOME/.fluxbox/fbdesktop.initialized"
-
-mark_initialized() {
-    mkdir -p "$(dirname "$INITIALIZED_MARKER")"
-    touch "$INITIALIZED_MARKER"
-}
+TEMPFILE=
+trap 'test -z "$TEMPFILE" || rm -f -- "$TEMPFILE"' EXIT
+trap 'exit 129' HUP
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 if [ "$(id -u)" -eq 0 ]; then
     APPDIR="/usr/share/applications"
+    # System launchers and the shared MIME cache must be readable by everyone.
+    umask 022
 else
-    APPDIR="$HOME/.local/share/applications"
+    APPDIR="${XDG_DATA_HOME:-$HOME/.local/share}/applications"
 fi
 
 refresh_desktop_cache() {
-    # GIO needs this cache to resolve the MimeType handlers in our launchers.
-    # Refresh existing entries too, without restoring deleted user launchers.
     if [ -d "$APPDIR" ]; then
         update-desktop-database --quiet "$APPDIR"
     fi
 }
 
 create_desktop_file() {
-    APP_NAME="$(gettext "$1")"
-    EXEC_COMMAND="$2"
-    ICON_NAME="$3"
-    CATEGORIES="$4"
-    MIME_TYPE="$5"
-    STARTUP_WM_CLASS="$6"
-    HIDDEN="$7"
+    local app_name command_name filename
+    app_name="$(gettext "$1")" || return $?
+    read -r command_name _ <<<"$2"
+    if [ "$command_name" = fbliveapp ]; then
+        read -r _ command_name _ <<<"$2"
+    elif ! command -v "$command_name" >/dev/null 2>&1; then
+        return 0
+    fi
+    filename="${command_name}-flux.desktop"
 
-    # Extract the actual command from EXEC_COMMAND
-    if echo "$EXEC_COMMAND" | grep -q "fbliveapp"; then
-        ACTUAL_COMMAND=$(echo "$EXEC_COMMAND" | awk '{print $2}')
-        CHECK="false"
-    else
-        ACTUAL_COMMAND=$(echo "$EXEC_COMMAND" | awk '{print $1}')
-        CHECK="true"
+    # Existing entries belong to the user, including overrides and symlinks.
+    # A directory at the target is an error, not a completed initialization.
+    if [ -d "$APPDIR/$filename" ]; then
+        printf '%s: %s\n' "$(gettext "Cannot create desktop entry")" "$APPDIR/$filename" >&2
+        return 1
+    fi
+    if [ -e "$APPDIR/$filename" ] || [ -L "$APPDIR/$filename" ]; then
+        return 0
+    fi
+    if [ "$APPDIR" != /usr/share/applications ] &&
+       [ -e "/usr/share/applications/$filename" ]; then
+        return 0
     fi
 
-    # Generate the desktop filename, append '-flux' suffix
-    FILENAME="${ACTUAL_COMMAND}-flux"
-
-    # Check if command exists on the system
-    if [ $CHECK = "false" ] || command -v $ACTUAL_COMMAND >/dev/null 2>&1; then
-
-        # Avoid duplicating system desktop files in user dir
-        if [ "$APPDIR" != "/usr/share/applications" ] && \
-           [ -e "/usr/share/applications/${FILENAME}.desktop" ]; then
-            # remove old user copy if present
-            rm -f "$APPDIR/${FILENAME}.desktop"
-            return
-        fi
-
-        # Create the applications directory if it doesn't exist
-        mkdir -p "$APPDIR"
-
-        # Write the .desktop file
-        echo "[Desktop Entry]
-Version=1.0
-Name=$APP_NAME
-Exec=$EXEC_COMMAND
-Terminal=false
-Type=Application
-Icon=$ICON_NAME
-Categories=$CATEGORIES
-MimeType=$MIME_TYPE
-StartupWMClass=$STARTUP_WM_CLASS
-StartupNotify=true
-Hidden=$HIDDEN" >"$APPDIR/${FILENAME}.desktop"
-    fi
+    mkdir -p -- "$APPDIR" || return $?
+    TEMPFILE=$(mktemp "$APPDIR/.fbdesktop.XXXXXX") || return $?
+    printf '[Desktop Entry]\nVersion=1.0\nName=%s\nExec=%s\nTerminal=false\nType=Application\nIcon=%s\nCategories=%s\nMimeType=%s\nStartupWMClass=%s\nStartupNotify=true\nNoDisplay=%s\n' \
+        "$app_name" "$2" "$3" "$4" "$5" "$6" "$7" >"$TEMPFILE" || return $?
+    chmod 644 "$TEMPFILE" || return $?
+    # Publish complete files, without overwriting an entry created meanwhile.
+    mv -nT -- "$TEMPFILE" "$APPDIR/$filename" || return $?
+    rm -f -- "$TEMPFILE" || return $?
+    TEMPFILE=
 }
 
-# The default Flux application entries are only a starting point. Once they
-# have been created, keep the user's changes on later logins.
+# Serialize first-run generation, but never hold up a login indefinitely.
+mkdir -p -- "$(dirname -- "$INITIALIZED_MARKER")" || exit $?
+exec 9>"$HOME/.fluxbox/fbdesktop.lock" || exit $?
+flock -w 5 9 || exit $?
 if [ -e "$INITIALIZED_MARKER" ]; then
     refresh_desktop_cache
     exit $?
@@ -106,25 +92,31 @@ if false; then
     gettext "Drive Utility"
 fi
 
-create_desktop_file "Web Browser" "fbliveapp firefox-esr %U" "firefox-esr" "Network;WebBrowser;" "audio/*;image/*;video/*;application/pdf;application/x-pdf;text/html;text/xml;application/xhtml_xml;application/x-mimearchive;x-scheme-handler/http;x-scheme-handler/https;" "firefox" "false"
-create_desktop_file "Image Viewer" "feh %U" "none.png" "Graphics;2DGraphics;RasterGraphics;" "image/*;" "feh" "true"
-create_desktop_file "Video Player" "fbliveapp vlc" "multimedia-video-player" "AudioVideo;Player;" "" "" "false"
-create_desktop_file "Terminal" "xterm -ls" "utilities-terminal" "System;Utility;" "" "" "false"
-create_desktop_file "MiniOS Installer" "fbliveapp minios-installer" "usb-creator-gtk" "GTK;System;Settings;" "" "" "false"
-create_desktop_file "MiniOS Configurator" "fbliveapp minios-configurator" "preferences-system" "GTK;System;" "" "" "false"
-create_desktop_file "Archiver" "xarchiver %f" "xarchiver" "GTK;Archiving;Compression;Utility;" "application/x-arj;application/arj;application/x-bzip;application/x-bzip-compressed-tar;application/x-gzip;application/x-rar;application/x-rar-compressed;application/x-tar;application/x-zip;application/x-zip-compressed;application/zip;application/x-7z-compressed;application/x-compressed-tar;application/x-bzip2;application/x-bzip2-compressed-tar;application/x-lzma-compressed-tar;application/x-lzma;application/x-deb;application/deb;application/x-xz;application/x-xz-compressed-tar;" "xarchiver" "false"
-create_desktop_file "File Manager" "pcmanfm %U" "system-file-manager" "System;FileTools;FileManager;Utility;Core;GTK;" "inode/directory;" "pcmanfm" "false"
-create_desktop_file "Text Editor" "mousepad %f" "org.xfce.mousepad" "GTK;Utility;TextEditor;" "text/plain;" "mousepad" "false"
-create_desktop_file "Task Manager" "lxtask" "utilities-system-monitor" "GTK;System;Monitor;" "" "lxtask" "false"
+create_desktop_file "Web Browser" "fbliveapp firefox-esr %U" "firefox-esr" "Network;WebBrowser;" "application/pdf;application/x-pdf;audio/3gpp;audio/ac3;audio/flac;audio/mp4;audio/mpeg;audio/mpegurl;audio/ogg;audio/x-flac;audio/x-gsm;audio/x-it;audio/x-m4a;audio/x-matroska;audio/x-mod;audio/x-mp3;audio/x-mpeg;audio/x-mpegurl;audio/x-pn-wav;audio/x-tta;audio/x-vorbis;audio/x-vorbis+ogg;audio/x-wav;audio/x-wavpack;audio/x-xm;application/ogg;application/x-extension-m4a;application/x-extension-mp4;application/x-flac;application/x-flash-video;application/x-ogg;image/svg+xml;image/svg+xml-compressed;image/x-gray;image/x-icb;image/x-ico;image/x-pcx;image/x-portable-anymap;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-xbitmap;image/x-xpixmap;image/vnd.wap.wbmp;video/3gpp;video/dv;video/fli;video/flv;video/mp2t;video/mp4;video/mp4v-es;video/mpeg;video/msvideo;video/ogg;video/quicktime;video/vivo;video/vnd.divx;video/vnd.rn-realvideo;video/vnd.vivo;video/webm;video/x-anim;video/x-avi;video/x-flc;video/x-fli;video/x-flic;video/x-flv;video/x-m4v;video/x-matroska;video/x-mpeg;video/x-ogm+ogg;video/x-theora+ogg;x-scheme-handler/http;x-scheme-handler/https;text/html;application/xhtml+xml;application/x-mimearchive;" "firefox" "false" || exit $?
+# Keep an image handler even when the build uses gpicview instead of feh.
+if command -v gpicview >/dev/null 2>&1; then
+    VIEWER=gpicview
+else
+    VIEWER=feh
+fi
+create_desktop_file "Image Viewer" "$VIEWER %f" "image-x-generic" "Graphics;2DGraphics;RasterGraphics;" "image/bmp;image/gif;image/jpeg;image/png;image/tiff;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-xpixmap;" "$VIEWER" "true" || exit $?
+create_desktop_file "Video Player" "fbliveapp vlc" "multimedia-video-player" "AudioVideo;Player;" "" "" "false" || exit $?
+create_desktop_file "Terminal" "xterm -ls" "utilities-terminal" "System;Utility;" "" "" "false" || exit $?
+create_desktop_file "MiniOS Installer" "fbliveapp minios-installer" "usb-creator-gtk" "GTK;System;Settings;" "" "" "false" || exit $?
+create_desktop_file "MiniOS Configurator" "fbliveapp minios-configurator" "preferences-system" "GTK;System;" "" "" "false" || exit $?
+create_desktop_file "Archiver" "xarchiver %f" "xarchiver" "GTK;Archiving;Compression;Utility;" "application/x-arj;application/arj;application/x-bzip;application/x-bzip-compressed-tar;application/x-gzip;application/x-rar;application/x-rar-compressed;application/x-tar;application/x-zip;application/x-zip-compressed;application/zip;application/x-7z-compressed;application/x-compressed-tar;application/x-bzip2;application/x-bzip2-compressed-tar;application/x-lzma-compressed-tar;application/x-lzma;application/x-deb;application/deb;application/x-xz;application/x-xz-compressed-tar;" "xarchiver" "false" || exit $?
+create_desktop_file "File Manager" "pcmanfm %U" "system-file-manager" "System;FileTools;FileManager;Utility;Core;GTK;" "inode/directory;" "pcmanfm" "false" || exit $?
+create_desktop_file "Text Editor" "mousepad %f" "org.xfce.mousepad" "GTK;Utility;TextEditor;" "text/plain;" "mousepad" "false" || exit $?
+create_desktop_file "Task Manager" "lxtask" "utilities-system-monitor" "GTK;System;Monitor;" "" "lxtask" "false" || exit $?
 #create_desktop_file "Net Manager" "connman-gtk" "preferences-system-network" "" "" "connman-gtk" "false"
-create_desktop_file "Calculator" "galculator" "galculator" "Utility" "" "false" "false"
-create_desktop_file "MiniOS Session Manager" "fbliveapp minios-session-manager" "media-floppy" "System;Settings;" "" "" "false"
-create_desktop_file "MiniOS Kernel Manager" "fbliveapp minios-kernel-manager" "package-x-generic" "System;Settings;" "" "" "false"
-create_desktop_file "MiniOS Module Manager" "fbliveapp minios-module-manager %f" "office-database" "System;" "application/x-sb;" "" "false"
-create_desktop_file "MiniOS Image Builder" "fbliveapp minios-image-builder" "isomaster" "GTK;System;" "" "" "false"
-create_desktop_file "MiniOS Store" "fbliveapp minios-store" "system-software-install" "System;PackageManager;" "" "" "false"
-create_desktop_file "MiniOS Help" "fbliveapp minios-help" "system-help" "System;Documentation;" "" "" "false"
-create_desktop_file "Drive Utility" "fbliveapp driveutility" "driveutility" "GTK;System;" "" "" "false"
+create_desktop_file "Calculator" "galculator" "galculator" "Utility;" "" "" "false" || exit $?
+create_desktop_file "MiniOS Session Manager" "fbliveapp minios-session-manager" "media-floppy" "System;Settings;" "" "" "false" || exit $?
+create_desktop_file "MiniOS Kernel Manager" "fbliveapp minios-kernel-manager" "package-x-generic" "System;Settings;" "" "" "false" || exit $?
+create_desktop_file "MiniOS Module Manager" "fbliveapp minios-module-manager %f" "office-database" "System;" "application/x-sb;" "" "false" || exit $?
+create_desktop_file "MiniOS Image Builder" "fbliveapp minios-image-builder" "isomaster" "GTK;System;" "" "" "false" || exit $?
+create_desktop_file "MiniOS Store" "fbliveapp minios-store" "system-software-install" "System;PackageManager;" "" "" "false" || exit $?
+create_desktop_file "MiniOS Help" "fbliveapp minios-help" "system-help" "System;Documentation;" "" "" "false" || exit $?
+create_desktop_file "Drive Utility" "fbliveapp driveutility" "driveutility" "GTK;System;" "" "" "false" || exit $?
 
 refresh_desktop_cache || exit $?
-mark_initialized
+touch -- "$INITIALIZED_MARKER"

@@ -1,23 +1,25 @@
-.TH FBSCREENSIZE 1 "2026-09-10" "flux-tools 1.3.0" "User Commands"
+.TH FBSCREENSIZE 1 "2026-09-10" "flux-tools 2.0.0" "User Commands"
 .SH NAME
-fbscreensize \- change screen resolution and restart compositor
+fbscreensize \- change screen resolution and reinitialize compositor
 .SH SYNOPSIS
 .B fbscreensize
 .I mode
 .RB [ \-n ]
 .SH DESCRIPTION
 .B fbscreensize
-changes the screen resolution using xrandr and restarts the compton compositor with appropriate settings for the FluxBox environment.
+changes the screen resolution using xrandr and reinitializes an existing Compton on the current display, preserving its command-line options and configuration.
 .SH OPTIONS
 .TP
 .I mode
 Screen resolution mode (e.g., 1920x1080)
 .TP
 .B \-n
-Skip compositor restart
+Skip compositor reinitialization
 .SH SEE ALSO
 .BR xrandr (1),
 .BR compton (1)
 .SH AUTHOR
 Tomas-M <https://github.com/Tomas-M>
 crims0n <crims0n@minios.dev>
+.SH NOTES
+The primary connected output is preferred, with the first connected output as fallback. Errors from xrandr are returned without touching the compositor. After success, only Compton on the current display is reinitialized with SIGUSR1, preserving its settings.

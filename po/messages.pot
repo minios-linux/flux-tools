@@ -1,20 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR MiniOS Linux
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the flux-tools package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: flux-tools 1.3.0\n"
-"Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-09-09 19:51+0300\n"
+"Project-Id-Version: flux-tools 2.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-10 16:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANSLATORS: Terminal message when command finishes
@@ -22,198 +22,223 @@ msgstr ""
 msgid "Command finished. Press any key to close window..."
 msgstr ""
 
-#. TRANSLATORS: Desktop entry names
-#: bin/fbdesktop:66 bin/fbdesktop:117 bin/fbdesktop:122 bin/fbdesktop:79
-msgid "Web Browser"
+#: bin/fbappselect:71 bin/fblogout:72
+msgid "Error"
 msgstr ""
 
-#: bin/fbdesktop:67 bin/fbdesktop:118 bin/fbdesktop:123 bin/fbdesktop:80
-msgid "Image Viewer"
+#: bin/fbappselect:72
+msgid "Could not start the selected application."
 msgstr ""
 
-#: bin/fbdesktop:68 bin/fbdesktop:119 bin/fbdesktop:124 bin/fbdesktop:81
-msgid "Video Player"
-msgstr ""
-
-#: bin/fbdesktop:69 bin/fbdesktop:120 bin/fbdesktop:125 bin/fbdesktop:82
-msgid "Terminal"
-msgstr ""
-
-#: bin/fbdesktop:70 bin/fbliveapp:59 bin/fbdesktop:121 bin/fbliveapp:60
-#: bin/fbdesktop:126 bin/fbdesktop:83 bin/fbliveapp:63
-msgid "MiniOS Installer"
-msgstr ""
-
-#: bin/fbdesktop:71 bin/fbliveapp:69 bin/fbdesktop:122 bin/fbliveapp:71
-#: bin/fbdesktop:127 bin/fbdesktop:84 bin/fbliveapp:74
-msgid "MiniOS Configurator"
-msgstr ""
-
-#: bin/fbdesktop:72 bin/fbdesktop:123 bin/fbdesktop:128 bin/fbdesktop:85
-msgid "Archiver"
-msgstr ""
-
-#: bin/fbdesktop:73 bin/fbdesktop:124 bin/fbdesktop:129 bin/fbdesktop:86
-msgid "File Manager"
-msgstr ""
-
-#: bin/fbdesktop:74 bin/fbdesktop:125 bin/fbdesktop:130 bin/fbdesktop:87
-msgid "Text Editor"
-msgstr ""
-
-#: bin/fbdesktop:75 bin/fbdesktop:126 bin/fbdesktop:131 bin/fbdesktop:88
-msgid "Task Manager"
-msgstr ""
-
-#: bin/fbdesktop:76 bin/fbdesktop:127 bin/fbdesktop:132 bin/fbdesktop:89
-msgid "Net Manager"
-msgstr ""
-
-#: bin/fbdesktop:77 bin/fbdesktop:128 bin/fbdesktop:133 bin/fbdesktop:90
-msgid "Calculator"
-msgstr ""
-
-#: bin/fbdesktop:78 bin/fbliveapp:79 bin/fbdesktop:129 bin/fbliveapp:82
-#: bin/fbdesktop:134 bin/fbdesktop:91 bin/fbliveapp:85
-msgid "MiniOS Session Manager"
-msgstr ""
-
-#: bin/fbdesktop:79 bin/fbliveapp:89 bin/fbdesktop:130 bin/fbliveapp:92
-#: bin/fbdesktop:135 bin/fbdesktop:92 bin/fbliveapp:95
-msgid "MiniOS Kernel Manager"
-msgstr ""
-
-#: bin/fbdesktop:113 bin/fbliveapp:99 bin/fbdesktop:131 bin/fbliveapp:102
-#: bin/fbdesktop:136 bin/fbdesktop:93 bin/fbliveapp:105
-msgid "MiniOS Module Manager"
-msgstr ""
-
-#: bin/fbliveapp:17 bin/fbliveapp:18 bin/fbliveapp:19
-msgid "VLC Video Player"
-msgstr ""
-
-#: bin/fbliveapp:18 bin/fbliveapp:19 bin/fbliveapp:20
-msgid ""
-"VLC is a free and open source multimedia player that plays most media files "
-"and streaming protocols."
-msgstr ""
-
-#: bin/fbliveapp:35 bin/fbliveapp:36 bin/fbliveapp:37
-msgid "Chromium Web Browser"
-msgstr ""
-
-#: bin/fbliveapp:36 bin/fbliveapp:37 bin/fbliveapp:38
-msgid ""
-"Chromium is a free and open source version of the famous Chrome browser, "
-"developed by Google."
-msgstr ""
-
-#: bin/fbliveapp:45 bin/fbliveapp:46 bin/fbliveapp:49
-msgid "Firefox Web Browser"
-msgstr ""
-
-#: bin/fbliveapp:46 bin/fbliveapp:47 bin/fbliveapp:50
-msgid "Firefox is a free and open source browser."
-msgstr ""
-
-#: bin/fbliveapp:60 bin/fbliveapp:61 bin/fbliveapp:64
-msgid "MiniOS Installer allows you to install MiniOS on the media."
-msgstr ""
-
-#: bin/fbliveapp:70 bin/fbliveapp:72 bin/fbliveapp:75
-msgid "MiniOS Configurator allows you to configure MiniOS."
-msgstr ""
-
-#: bin/fbliveapp:80 bin/fbliveapp:83 bin/fbliveapp:86
-msgid "MiniOS Session Manager allows you to manage persistent sessions."
-msgstr ""
-
-#: bin/fbliveapp:90 bin/fbliveapp:93 bin/fbliveapp:96
-msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
-msgstr ""
-
-#: bin/fbliveapp:100 bin/fbliveapp:103 bin/fbliveapp:106
-msgid "Inspect, create and manage MiniOS modules."
-msgstr ""
-
-#: bin/fbliveapp:117 bin/fbliveapp:170 bin/fbliveapp:173
-msgid "only works in 64bit version of MiniOS"
-msgstr ""
-
-#: bin/fbliveapp:117 bin/fbliveapp:170 bin/fbliveapp:173
+#: bin/fbappselect:73 bin/fbliveapp:187 bin/fblogout:73
 msgid "OK"
 msgstr ""
 
-#: bin/fbliveapp:121 bin/fbliveapp:174 bin/fbliveapp:177
-msgid " is not yet installed. Do you like to download and install it now?"
+#: bin/fbdesktop:30
+msgid "command_name"
 msgstr ""
 
-#: bin/fbliveapp:121 bin/fbliveapp:174 bin/fbliveapp:177
-msgid "Yes"
+#: bin/fbdesktop:39
+msgid "Cannot create desktop entry"
 msgstr ""
 
-#: bin/fbliveapp:121 bin/fbliveapp:174 bin/fbliveapp:177
-msgid "No"
+#. TRANSLATORS: Desktop entry names
+#: bin/fbdesktop:74
+msgid "Web Browser"
 msgstr ""
 
-#: bin/fbmenu:155
-msgid "Desktop menu"
+#: bin/fbdesktop:75
+msgid "Image Viewer"
 msgstr ""
 
-#: bin/fbmenu:162
-msgid "Run"
+#: bin/fbdesktop:76
+msgid "Video Player"
 msgstr ""
 
-#: bin/fbmenu:164
-msgid "Workspaces                ..."
+#: bin/fbdesktop:77
+msgid "Terminal"
 msgstr ""
 
-#: bin/fbmenu:165
-msgid "Screen resolution         ..."
+#: bin/fbdesktop:78 bin/fbliveapp:71
+msgid "MiniOS Installer"
 msgstr ""
 
-#: bin/fbmenu:168
-msgid "Keyboard layout           ..."
+#: bin/fbdesktop:79 bin/fbliveapp:82
+msgid "MiniOS Configurator"
 msgstr ""
 
-#: bin/fbmenu:171
-msgid "Exit / Logout"
+#: bin/fbdesktop:80
+msgid "Archiver"
 msgstr ""
 
-#: bin/fbdesktop:132 bin/fbliveapp:112 bin/fbdesktop:137 bin/fbdesktop:94
-#: bin/fbliveapp:115
+#: bin/fbdesktop:81
+msgid "File Manager"
+msgstr ""
+
+#: bin/fbdesktop:82
+msgid "Text Editor"
+msgstr ""
+
+#: bin/fbdesktop:83
+msgid "Task Manager"
+msgstr ""
+
+#: bin/fbdesktop:84
+msgid "Net Manager"
+msgstr ""
+
+#: bin/fbdesktop:85
+msgid "Calculator"
+msgstr ""
+
+#: bin/fbdesktop:86 bin/fbliveapp:93
+msgid "MiniOS Session Manager"
+msgstr ""
+
+#: bin/fbdesktop:87 bin/fbliveapp:103
+msgid "MiniOS Kernel Manager"
+msgstr ""
+
+#: bin/fbdesktop:88 bin/fbliveapp:113
+msgid "MiniOS Module Manager"
+msgstr ""
+
+#: bin/fbdesktop:89 bin/fbliveapp:123
 msgid "MiniOS Image Builder"
 msgstr ""
 
-#: bin/fbdesktop:133 bin/fbliveapp:122 bin/fbdesktop:138 bin/fbdesktop:95
-#: bin/fbliveapp:125
+#: bin/fbdesktop:90 bin/fbliveapp:133
 msgid "MiniOS Store"
 msgstr ""
 
-#: bin/fbdesktop:134 bin/fbliveapp:132 bin/fbdesktop:139 bin/fbdesktop:96
-#: bin/fbliveapp:135
+#: bin/fbdesktop:91 bin/fbliveapp:143
 msgid "MiniOS Help"
 msgstr ""
 
-#: bin/fbdesktop:135 bin/fbliveapp:142 bin/fbdesktop:140 bin/fbdesktop:97
-#: bin/fbliveapp:145
+#: bin/fbdesktop:92 bin/fbliveapp:154
 msgid "Drive Utility"
 msgstr ""
 
-#: bin/fbliveapp:113 bin/fbliveapp:116
-msgid ""
-"Build a verified MiniOS image with system, boot, layer, and session "
-"customization"
+#: bin/fbliveapp:33
+msgid "VLC Video Player"
 msgstr ""
 
-#: bin/fbliveapp:123 bin/fbliveapp:126
+#: bin/fbliveapp:34
+msgid "VLC is a free and open source multimedia player that plays most media files and streaming protocols."
+msgstr ""
+
+#: bin/fbliveapp:43
+msgid "Chromium Web Browser"
+msgstr ""
+
+#: bin/fbliveapp:44
+msgid "Chromium is a free and open source version of the famous Chrome browser, developed by Google."
+msgstr ""
+
+#: bin/fbliveapp:55
+msgid "Firefox Web Browser"
+msgstr ""
+
+#: bin/fbliveapp:56
+msgid "Firefox is a free and open source browser."
+msgstr ""
+
+#: bin/fbliveapp:72
+msgid "MiniOS Installer allows you to install MiniOS on the media."
+msgstr ""
+
+#: bin/fbliveapp:83
+msgid "MiniOS Configurator allows you to configure MiniOS."
+msgstr ""
+
+#: bin/fbliveapp:94
+msgid "MiniOS Session Manager allows you to manage persistent sessions."
+msgstr ""
+
+#: bin/fbliveapp:104
+msgid "MiniOS Kernel Manager allows you to manage Linux kernels."
+msgstr ""
+
+#: bin/fbliveapp:114
+msgid "Inspect, create and manage MiniOS modules."
+msgstr ""
+
+#: bin/fbliveapp:124
+msgid "Build a verified MiniOS image with system, boot, layer, and session customization"
+msgstr ""
+
+#: bin/fbliveapp:134
 msgid "Install applications and build MiniOS modules"
 msgstr ""
 
-#: bin/fbliveapp:133 bin/fbliveapp:136
+#: bin/fbliveapp:144
 msgid "Browse the local MiniOS documentation"
 msgstr ""
 
-#: bin/fbliveapp:143 bin/fbliveapp:146
+#: bin/fbliveapp:155
 msgid "Write disk images, format, or wipe drives"
+msgstr ""
+
+#: bin/fbliveapp:176
+msgid "Unsupported application"
+msgstr ""
+
+#: bin/fbliveapp:180
+msgid "Application is not executable"
+msgstr ""
+
+#: bin/fbliveapp:187
+msgid "only works in 64bit version of MiniOS"
+msgstr ""
+
+#: bin/fbliveapp:191
+msgid " is not yet installed. Do you like to download and install it now?"
+msgstr ""
+
+#: bin/fbliveapp:191
+msgid "Yes"
+msgstr ""
+
+#: bin/fbliveapp:191
+msgid "No"
+msgstr ""
+
+#: bin/fbliveapp:232
+msgid "Could not create the initial VLC configuration."
+msgstr ""
+
+#: bin/fblogout:70 bin/fblogout:73
+msgid "The session action failed."
+msgstr ""
+
+#: bin/fbmenu:156
+msgid "Desktop menu"
+msgstr ""
+
+#: bin/fbmenu:163
+msgid "Run"
+msgstr ""
+
+#: bin/fbmenu:165
+msgid "Workspaces                ..."
+msgstr ""
+
+#: bin/fbmenu:166
+msgid "Screen resolution         ..."
+msgstr ""
+
+#: bin/fbmenu:169
+msgid "Keyboard layout           ..."
+msgstr ""
+
+#: bin/fbmenu:172
+msgid "Exit / Logout"
+msgstr ""
+
+#: bin/fbprintscreen:32
+msgid "Screenshot saved"
+msgstr ""
+
+#: bin/fbscreensize:12
+msgid "No connected display found."
 msgstr ""

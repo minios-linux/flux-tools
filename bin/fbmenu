@@ -3,7 +3,10 @@
 # Set text domain
 export TEXTDOMAIN="flux-tools"
 
-LOCALE_LANG=$(locale | grep LANG | cut -d= -f2 | cut -d. -f1)
+LOCALE_LANG=${LC_ALL:-${LC_MESSAGES:-${LANG:-en_US}}}
+LOCALE_LANG=${LOCALE_LANG%%.*}
+LOCALE_LANG=${LOCALE_LANG%%@*}
+case "$LOCALE_LANG" in C|POSIX|'') LOCALE_LANG=en_US ;; esac
 
 declare -A LOCALE_TO_LAYOUT=(
     ["en_US"]="English,us,flag_usa.png"
@@ -61,17 +64,15 @@ keyboard_menu() {
     local LOCALE_LAYOUT=${LOCALE_TO_LAYOUT["$LOCALE_LANG"]}
     if [ -z "$LOCALE_LAYOUT" ]; then
         LOCALE_LAYOUT="English,us,flag_usa.png"
+        LOCALE_LANG=en_US
     fi
-    LOCALE_TEXT="${LOCALE_LAYOUT%%,*}"
-    LOCALE_KEYBOARD="${LOCALE_LAYOUT#*,}"
-    LOCALE_KEYBOARD="${LOCALE_KEYBOARD%%,*}"
+    IFS=, read -r LOCALE_TEXT LOCALE_KEYBOARD LOCALE_IMAGE <<<"$LOCALE_LAYOUT"
     IMAGE_PATH="/usr/share/icons/locolor/16x16/flags"
-    LOCALE_IMAGE="${LOCALE_LAYOUT##*,}"
-    if [ ! -z $LOCALE_IMAGE ]; then
+    if [ -n "$LOCALE_IMAGE" ]; then
         LOCALE_IMAGE=" <$IMAGE_PATH/$LOCALE_IMAGE>"
     fi
-    echo "      [exec] (English) { fbsetkb us } <$IMAGE_PATH/flag_usa.png>"
     if [ "$LOCALE_LANG" != "en_US" ]; then
+        echo "      [exec] (English) { fbsetkb us } <$IMAGE_PATH/flag_usa.png>"
         echo "      [exec] ($LOCALE_TEXT) { fbsetkb $LOCALE_KEYBOARD }$LOCALE_IMAGE"
     else
         echo "      [exec] (Czech) { fbsetkb cz } <$IMAGE_PATH/flag_czech_republic.png>
@@ -135,7 +136,7 @@ application_menu() {
     MENU_NAME=$1
     MENU_COMMAND="$2"
     # Split MENU_COMMAND into an array
-    IFS=" " read -a COMMANDS <<<"$MENU_COMMAND"
+    IFS=" " read -r -a COMMANDS <<<"$MENU_COMMAND"
     if [ "${COMMANDS[0]}" == "fbliveapp" ]; then
         # If the first command is 'fbliveapp', shift the array
         COMMANDS=("${COMMANDS[@]:1}")
@@ -145,7 +146,7 @@ application_menu() {
     fi
     COMMAND_NAME="${COMMANDS[0]}"
 
-    if [ $CHECK = "false" ] || command -v $COMMAND_NAME >/dev/null 2>&1; then
+    if [ "$CHECK" = "false" ] || command -v "$COMMAND_NAME" >/dev/null 2>&1; then
         echo "   [exec] ($(gettext "$MENU_NAME")) { fbstartupnotify && $MENU_COMMAND }"
     fi
 }

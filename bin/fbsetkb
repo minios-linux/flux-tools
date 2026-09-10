@@ -1,4 +1,15 @@
 #!/bin/bash
 
-setxkbmap $1
-echo $1 > ~/.fluxbox/kblayout
+if [ "$#" -ne 1 ] || [ -z "$1" ]; then
+    printf '%s\n' 'Usage: fbsetkb LAYOUT' >&2
+    exit 2
+fi
+setxkbmap "$1" || exit $?
+mkdir -p -- "$HOME/.fluxbox" || exit $?
+TEMPFILE=$(mktemp "$HOME/.fluxbox/kblayout.XXXXXX") || exit $?
+trap 'rm -f -- "$TEMPFILE"' EXIT
+trap 'exit 129' HUP
+trap 'exit 130' INT
+trap 'exit 143' TERM
+printf '%s\n' "$1" >"$TEMPFILE" || exit $?
+mv -fT -- "$TEMPFILE" "$HOME/.fluxbox/kblayout"

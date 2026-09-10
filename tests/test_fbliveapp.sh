@@ -159,3 +159,67 @@ if TERMINAL_CLOSED=1 run_app; then fail 'closed terminal was treated as a succes
 check_install_state_cleanup
 echo 'PASS: a terminal closed before reporting its result does not launch the application'
 echo 'PASS: temporary installation state is removed after success, failure and cancellation'
+
+
+# Reinstallation must preserve the caller's settings, including symlinks.
+export TEST_EUID=1000
+unset XDG_CONFIG_HOME
+mkdir -p "$HOME/.config/vlc"
+printf 'my volume and playback settings\n' >"$HOME/.config/vlc/vlcrc"
+cp "$HOME/.config/vlc/vlcrc" "$TEST_ROOT/saved-vlcrc"
+prepare vlc vlc.desktop vlc
+run_app
+cmp "$HOME/.config/vlc/vlcrc" "$TEST_ROOT/saved-vlcrc" || fail 'VLC config was overwritten'
+rm "$HOME/.config/vlc/vlcrc"
+ln -s "$TEST_ROOT/saved-vlcrc" "$HOME/.config/vlc/vlcrc"
+prepare vlc vlc.desktop vlc
+run_app
+[ -L "$HOME/.config/vlc/vlcrc" ] || fail 'VLC config symlink was replaced'
+grep -qx 'my volume and playback settings' "$TEST_ROOT/saved-vlcrc" || fail 'VLC followed a config symlink'
+echo 'PASS: VLC reinstallation preserves both existing settings and symlink targets'
+
+export HOME="$TEST_ROOT/home with an apostrophe's name"
+mkdir -p "$HOME"
+prepare vlc vlc.desktop vlc
+run_app
+printf '[qt4]\nqt-privacy-ask=0\n' >"$TEST_ROOT/initial-vlcrc"
+cmp "$HOME/.config/vlc/vlcrc" "$TEST_ROOT/initial-vlcrc" || fail 'VLC config initialization failed'
+[ "$(stat -c %a "$HOME/.config/vlc/vlcrc")" = 600 ] || fail 'initial VLC settings are not private'
+export XDG_CONFIG_HOME="$TEST_ROOT/other config"
+prepare vlc vlc.desktop vlc
+run_app
+cmp "$XDG_CONFIG_HOME/vlc/vlcrc" "$TEST_ROOT/initial-vlcrc" || fail 'VLC ignored XDG_CONFIG_HOME'
+unset XDG_CONFIG_HOME
+echo 'PASS: new VLC settings honor XDG paths, apostrophes and private permissions'
+
+cat >"$TEST_ROOT/bin/apt-cache" <<'SH'
+#!/bin/sh
+printf 'lookup %s\n' "$*" >>"$TEST_LOG"
+exit "${L10N_MISSING:-0}"
+SH
+chmod +x "$TEST_ROOT/bin/apt-cache"
+while IFS='|' read -r locale package; do
+    prepare firefox-esr firefox-esr.desktop firefox-esr
+    LC_ALL= LC_MESSAGES= LANG="$locale" run_app
+    grep -q "apt install .*firefox-esr-l10n-$package" "$TEST_LOG" || fail "wrong locale package: $locale"
+done <<'LOCALES'
+en_GB.UTF-8|en-gb
+pt_PT.UTF-8|pt-pt
+pt_BR.UTF-8|pt-br
+es_ES.UTF-8|es-es
+zh_CN.UTF-8|zh-cn
+zh_TW.UTF-8|zh-tw
+ru_RU.UTF-8|ru
+LOCALES
+prepare firefox-esr firefox-esr.desktop firefox-esr
+LC_ALL= LC_MESSAGES= LANG=xx_XX.UTF-8 L10N_MISSING=1 run_app
+! grep -q '^apt install .*firefox-esr-l10n-' "$TEST_LOG" || fail 'missing language pack blocks installation'
+grep -qx launch "$TEST_LOG" || fail 'browser not launched without language pack'
+echo 'PASS: regional Firefox language packages and missing optional translations are handled'
+
+if bash "$TEST_ROOT/fbliveapp" unknown; then fail 'unknown app accepted'; else status=$?; fi
+[ "$status" -eq 2 ] || fail 'wrong unknown app status'
+if bash "$TEST_ROOT/fbliveapp"; then fail 'missing app accepted'; else status=$?; fi
+[ "$status" -eq 2 ] || fail 'wrong missing app status'
+check_install_state_cleanup
+echo 'PASS: invalid application names report an error without installation'

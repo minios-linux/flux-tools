@@ -1,6 +1,7 @@
 #!/bin/bash
 # Exercise the real MIME cache updater without touching the login user's files.
 set -eu
+unset XDG_DATA_HOME
 
 SOURCE_DIR=$(cd -- "$(dirname -- "$0")/.." && pwd)
 REAL_DESKTOP_UPDATE=$(command -v update-desktop-database)
@@ -77,3 +78,40 @@ fi
 run_fbdesktop
 [ -f "$HOME/.fluxbox/fbdesktop.initialized" ] || fail 'retry did not initialize'
 echo 'PASS: cache failure is reported and initialization can be retried'
+
+
+export HOME="$TEST_ROOT/partial-profile"
+APPDIR="$HOME/.local/share/applications"
+mkdir -p "$APPDIR/firefox-esr-flux.desktop"
+if run_fbdesktop; then fail 'a failed desktop write was accepted'; fi
+[ ! -e "$HOME/.fluxbox/fbdesktop.initialized" ] || fail 'failed write set the marker'
+rmdir "$APPDIR/firefox-esr-flux.desktop"
+printf 'personal launcher\n' >"$APPDIR/pcmanfm-flux.desktop"
+run_fbdesktop
+[ -f "$APPDIR/firefox-esr-flux.desktop" ] || fail 'retry did not finish initialization'
+grep -qx 'personal launcher' "$APPDIR/pcmanfm-flux.desktop" || fail 'retry overwrote an existing file'
+echo 'PASS: failed writes leave initialization retryable without replacing existing entries'
+
+export HOME="$TEST_ROOT/xdg-profile" XDG_DATA_HOME="$TEST_ROOT/xdg data"
+printf '#!/bin/sh\nexit 0\n' >"$TEST_ROOT/bin/gpicview"
+chmod +x "$TEST_ROOT/bin/gpicview"
+run_fbdesktop
+APPDIR="$XDG_DATA_HOME/applications"
+[ -f "$APPDIR/pcmanfm-flux.desktop" ] || fail 'XDG_DATA_HOME ignored'
+[ ! -e "$HOME/.local/share/applications" ] || fail 'hardcoded app directory created'
+grep -q '^image/png=.*gpicview-flux.desktop' "$APPDIR/mimeinfo.cache" || fail 'PNG viewer not registered'
+grep -qx 'NoDisplay=true' "$APPDIR/gpicview-flux.desktop" || fail 'image viewer not hidden from the menu'
+! grep -q '^Hidden=true' "$APPDIR/gpicview-flux.desktop" || fail 'image handler is disabled'
+for desktop in "$APPDIR/"*.desktop; do desktop-file-validate "$desktop" || fail 'invalid desktop'; done
+echo 'PASS: XDG paths and concrete image handlers produce valid desktop entries'
+unset XDG_DATA_HOME
+
+# Redirect the root-only system path. Test real umask/cache semantics as a user.
+export HOME="$TEST_ROOT/root-profile"
+printf '#!/bin/sh\necho 0\n' >"$TEST_ROOT/bin/id"
+sed "s|/usr/share/applications|$TEST_ROOT/system-applications|g" "$SOURCE_DIR/bin/fbdesktop" >"$TEST_ROOT/fbdesktop-root"
+(umask 077; bash "$TEST_ROOT/fbdesktop-root")
+for file in "$TEST_ROOT/system-applications/"*.desktop "$TEST_ROOT/system-applications/mimeinfo.cache"; do
+    [ "$(stat -c %a "$file")" = 644 ] || fail "unreadable system entry: $file"
+done
+echo 'PASS: system desktop entries and MIME caches are readable with umask 077'
