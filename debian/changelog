@@ -1,3 +1,13 @@
+flux-tools (2.0.1) unstable; urgency=medium
+
+  * Require libglib2.0-bin with gio launch support or libgtk-3-bin so
+    desktop entries work in minimal installations without Recommends.
+  * Test launcher dependency resolution, including older GLib versions,
+    and direct dispatch of the session-menu button.
+  * Correct the dependency documentation and synchronize release metadata.
+
+ -- crims0n <crims0n@minios.dev>  Wed, 07 Oct 2026 00:12:07 +0300
+
 flux-tools (2.0.0) unstable; urgency=medium
 
   * Compatibility changes from 1.x:

@@ -1,8 +1,7 @@
 # Flux Tools
 
-Shell helpers for the MiniOS Flux desktop. The package keeps the existing X11
-and GTK toolchain: no new runtime packages, service or application registry are
-required by these fixes.
+Shell helpers for the MiniOS Flux desktop. The package uses the existing X11
+and GTK toolchain without adding a service or application registry.
 
 ## Launching applications
 
@@ -12,6 +11,8 @@ to install a supported application when it is missing.
 
 Desktop files are launched through `gio launch`; older GLib versions use
 `gtk-launch` with the desktop ID from the same XDG application directories.
+The package requires `libglib2.0-bin (>= 2.67.2)` or `libgtk-3-bin` so a
+compatible desktop launcher is installed even without recommended packages.
 Quoted arguments, field codes, `TryExec`, `Path` and terminal requests are left
 to the desktop launcher rather than interpreted as shell code. Free-form
 commands typed into xlunch run in a terminal and retain shell syntax.
@@ -66,11 +67,13 @@ than starting or replacing it. Invalid arguments and failed actions now
 return nonzero statuses; callers must handle these failures.
 
 Command names, the initialization marker and user data formats remain
-unchanged. No migration or new dependency is required.
+unchanged. No migration is required. Version 2.0.1 corrects the missing
+desktop-launcher dependency introduced in 2.0.0.
 
 ## Tests and development
 
-Run `make test` for metadata, shell syntax and regression tests. System-changing
+Run `make test` for metadata, required launcher dependencies, shell syntax
+and regression tests. System-changing
 commands are stubbed and files are confined to temporary directories; these
 tests do not install packages, signal desktop processes or power off the host.
 They use the existing build dependencies and base-system utilities.

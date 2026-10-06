@@ -25,6 +25,7 @@ po: $(MO_FILES)
 .PHONY: build po clean install test
 test:
 	bash tests/test_metadata.sh
+	bash tests/test_dependencies.sh
 	@for script in bin/* tests/*.sh update-po.sh; do bash -n "$$script" || exit; done
 	bash tests/test_fbdesktop.sh
 	bash tests/test_fbappselect.sh

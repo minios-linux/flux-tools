@@ -52,7 +52,7 @@ printf 'gio\n' >>"$CALL_LOG"
 printf '%s\n' "$@" >"$LAUNCH_ARGS"
 exit "${LAUNCH_STATUS:-0}"
 SH
-for tool in gtk-launch xterm; do
+for tool in gtk-launch xterm fblogout; do
     cat >"$TEST_ROOT/bin/$tool" <<'SH'
 #!/bin/sh
 printf '%s\n' "${0##*/}" >>"$CALL_LOG"
@@ -76,6 +76,11 @@ if LAUNCH_STATUS=42 bash "$SOURCE_DIR/bin/fbappselect"; then fail 'launch failur
 [ "$status" -eq 42 ] || fail 'wrong launch failure status'
 [ "$(tail -n1 "$CALL_LOG")" = 'notify false' ] || fail 'cursor not reset after launch failure'
 echo 'PASS: GTK fallback and desktop launch errors are handled'
+
+: >"$CALL_LOG"
+MENU_CHOICE=fblogout bash "$SOURCE_DIR/bin/fbappselect"
+[ "$(cat "$CALL_LOG")" = fblogout ] || fail 'session menu used a desktop launcher or terminal'
+echo 'PASS: the session-menu button calls its helper directly'
 
 export MENU_CHOICE='printf "%s\n" "two words"; echo raw-command'
 bash "$SOURCE_DIR/bin/fbappselect"

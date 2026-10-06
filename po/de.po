@@ -5,7 +5,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: flux-tools 2.0.0\n"
+"Project-Id-Version: flux-tools 2.0.1\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
 "POT-Creation-Date: 2026-09-10 16:45+0300\n"
 "PO-Revision-Date: 2026-09-10 13:46+0000\n"
